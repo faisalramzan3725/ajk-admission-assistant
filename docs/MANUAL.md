@@ -60,6 +60,13 @@ If you get `[Errno 10048] ... 8010`, another server (for example a preview) is a
 | **Admission dates** | Upcoming dates first (days left, highlighted when 14 days or fewer), then recently passed ones, plus rules to remember. |
 | **Ask a question** | Free text in English or Roman Urdu, with sources. Suggested questions are provided. |
 
+**Navigation (right of the tabs):**
+- **← Back** returns to the previous screen. The browser's own back button and **Alt+←** do the same, and results are kept.
+- **⌂ Home** goes to "Find my programs".
+- **✕ Clear** empties the current screen: marks and results on Find, the conversation in Chat, the ticks in How to apply.
+
+After a check, the results offer **✎ Edit my marks**, **↺ Start over** and **Next: how to apply →**. Each screen also has its own address, e.g. `/#dates`, which can be bookmarked or shared.
+
 Example questions:
 
 - `I did FSc pre-medical 946/1100, matric 1010/1100, MDCAT 140/180 - I want MBBS or DPT`
