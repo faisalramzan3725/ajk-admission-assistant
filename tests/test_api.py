@@ -33,9 +33,21 @@ def test_how_to_apply():
     assert client.get("/api/how-to-apply/xyz").status_code == 404
 
 
-def test_deadlines():
+def test_deadlines_are_clickable():
     d = client.get("/api/deadlines").json()
     assert any(x["id"] == "mdcat2026.test" for x in d["dated"])
+    for x in d["dated"]:
+        assert x["link"].startswith(("http", "/documents/")) and x["source_url"].startswith(("http", "/documents/")), x["id"]
+        if x["source_url"].startswith("/documents/"):
+            assert client.get(x["source_url"]).status_code == 200  # local copy is actually served
+    assert "jac.ajk.gov.pk" not in " ".join(x["link"] for x in d["dated"])  # never send students to the dead JAC site
+    merit3 = next(x for x in d["dated"] if x["id"] == "must.fall2026.merit3")
+    assert merit3["link"] == "https://admission.must.edu.pk/meritlist.php"
+
+
+def test_chat_deadlines_have_markdown_links():
+    r = client.post("/api/chat", json={"message": "UAJK last date"}).json()
+    assert "](https://admissions.uajk.edu.pk/)" in r["answer"]
 
 
 def test_chat():

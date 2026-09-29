@@ -251,7 +251,10 @@ def upcoming_deadlines(kb: Knowledge, on: date, include_past_days: int = 0) -> l
         dd = d["date"] if isinstance(d["date"], date) else date.fromisoformat(str(d["date"]))
         days = (dd - on).days
         if days >= -include_past_days:
-            out.append({**d, "date": dd.isoformat(), "days_left": days})
+            src = d["source"]
+            out.append({**d, "date": dd.isoformat(), "days_left": days,
+                        "source_url": src if src.startswith("http") else "/" + src,  # local copies are served under /documents
+                        "link": d.get("link") or (src if src.startswith("http") else "/" + src)})
     return sorted(out, key=lambda x: x["date"])
 
 

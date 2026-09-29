@@ -38,6 +38,8 @@ table.checks th{color:var(--muted);font-weight:600}
 ol.steps li{margin:6px 0}ul.docs{list-style:none;padding-left:0}ul.docs li{padding:3px 0}
 .warn{border-left:4px solid var(--soon);background:var(--chip);padding:8px 12px;border-radius:6px;margin:8px 0}
 .dl{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}.dl .d{font-weight:700;min-width:100px}
+a.dtitle{color:var(--ink);font-weight:600;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px}a.dtitle:hover{color:var(--accent)}
+a.go{color:var(--accent);font-weight:700;text-decoration:none;margin-right:10px}a.go:hover{text-decoration:underline}
 .days{font-size:12px;padding:1px 8px;border-radius:99px;background:var(--chip);white-space:nowrap}.days.soon{background:var(--soon);color:#fff}.days.past{opacity:.6}
 .testcard{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
 .big{font-size:28px;font-weight:800;color:var(--accent)}
@@ -143,7 +145,7 @@ function renderResult(r){
     <div class="stat"><b>${pr.hssc_percent}%</b>HSSC</div>${pr.ssc_percent!=null?`<div class="stat"><b>${pr.ssc_percent}%</b>SSC</div>`:''}
     ${Object.entries(pr.tests||{}).map(([k,v])=>`<div class="stat"><b>${v.obtained!=null&&v.total?`${v.obtained}/${v.total}`:v.percent+'%'}</b>${k.toUpperCase().replace('_',' ')}</div>`).join('')}
     <div class="stat"><b>${open.length}</b>programs open to you</div><div class="stat"><b>${ready.length}</b>ready now (no test pending)</div>
-    ${next?`<div class="stat"><b>${next.days_left} days</b>${esc(next.title)}</div>`:''}</div>
+    ${next?`<a class="stat" style="color:inherit;text-decoration:none" href="${esc(next.link)}" target="_blank" rel="noopener"><b>${next.days_left} days</b>${esc(next.title)} <span class="go">→</span></a>`:''}</div>
     ${!pr.interests&&r.fields_open_to_you.length?`<p class="small"><b>Fields open to you:</b> ${r.fields_open_to_you.map(f=>`${esc(f.label)} (${f.programs})`).join(' · ')}</p>`:''}</div>`;
   h+=`<div class="card"><h2>Programs</h2>${r.programs.map(progHtml).join('')||'<p>No programs match these filters.</p>'}<p class="small muted">${esc(r.chance_note)}</p></div>`;
   h+=Object.values(r.how_to_apply).map(x=>`<div class="card">${howHtml(x,true)}</div>`).join('');
@@ -186,7 +188,10 @@ async function loadTests(){const ts=await api('/api/tests');
    ${t.conducted_for_ajk_by?`<p class="small">${esc(t.conducted_for_ajk_by)}</p>`:''}${t.use_in_ajk?`<p class="small">${esc(t.use_in_ajk)}</p>`:''}${t.note?`<p class="small">${esc(t.note)}</p>`:''}
    ${(t.registration||t.portal)?`<p class="small"><a href="${esc(t.registration||t.portal)}" target="_blank">Register / portal</a></p>`:''}</div>`).join('')}
 // ---------- dates
-const dateRow=d=>`<div class="dl"><span class="d">${d.date}</span><span class="days ${d.days_left<0?'past':d.days_left<=14?'soon':''}">${d.days_left<0?'passed':d.days_left===0?'today':d.days_left+' days'}</span><span>${esc(d.title)}${d.trust==='secondary'?' <span class="small muted">(third-party, verify)</span>':''}${d.action?`<div class="small muted">${esc(d.action)}</div>`:''}</span></div>`;
+const dateRow=d=>`<div class="dl"><span class="d">${d.date}</span><span class="days ${d.days_left<0?'past':d.days_left<=14?'soon':''}">${d.days_left<0?'passed':d.days_left===0?'today':d.days_left+' days'}</span>
+  <span style="flex:1"><a class="dtitle" href="${esc(d.link)}" target="_blank" rel="noopener">${esc(d.title)}</a>${d.trust==='secondary'?' <span class="small muted">(third-party, verify)</span>':''}
+  ${d.action?`<div class="small muted">${esc(d.action)}</div>`:''}
+  <div class="small"><a class="go" href="${esc(d.link)}" target="_blank" rel="noopener">${esc(d.link_label||'Open')} →</a> <a class="muted" href="${esc(d.source_url)}" target="_blank" rel="noopener">official notice</a></div></span></div>`;
 async function loadDates(){const r=await api('/api/deadlines?include_past_days=120');$('#todayLbl').textContent='(today '+r.today+')';
   const up=r.dated.filter(d=>d.days_left>=0), past=r.dated.filter(d=>d.days_left<0).reverse();
   $('#dateList').innerHTML=(up.length?`<h3 style="margin-top:8px">Coming up</h3>${up.map(dateRow).join('')}`:'')+(past.length?`<h3 style="margin-top:14px" class="muted">Recently passed</h3>${past.map(dateRow).join('')}`:'');$('#ruleList').innerHTML=r.rules.map(x=>`<div class="dl"><span class="d">${x.institution.toUpperCase()}</span><span><b>${esc(x.title)}</b> - ${esc(x.rule)}</span></div>`).join('')}
@@ -195,6 +200,7 @@ async function ask(text){if(!text.trim())return;$('#chatlog').insertAdjacentHTML
   const id='m'+Date.now();$('#chatlog').insertAdjacentHTML('beforeend',`<div class="msg bot" id="${id}"><span class="muted">Checking...</span></div>`);
   try{const r=await api('/api/chat',{method:'POST',body:JSON.stringify({message:text})});
     $('#'+id).innerHTML=`<span class="pill">${r.action}</span> <span class="small muted">${r.intent}</span>${marked.parse(r.answer)}<details class="cites"><summary>Sources</summary>${r.citations.map(c=>`[${c.n}] ${c.source.startsWith('http')?`<a href="${esc(c.source)}" target="_blank">${esc(c.source)}</a>`:esc(c.source)}${c.trust==='secondary'?' (third-party, verify)':''}`).join('<br>')}</details>`;
+    $('#'+id).querySelectorAll('a').forEach(a=>{a.target='_blank';a.rel='noopener'});
   }catch(e){$('#'+id).textContent='Error: '+e.message}$('#chatlog').scrollTop=1e9}
 $('#send').onclick=()=>ask($('#q').value);$('#q').onkeydown=e=>{if(e.key==='Enter')ask($('#q').value)};
 document.querySelectorAll('.suggest button').forEach(b=>b.onclick=()=>ask(b.textContent));

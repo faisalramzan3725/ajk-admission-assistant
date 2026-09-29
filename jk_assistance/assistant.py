@@ -230,8 +230,14 @@ def render_deadlines(dl: list[dict]) -> list[str]:
     out = ["### Admission dates"]
     for d in dl:
         when = "passed" if d["days_left"] < 0 else ("today" if d["days_left"] == 0 else f"in {d['days_left']} days")
-        out.append(f"- **{d['date']}** ({when}) - {d['title']}" + (" *(third-party source - verify)*" if d.get("trust") == "secondary" else "") + (f". {d['action']}" if d.get("action") else ""))
+        out.append(f"- **{d['date']}** ({when}) - {_date_link(d)}" + (" *(third-party source - verify)*" if d.get("trust") == "secondary" else "")
+                   + (f". {d['action']}" if d.get("action") else "") + f" ([source]({d['source_url']}))")
     return out
+
+
+def _date_link(d: dict) -> str:
+    """The date's title as a clickable link to where the student acts (portal, merit lists, registration)."""
+    return f"[{d['title']}]({d['link']})"
 
 
 def render_howto(h: dict, compact: bool = False) -> list[str]:
@@ -248,7 +254,7 @@ def render_howto(h: dict, compact: bool = False) -> list[str]:
             out += [f"- [ ] {d}" for d in h["required_documents"]]
     upcoming = [d for d in h.get("dates", []) if d["days_left"] >= -7]
     if upcoming:
-        out.append("**Dates:** " + "; ".join(f"{d['date']} ({'passed' if d['days_left'] < 0 else str(d['days_left']) + ' days'}) {d['title']}" for d in upcoming))
+        out.append("**Dates:** " + "; ".join(f"{d['date']} ({'passed' if d['days_left'] < 0 else str(d['days_left']) + ' days'}) {_date_link(d)}" for d in upcoming))
     if not compact:
         for k in ("age_limit", "reserved_seats", "scholarships", "fee_rules", "refund"):
             if h.get(k):
