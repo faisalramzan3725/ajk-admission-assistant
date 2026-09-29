@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JK Assistance</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+<style>
+:root{--bg:#f6f7f4;--panel:#ffffff;--ink:#1d2320;--muted:#5f6b64;--line:#dfe4de;--accent:#0f6b4f;--accent-ink:#fff;
+  --guide:#2b6cb0;--ask:#8a6d00;--alert:#b7410e;--esc:#7b2d8b;--ok:#1f7a3d;--chip:#eef2ee}
+@media (prefers-color-scheme:dark){:root{--bg:#121614;--panel:#1a201d;--ink:#e6ece8;--muted:#9aa8a0;--line:#2c3530;--accent:#3fb68b;
+  --accent-ink:#08130e;--guide:#79aef0;--ask:#e5c35a;--alert:#f08a5d;--esc:#d08ce0;--ok:#62c98a;--chip:#232b27}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:14px 20px;border-bottom:1px solid var(--line);background:var(--panel);flex-wrap:wrap}
+h1{font-size:19px;margin:0}h1 span{color:var(--accent)}.sub{color:var(--muted);font-size:13px}
+nav{display:flex;gap:4px;flex-wrap:wrap;padding:10px 20px;border-bottom:1px solid var(--line);background:var(--panel)}
+nav button{border:1px solid var(--line);background:transparent;color:var(--ink);padding:7px 12px;border-radius:8px;cursor:pointer;font:inherit}
+nav button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+main{max-width:1100px;margin:0 auto;padding:18px 16px 60px}section{display:none}section.on{display:block}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px;margin-bottom:14px}
+label{display:block;font-size:13px;color:var(--muted);margin:8px 0 4px}
+input,select,textarea{width:100%;padding:9px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.btn{background:var(--accent);color:var(--accent-ink);border:0;padding:9px 16px;border-radius:8px;cursor:pointer;font:inherit;font-weight:600}
+.btn.ghost{background:transparent;color:var(--accent);border:1px solid var(--accent)}
+#chatlog{min-height:320px;max-height:62vh;overflow:auto}.msg{margin:10px 0;padding:10px 14px;border-radius:10px;max-width:92%}
+.msg.user{background:var(--chip);margin-left:auto}.msg.bot{background:var(--panel);border:1px solid var(--line)}
+.msg table{border-collapse:collapse}.msg td,.msg th{border:1px solid var(--line);padding:4px 8px}
+.pill{display:inline-block;padding:2px 9px;border-radius:99px;font-size:12px;font-weight:700;letter-spacing:.3px}
+.GUIDE{color:var(--guide);border:1px solid var(--guide)}.ASK_INFO{color:var(--ask);border:1px solid var(--ask)}
+.ALERT{color:var(--alert);border:1px solid var(--alert)}.ESCALATE{color:var(--esc);border:1px solid var(--esc)}
+.cites{font-size:12px;color:var(--muted);margin-top:8px}.cites a{color:var(--muted)}
+.finding{border-left:4px solid var(--line);padding:8px 12px;margin:8px 0;background:var(--bg);border-radius:6px}
+.finding.ALERT{border-left-color:var(--alert)}.finding.ESCALATE{border-left-color:var(--esc)}.finding.ASK_INFO{border-left-color:var(--ask)}.finding.GUIDE{border-left-color:var(--guide)}
+.finding .t{font-weight:600}.muted{color:var(--muted)}.small{font-size:13px}
+.dl{display:flex;gap:12px;align-items:baseline;padding:8px 0;border-bottom:1px solid var(--line)}.dl .d{font-weight:700;min-width:105px}
+.days{font-size:12px;padding:1px 8px;border-radius:99px;background:var(--chip)}.days.soon{background:var(--alert);color:#fff}.days.past{opacity:.6}
+.prog{padding:10px 0;border-bottom:1px solid var(--line)}.prog b{font-size:15px}
+.chips span{display:inline-block;background:var(--chip);padding:2px 8px;border-radius:6px;margin:2px;font-size:12px}
+ul.check{list-style:none;padding-left:0}ul.check li{padding:4px 0}
+.sem{display:inline-block;margin:3px;padding:4px 9px;border-radius:6px;background:var(--chip);font-size:13px}
+.sem.probation{background:var(--ask);color:#111}.sem.relegated,.sem.dropped{background:var(--alert);color:#fff}.sem.pending{outline:1px dashed var(--muted)}
+.suggest button{margin:3px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:99px;padding:5px 11px;cursor:pointer;font:inherit;font-size:13px}
+@media (max-width:600px){header,nav{padding:10px 16px}.msg{max-width:100%}}
+</style>
+</head>
+<body>
+<header>
+  <div><h1><span>JK</span> Assistance</h1><div class="sub">Admissions, documents, fees, deadlines and semester progress - UAJK, MUST and the AJK medical colleges</div></div>
+  <div class="small muted" id="health">...</div>
+</header>
+<nav id="tabs">
+  <button data-t="chat" class="on">Ask</button><button data-t="advise">Admission advisor</button><button data-t="deadlines">Deadlines</button>
+  <button data-t="dash">My dashboard</button><button data-t="services">Documents &amp; services</button><button data-t="apps">Applications</button>
+  <button data-t="queue">Advisor queue</button>
+</nav>
+<main>
+<section id="chat" class="on">
+  <div class="card">
+    <div class="row"><div><label>Ask as</label><select id="chatStudent"><option value="">Guest (no student record)</option></select></div></div>
+    <div class="suggest" style="margin-top:10px">
+      <button>How do I get my degree from MUST?</button><button>UAJK migration certificate documents and fee</button>
+      <button>I did FSc pre-medical with 82%, matric 88%, MDCAT 71%, I want MBBS or DPT</button>
+      <button>ICS 64% which programs can I apply for in computing?</button><button>UAJK admission last date</button>
+      <button>MBBS transcript from UHS</button><button>Am I on probation? What happens if I fail again?</button>
+      <button>Can I get an extension for my fee deadline?</button>
+    </div>
+  </div>
+  <div class="card" id="chatlog"></div>
+  <div class="card"><div style="display:flex;gap:8px"><input id="q" placeholder="Ask about admission, degree, transcript, migration, fees, deadlines, probation... (English or Roman Urdu)"><button class="btn" id="send">Send</button></div></div>
+</section>
+
+<section id="advise">
+  <div class="card">
+    <b>After 12 years of education - where can I apply?</b>
+    <div class="row">
+      <div><label>Intermediate group</label><select id="a_group"><option value="pre_med">F.Sc. Pre-Medical</option><option value="pre_eng">F.Sc. Pre-Engineering</option><option value="ics">ICS</option><option value="fa">F.A.</option><option value="icom">I.Com</option><option value="general_science">General Science</option><option value="dae">DAE</option><option value="a_level">A-level</option></select></div>
+      <div><label>HSSC / FSc %</label><input id="a_hssc" type="number" value="75"></div>
+      <div><label>Matric (SSC) %</label><input id="a_ssc" type="number"></div>
+      <div><label>MDCAT % (medical only)</label><input id="a_mdcat" type="number"></div>
+      <div><label>Age</label><input id="a_age" type="number"></div>
+    </div>
+    <div class="row">
+      <div><label>Interests (comma-separated)</label><input id="a_int" placeholder="medicine, computing, engineering, business, law..."></div>
+      <div><label>Institutions</label><select id="a_inst"><option value="">All</option><option value="uajk">UAJK</option><option value="must">MUST</option><option value="jac">Medical (JAC)</option></select></div>
+      <div><label>AJK State Subject?</label><select id="a_ss"><option value="true">Yes</option><option value="false">No</option></select></div>
+      <div><label>Studied Mathematics?</label><select id="a_math"><option value="false">No</option><option value="true">Yes</option></select></div>
+    </div>
+    <p><button class="btn" id="a_go">Show my options</button></p>
+  </div>
+  <div id="a_out"></div>
+</section>
+
+<section id="deadlines">
+  <div class="card"><div class="row"><div><label>Institution</label><select id="d_inst"><option value="">All</option><option value="uajk">UAJK</option><option value="must">MUST</option><option value="jac">Medical (JAC)</option><option value="pmc">Poonch Medical College</option></select></div></div></div>
+  <div class="card"><b>Dated deadlines</b><div id="d_list"></div></div>
+  <div class="card"><b>Standing rules: fee fines, re-checking, registration, refunds, migration</b><div id="d_rules"></div></div>
+</section>
+
+<section id="dash">
+  <div class="card"><div class="row"><div><label>Student</label><select id="dashStudent"></select></div></div></div>
+  <div id="dashOut"></div>
+</section>
+
+<section id="services">
+  <div class="card"><div class="row"><div><label>Institution</label><select id="s_inst"><option value="uajk">UAJK</option><option value="must">MUST</option><option value="uhs">UHS (MBBS/BDS degrees)</option></select></div>
+  <div><label>Service</label><select id="s_svc"></select></div></div></div>
+  <div class="card" id="s_out"></div>
+</section>
+
+<section id="apps">
+  <div class="card"><div class="row"><div><label>Student</label><select id="appStudent"></select></div><div><label>Service</label><select id="appSvc"></select></div></div>
+  <p><button class="btn" id="appNew">Start application</button></p></div>
+  <div id="appList"></div>
+</section>
+
+<section id="queue"><div class="card"><b>Cases escalated to a human advisor</b><div id="qList"></div></div></section>
+</main>
+<script>
+const $=s=>document.querySelector(s), api=async(u,o)=>{const r=await fetch(u,o?{headers:{'Content-Type':'application/json'},...o}:undefined);if(!r.ok)throw new Error(await r.text());return r.json()};
+const esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const md=t=>{try{return marked.parse(t||'')}catch(e){return '<pre>'+esc(t)+'</pre>'}};
+const rs=n=>'Rs. '+Number(n).toLocaleString('en-PK');
+document.querySelectorAll('#tabs button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#tabs button,section').forEach(x=>x.classList.remove('on'));b.classList.add('on');$('#'+b.dataset.t).classList.add('on');loaders[b.dataset.t]?.()});
+
+async function init(){
+  const h=await api('/api/health');$('#health').textContent=`Today ${h.today} · ${h.llm?'Claude answers on':'rule-engine answers (no API key)'} · ${h.services} services · ${h.programs} programs`;
+  const st=await api('/api/students');
+  for(const sel of ['#chatStudent','#dashStudent','#appStudent']) st.forEach(s=>$(sel).insertAdjacentHTML('beforeend',`<option value="${s.id}">${esc(s.name)} - ${esc(s.program||s.type)}</option>`));
+  loadServices();loadDeadlines();
+}
+// ---- chat
+async function ask(text){
+  if(!text.trim())return;$('#chatlog').insertAdjacentHTML('beforeend',`<div class="msg user">${esc(text)}</div>`);$('#q').value='';
+  const id='m'+Date.now();$('#chatlog').insertAdjacentHTML('beforeend',`<div class="msg bot" id="${id}"><span class="muted">Checking the rules and sources...</span></div>`);$('#chatlog').scrollTop=1e9;
+  try{const r=await api('/api/chat',{method:'POST',body:JSON.stringify({message:text,student_id:$('#chatStudent').value||null})});
+    const cites=r.citations.map(c=>`[${c.n}] ${c.source.startsWith('http')?`<a href="${esc(c.source)}" target="_blank">${esc(c.source)}</a>`:esc(c.source)}${c.trust==='secondary'?' (third-party, verify)':''}`).join('<br>');
+    $('#'+id).innerHTML=`<span class="pill ${r.action}">${r.action}</span> <span class="small muted">${r.intent}${r.institution?' · '+r.institution:''}</span>${md(r.answer)}<details class="cites"><summary>Evidence</summary>${cites}</details>`;
+  }catch(e){$('#'+id).textContent='Error: '+e.message}
+  $('#chatlog').scrollTop=1e9;
+}
+$('#send').onclick=()=>ask($('#q').value);$('#q').onkeydown=e=>{if(e.key==='Enter')ask($('#q').value)};
+document.querySelectorAll('.suggest button').forEach(b=>b.onclick=()=>ask(b.textContent));
+// ---- advisor
+$('#a_go').onclick=async()=>{
+  const num=id=>$(id).value===''?undefined:Number($(id).value);
+  const body={group:$('#a_group').value,hssc_percent:num('#a_hssc'),ssc_percent:num('#a_ssc'),mdcat_percent:num('#a_mdcat'),age:num('#a_age'),
+    interests:$('#a_int').value?$('#a_int').value.split(',').map(s=>s.trim()).filter(Boolean):undefined,institutions:$('#a_inst').value?[$('#a_inst').value]:undefined,
+    state_subject:$('#a_ss').value==='true',studied_math:$('#a_math').value==='true'};
+  const r=await api('/api/advise',{method:'POST',body:JSON.stringify(body)});
+  const progs=r.programs.map(p=>`<div class="prog"><b>${esc(p.program)}</b> <span class="pill ${p.eligibility==='eligible'?'GUIDE':p.eligibility==='not_eligible'?'ALERT':'ASK_INFO'}">${p.eligibility.replace('_',' ')}</span>
+   <div class="small muted">${p.institution.toUpperCase()} · ${esc(p.campus||'')} · ${p.years||'?'} years · chance: <b>${esc(p.chance)}</b>${p.merit_aggregate!=null?' · merit aggregate '+p.merit_aggregate:''}</div>
+   <div class="chips">${p.tests.map(t=>`<span>${esc(t.name)}</span>`).join('')||'<span>no entry test listed</span>'}${p.fees?`<span>1st semester ${rs(p.fees.first_semester)} (${p.fees.session})</span>`:''}${p.fees?.open_merit_first_semester?`<span>open merit ${rs(p.fees.open_merit_first_semester)}</span>`:''}${p.fees?.self_support_per_semester?`<span>self-support +${rs(p.fees.self_support_per_semester)}/sem</span>`:''}</div>
+   ${[...p.reasons,...p.checks].map(x=>`<div class="small">• ${esc(x)}</div>`).join('')}</div>`).join('');
+  const procs=Object.values(r.application_process).map(p=>`<div class="card"><b>How to apply - ${esc(p.institution)}</b> ${p.portal?`<a href="${p.portal}" target="_blank">${p.portal}</a>`:''}<ol>${(p.how_to_apply||[]).map(s=>`<li>${esc(s)}</li>`).join('')}</ol><b>Documents</b><ul class="check">${(p.required_documents||[]).map(s=>`<li>☐ ${esc(s)}</li>`).join('')}</ul>${p.self_support?`<p class="small">${esc(p.self_support)}</p>`:''}${p.fee_payment_rule?`<p class="small">${esc(p.fee_payment_rule)}</p>`:''}</div>`).join('');
+  const dl=r.upcoming_deadlines.map(d=>`<div class="dl"><span class="d">${d.date}</span><span class="days ${d.days_left<=14?'soon':''}">${d.days_left} days</span><span>${esc(d.title)}</span></div>`).join('');
+  $('#a_out').innerHTML=`<div class="card"><b>Programs</b> <span class="small muted">(as of ${r.as_of})</span>${progs||'<p>No programs match these filters.</p>'}<p class="small muted">${esc(r.chance_disclaimer)}</p></div>${dl?`<div class="card"><b>Upcoming admission deadlines</b>${dl}</div>`:''}${procs}`;
+};
+// ---- deadlines
+async function loadDeadlines(){const r=await api('/api/deadlines?include_past_days=60'+($('#d_inst').value?'&institution='+$('#d_inst').value:''));
+  $('#d_list').innerHTML=r.dated.map(d=>`<div class="dl"><span class="d">${d.date}</span><span class="days ${d.days_left<0?'past':d.days_left<=14?'soon':''}">${d.days_left<0?'passed':d.days_left+' days'}</span><span>${esc(d.title)}${d.trust==='secondary'?' <span class="small muted">(third-party, verify)</span>':''}<div class="small muted">${esc(d.action||'')}</div></span></div>`).join('')||'<p class="muted">None.</p>';
+  $('#d_rules').innerHTML=r.rules.map(x=>`<div class="dl"><span class="d">${x.institution.toUpperCase()}</span><span><b>${esc(x.title)}</b> - ${esc(x.rule)} <a class="small" href="${x.source}" target="_blank">source</a></span></div>`).join('');}
+$('#d_inst').onchange=loadDeadlines;
+// ---- dashboard
+function findingHtml(f){return `<div class="finding ${f.action}"><span class="pill ${f.action}">${f.action}</span> <span class="t">${esc(f.title)}</span>${f.due_date?` <span class="days ${f.days_left<=14?'soon':''}">due ${f.due_date} (${f.days_left} d)</span>`:''}<div class="small">${esc(f.detail)}</div>${f.source?`<div class="small muted">${f.source.startsWith('http')?`<a href="${f.source}" target="_blank">source</a>`:esc(f.source)}</div>`:''}</div>`}
+async function loadDash(){const id=$('#dashStudent').value;if(!id)return;const r=await api(`/api/students/${id}/dashboard`);
+  let h=`<div class="card"><b>${esc(r.student.name)}</b> <span class="muted small">${esc(r.student.program||r.student.type)} · ${esc(r.student.institution||'')}</span><div style="margin-top:8px">${r.findings.map(findingHtml).join('')||'All clear.'}</div></div>`;
+  if(r.progression&&!r.progression.rules_unavailable){const p=r.progression;
+    h+=`<div class="card"><b>Semester progress</b> <span class="small muted">rule set ${p.rule_set}</span><div>${p.semesters.map(s=>`<span class="sem ${s.outcome}">S${s.semester}: ${s.outcome} (${s.passed}/${s.opted}, need ${s.required})</span>`).join('')}</div>
+    <p>CGPA <b>${p.cgpa.gpa??'-'}</b> (${p.cgpa.weighted_percent??'-'}%) · status <b>${p.state.status}</b> · probations used ${p.state.probations_used}</p>
+    <details><summary>What-if: try results for pending courses</summary><div id="wi"></div><button class="btn ghost" id="wiGo">Simulate</button><div id="wiOut"></div></details></div>`;}
+  else if(r.progression) h+=`<div class="card"><b>Semester progress</b><p>${esc(r.progression.reason)} Promotion questions are referred to your department.</p></div>`;
+  if(r.dues?.length) h+=`<div class="card"><b>Dues &amp; challans</b>${r.dues.map(d=>`<div class="dl"><span class="d">${d.due_date||'-'}</span><span>${esc(d.title)} - ${rs(d.amount)} ${d.paid?'<span class="pill GUIDE">paid</span>':`<button class="btn ghost" onclick="pay('${id}','${d.id}')">Mark paid</button>`}</span></div>`).join('')}</div>`;
+  if(r.advice?.programs) h+=`<div class="card"><b>Top options for this applicant</b>${r.advice.programs.slice(0,8).map(p=>`<div class="prog"><b>${esc(p.program)}</b> <span class="small muted">${p.institution.toUpperCase()} · chance ${esc(p.chance)}</span></div>`).join('')}</div>`;
+  $('#dashOut').innerHTML=h;
+  const pend=r.progression?.semesters?.at(-1)?.pending||[];
+  if($('#wi')){$('#wi').innerHTML=pend.map(c=>`<label>${c} %</label><input data-c="${c}" type="number" value="55">`).join('')||'<p class="small muted">No pending courses.</p>';
+    $('#wiGo').onclick=async()=>{const res={};document.querySelectorAll('#wi input').forEach(i=>res[i.dataset.c]=Number(i.value));const w=await api(`/api/students/${id}/what-if`,{method:'POST',body:JSON.stringify({results:res})});const l=w.semesters.at(-1);$('#wiOut').innerHTML=`<p>Outcome: <b>${l.outcome}</b>${l.relegate_to?' to semester '+l.relegate_to:''} · ${esc(l.notes.join(' '))} · CGPA ${w.cgpa.gpa}</p>`};}
+}
+async function pay(sid,did){await api(`/api/students/${sid}/events`,{method:'POST',body:JSON.stringify({type:'payment',payload:{due_id:did}})});loadDash()}
+$('#dashStudent').onchange=loadDash;
+// ---- services
+async function loadServices(){const list=await api('/api/services?institution='+$('#s_inst').value);$('#s_svc').innerHTML=list.map(s=>`<option value="${s.id}">${esc(s.name)}</option>`).join('');
+  const all=await api('/api/services');$('#appSvc').innerHTML=all.map(s=>`<option value="${s.id}">${s.institution.toUpperCase()} - ${esc(s.name)}</option>`).join('');showService()}
+async function showService(){const c=await api('/api/services/'+$('#s_svc').value);
+  $('#s_out').innerHTML=`<h3 style="margin-top:0">${esc(c.name)}</h3><p class="small muted">${esc(c.institution)} · ${esc(c.office||'')}${c.portal?` · <a href="${c.portal}" target="_blank">${c.portal}</a>`:''}</p>
+  ${c.fees.length?`<b>Fees in force today</b><ul>${c.fees.map(f=>`<li>${esc(f.item)}: <b>${rs(f.amount)}</b>${f.urgent_amount?` (urgent ${rs(f.urgent_amount)})`:''} <span class="small muted">${f.date_basis==='fetched'?'as fetched':'effective'} ${f.effective_from}${f.previous_versions.length?` · was ${rs(f.previous_versions.at(-1).amount)} from ${f.previous_versions.at(-1).effective_from}`:''}</span></li>`).join('')}</ul>`:''}
+  ${c.required_documents.length?`<b>Documents</b><ul class="check">${c.required_documents.map(d=>`<li>☐ ${esc(d)}</li>`).join('')}</ul>`:''}
+  ${c.steps.length?`<b>Steps</b><ol>${c.steps.map(s=>`<li>${esc(s)}</li>`).join('')}</ol>`:''}
+  ${c.deadlines.map(d=>`<p><b>Deadline:</b> ${esc(d.rule)}</p>`).join('')}${c.processing_time?`<p><b>Processing time:</b> ${esc(c.processing_time)}</p>`:''}
+  ${c.forms.length?`<b>Forms</b><ul>${c.forms.map(f=>`<li>${esc(f.title)} ${f.local?`- <a href="/${f.local}" target="_blank">local copy</a>`:''} ${f.url?`- <a href="${f.url}" target="_blank">official</a>`:''}</li>`).join('')}</ul>`:''}
+  ${c.notes.length?`<p class="small">${c.notes.map(esc).join('<br>')}</p>`:''}<p class="small muted">Sources: ${c.sources.map(s=>`<a href="${s}" target="_blank">${esc(s)}</a>`).join(', ')}</p>`}
+$('#s_inst').onchange=loadServices;$('#s_svc').onchange=showService;
+// ---- applications
+async function loadApps(){const sid=$('#appStudent').value;const list=await api('/api/applications'+(sid?'?student_id='+sid:''));
+  $('#appList').innerHTML=list.map(a=>`<div class="card"><b>${a.id} · ${esc(a.service_name)}</b> <span class="pill GUIDE">${a.status}</span><div class="small muted">${a.institution.toUpperCase()} · opened ${a.created_on}${a.fee_paid_on?' · fee paid '+a.fee_paid_on:''}</div>
+   <ul class="check">${a.checklist.map((c,i)=>`<li><label style="display:inline;color:inherit"><input type="checkbox" style="width:auto" ${c.done?'checked disabled':''} onchange="tick('${a.id}',${i})"> ${esc(c.item)}</label></li>`).join('')}</ul>
+   <div class="small">${a.fees.map(f=>`${esc(f.item)}: ${rs(f.amount)}`).join(' · ')}</div>
+   <p>${a.fee_paid_on?'':`<button class="btn ghost" onclick="feePaid('${a.id}')">Fee paid today</button>`} <button class="btn ghost" onclick="setStatus('${a.id}','submitted')">Mark submitted</button></p></div>`).join('')||'<p class="muted">No applications yet.</p>'}
+$('#appNew').onclick=async()=>{await api('/api/applications',{method:'POST',body:JSON.stringify({service_id:$('#appSvc').value,student_id:$('#appStudent').value||null})});loadApps()};
+async function tick(id,i){await api('/api/applications/'+id,{method:'PATCH',body:JSON.stringify({checklist_done:[i]})});loadApps()}
+async function feePaid(id){const t=(await api('/api/health')).today;await api('/api/applications/'+id,{method:'PATCH',body:JSON.stringify({fee_paid_on:t})});loadApps()}
+async function setStatus(id,s){const t=(await api('/api/health')).today;await api('/api/applications/'+id,{method:'PATCH',body:JSON.stringify({status:s,submitted_on:t})});loadApps()}
+$('#appStudent').onchange=loadApps;
+// ---- queue
+async function loadQueue(){const q=await api('/api/escalations');$('#qList').innerHTML=q.map(e=>`<div class="finding ESCALATE"><b>${e.id}</b> · ${esc(e.student_id||'guest')} · ${e.created_on}<div>${esc(e.summary)}</div><div class="small muted">${esc(JSON.stringify(e.detail))}</div><button class="btn ghost" onclick="resolveEsc('${e.id}')">Resolve</button></div>`).join('')||'<p class="muted">Queue is empty.</p>'}
+async function resolveEsc(id){await api('/api/escalations/'+id+'/resolve',{method:'POST'});loadQueue()}
+const loaders={dash:loadDash,apps:loadApps,queue:loadQueue,deadlines:loadDeadlines};
+init();
+</script>
+</body>
+</html>

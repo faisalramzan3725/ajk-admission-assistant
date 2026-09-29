@@ -1,0 +1,166 @@
+SOURCE: https://must.edu.pk/?page_id=6252
+
+Home
+Staff
+CE Downloads
+Affiliated Colleges
+Semester Rules and Regulations
+BOS Courses / BS Programs
+Grading System
+Percentage grading system shall be used for marking and preparation of result.
+(1)
+One credit will be equal to 50 marks (e.g. a 4-credit course will carry 200 marks while a 1-credit course will carry 50 marks).
+(2)
+A minimum of 50% marks will be required to pass a theory course.
+(3)
+For a course in which lab work is also included, each part has to be passed separately by securing atleast 50% of the allocated marks.
+(4)
+Each course will be evaluated with following break up:
+Quiz
+Assignment
+Mid Term
+Terminal
+Total
+10
+10
+30
+50
+100
+Grades:
+Marks
+GP
+LG
+Marks
+GP
+LG
+<50
+0
+F
+70
+3.00
+B
+50
+2.00
+C-
+71
+3.05
+51
+2.05
+72
+3.10
+52
+2.10
+73
+3.15
+53
+2.15
+74
+3.20
+54
+2.20
+75
+3.25
+B+
+55
+2.25
+C
+76
+3.30
+56
+2.30
+77
+3.35
+57
+2.35
+78
+3.40
+58
+2.40
+79
+3.45
+59
+2.45
+80
+3.50
+A-
+60
+2.50
+C+
+81
+3.55
+61
+2.55
+82
+3.60
+62
+2.60
+83
+3.65
+63
+2.65
+84
+3.70
+64
+2.70
+85
+3.75
+A
+65
+2.75
+B-
+86
+3.80
+66
+2.80
+87
+3.85
+67
+2.85
+88
+3.90
+68
+2.90
+89
+3.95
+69
+2.95
+90-100
+4.00
+A+
+W: Withdrawal of a Course
+I: Incomplete Course
+(a) Calculation of GPA
+Semester Weighted Average Percentage = Σ (% marks in respective Course x credit hours)/ total credits in a semester:
+52.0 x 4 = 208.0
+70.0 x 3 = 210.0
+54.0 x 2 = 108.0
+80.0 x 1 = 80.0
+75.0 x 3 = 225.0
+831.0 / 13 = 63.92
+GPA at weighted average (63.92) = 2.65 (from GPA point Table)
+(b) Calculation of CGPA
+Weighted average percentage = Σ (% marks in respective Course x credit hours)/ total credits of the degree programme:
+Semester I
+52.0 x 4 = 208.0
+70.0 x 3 = 210.0
+54.0 x 2 = 108.0
+80.0 x 1 = 80.0
+75.0 x 3 = 225.0
+Semester II
+52.0 x 4 = 208.0
+50.0 x 3 = 150.0
+50.0 x 1 = 50.0
+1239.0 / 21 = 59.0
+CGPA at weighted average percentage (59.00) = 2.45 (from GPA point Table)
+(5)
+A student securing less than 50% marks in a course shall be awarded an ‘F’ grade and GP shall be counted as Zero, the marks will be reflected in the sheet but will not be included in the final percentage calculation.
+(6)
+A fraction of mark in a course is to be counted as ‘1’ mark e.g. 64.5 and above is to be shown as 65.
+(7)
+There will be no rounding in weighted average percentage for calculation of Semester’s GPA and CGPA.
+(8)
+Maximum possible grade point average (GPA) will be 4.00.
+(9)
+Minimum Cumulative Grade Point Average for obtaining a 4-years BS degree is 2.5.
+(10)
+Only the course number, course title, course credit hours, percentage marks in a course, course grade, semester GPAs, overall percentage marks in the degree and CGPA will be reported on the transcripts.

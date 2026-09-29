@@ -1,0 +1,562 @@
+# JK Assistance - student services catalog (documents, fees, steps) per institution.
+#
+# Fees are VERSIONED: each fee has one or more versions with `effective_from`. The engine selects the
+# newest version whose effective_from <= the date of the question. When a fee's effective date is
+# unknown, `effective_from` is the date the source was published/fetched and `date_basis` says so.
+# Never quote a fee without its source and version date.
+#
+# Form paths are relative to the project root.
+
+services:
+
+  # ------------------------------------------------------------------ UAJK
+  - id: uajk.degree
+    institution: uajk
+    name: Degree issuance (original degree)
+    keywords: [degree, original degree, get my degree, degree before convocation, degree after convocation, urgent degree, degree issuance]
+    office: Degree Branch, Examinations Department, Admin Block, Chellah Campus Muzaffarabad (05822-960477, deputy.controller.degree@uajk.edu.pk)
+    forms:
+      - {title: Degree Form (Degree Branch Examinations Department), local: documents/uajk/Degree_Form_Degree_Branch_Examinations_Department.pdf, url: https://uajk.edu.pk/wp-content/uploads/2025/10/Degree-Form.pdf}
+    fees:
+      - {item: Degree before convocation, versions: [{amount: 8800, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Degree after convocation, versions: [{amount: 4400, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Urgent degree (within 10 working days), versions: [{amount: 13200, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Associate Degree Arts (per student), versions: [{amount: 2900, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Associate Degree Commerce (per student), versions: [{amount: 7300, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Associate Degree Science (per student), versions: [{amount: 4800, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Change of degree pattern (old design to new design), versions: [{amount: 9900, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+    required_documents:
+      - Completed Degree Form (name and father's name in English block letters and in Urdu, CNIC, registration no., roll no., examination/session, marks/CGPA)
+      - Paid HBL challan (or HBL bank draft) - challan no. and date written on the form
+      - No-objection attestation on the form by Dean / Chairman / Director / Coordinator / Principal (regular or college candidates) OR by a Gazetted Officer Class-I (external/private candidates), with name, designation, department and CNIC of the attesting officer
+      - Postal/correspondence address slip (bottom of the form) - the degree is dispatched to this address
+    steps:
+      - Generate the challan for the correct degree fee head at https://challan.uajk.edu.pk/ and pay at any HBL branch.
+      - Fill the Degree Form and get it attested (department/college head for regular students; Gazetted Officer Class-I for private candidates).
+      - Submit the form with the paid challan to the Degree Branch, Examinations Department.
+    notes:
+      - The degree form's attestation ("no objection regarding issuance of this candidate's degree") is UAJK's departmental clearance step for degrees; UAJK does not publish a separate student clearance form online.
+    sources: [https://uajk.edu.pk/wp-content/uploads/2025/10/Degree-Form.pdf, https://challan.uajk.edu.pk/]
+    trust: official
+
+  - id: uajk.degree_verification
+    institution: uajk
+    name: Verification of Degree / DMC / Result Intimation / Merit or Position certificate / Gold Medal certificate
+    keywords: [verification, verify degree, degree verification, dmc verification, hec attestation verification, verify transcript]
+    office: Degree Branch, Examinations Department (05822-960477, deputy.controller.degree@uajk.edu.pk)
+    forms:
+      - {title: Application Form for Verification / Correction of Degree / Revised / Duplicate Degree, local: documents/uajk/Application_Form_For_Verification_Correction_of_Degree_Revised_Duplica.pdf, url: https://uajk.edu.pk/wp-content/uploads/2025/10/Degree-Verification-Form.pdf}
+    fees:
+      - {item: Verification of Degree / DMC / Result Intimation, versions: [{amount: 3300, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+    required_documents:
+      - Photocopy of the Degree / DMC / Result Intimation (or Merit/Position certificate and Gold Medal certificate) to be verified
+      - Photocopy of CNIC
+      - Original paid HBL challan / bank draft
+    steps:
+      - Pay the verification fee via https://challan.uajk.edu.pk/ (HBL).
+      - Fill Part A (Verification) of the form and attach the documents above.
+      - Submit to the Degree Branch; queries by email to deputy.controller.degree@uajk.edu.pk.
+    sources: [https://uajk.edu.pk/wp-content/uploads/2025/10/Degree-Verification-Form.pdf, https://uajk.edu.pk/examination-department/]
+    trust: official
+
+  - id: uajk.duplicate_degree
+    institution: uajk
+    name: Duplicate degree (lost / damaged degree)
+    keywords: [duplicate degree, lost degree, degree lost, damaged degree, second copy degree]
+    office: Degree Branch, Examinations Department (05822-960477)
+    forms:
+      - {title: Application Form for Verification / Correction of Degree / Revised / Duplicate Degree (Part C), local: documents/uajk/Application_Form_For_Verification_Correction_of_Degree_Revised_Duplica.pdf, url: https://uajk.edu.pk/wp-content/uploads/2025/10/Degree-Verification-Form.pdf}
+    fees:
+      - {item: Duplicate degree, versions: [{amount: 19800, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+    required_documents:
+      - Photocopy of Degree / DMC / Result Intimation
+      - Advertisement of the loss in 2 national newspapers
+      - Copy of the original F.I.R.
+      - Affidavit
+      - Original bank challan / draft
+      - Photocopy of CNIC
+    steps:
+      - Report the loss to police (FIR) and publish the loss notice in two national newspapers.
+      - Prepare an affidavit, pay the duplicate-degree fee (HBL challan), fill Part C of the form and submit to the Degree Branch.
+    sources: [https://uajk.edu.pk/wp-content/uploads/2025/10/Degree-Verification-Form.pdf, https://challan.uajk.edu.pk/]
+    trust: official
+
+  - id: uajk.degree_correction
+    institution: uajk
+    name: Correction / revised degree, and change of name or father's name in university record
+    keywords: [correction, revised degree, name correction, spelling mistake, change name, father name change, wrong name on degree]
+    office: Degree Branch (degree correction); General Section, Registrar Office (record/name changes) 05822-960425
+    forms:
+      - {title: Application Form for Verification / Correction of Degree / Revised / Duplicate Degree (Part B), local: documents/uajk/Application_Form_For_Verification_Correction_of_Degree_Revised_Duplica.pdf, url: https://uajk.edu.pk/wp-content/uploads/2025/10/Degree-Verification-Form.pdf}
+    fees:
+      - {item: Correction in documents/record (SSC/HSSC board certificates changed during study), versions: [{amount: 4400, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Correction in documents/record (after two years of final result), versions: [{amount: 4400, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Change in name / father's name - after 2 years, versions: [{amount: 7700, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Change in name / father's name - within five years, versions: [{amount: 16500, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Change in name / father's name - within ten years, versions: [{amount: 22000, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Change in name / father's name - after 10 years, versions: [{amount: 27500, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+    required_documents:
+      - The correction required and the "instead of" text, in English and Urdu (Part B of the form)
+      - Documentary proof of the correction (e.g. corrected SSC/HSSC certificate, CNIC)
+      - Paid HBL challan
+    escalate_when: [Name change requests (the fee tier depends on elapsed time and the office decides which applies)]
+    sources: [https://uajk.edu.pk/wp-content/uploads/2025/10/Degree-Verification-Form.pdf, https://challan.uajk.edu.pk/]
+    trust: official
+
+  - id: uajk.dmc
+    institution: uajk
+    name: Detailed Marks Certificate (DMC) / transcript, semester result card, percentage certificate
+    keywords: [dmc, transcript, detail marks certificate, detailed marks certificate, result card, marksheet, marks sheet, percentage certificate, merit certificate]
+    office: Result Section, Examinations Department (05822-920735); Semester Desk (05822-960506)
+    fees:
+      - {item: Detail Marks Certificate (DMC), versions: [{amount: 5500, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Detail Marks Certificate DMC (urgent), versions: [{amount: 8800, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Semester result card (semester system), versions: [{amount: 200, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Percentage certificate, versions: [{amount: 2000, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Duplicate merit certificate, versions: [{amount: 8030, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: "Exams / result before time (abroad, ISSB)", versions: [{amount: 27500, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+    required_documents:
+      - Paid HBL challan for the correct fee head (generate at https://challan.uajk.edu.pk/)
+    steps:
+      - Generate and pay the challan for the DMC (normal or urgent).
+      - Contact / visit the Result Section with the paid challan and your roll and registration numbers.
+    notes:
+      - UAJK does not publish a separate DMC application form online; confirm any extra attachments with the Result Section.
+    sources: [https://challan.uajk.edu.pk/, https://uajk.edu.pk/examination-department/]
+    trust: official
+
+  - id: uajk.migration
+    institution: uajk
+    name: Migration certificate / NOC (leaving UAJK for another university)
+    keywords: [migration, migration certificate, noc, no objection certificate, leave university, transfer to another university]
+    office: Assistant Registrar (General), General Section, Admin Block Chellah Campus (05822-960425)
+    forms:
+      - {title: Migration Certificate Form, local: documents/uajk/Migration_Certificate_Form.pdf, url: https://uajk.edu.pk/wp-content/uploads/2025/10/Migration-form-up-dated.pdf}
+    fees:
+      - {item: "Migration certificate (ordinary, within 2 weeks)", versions: [{amount: 5800, effective_from: 2025-10-01, date_basis: form published 2025-10, source: https://uajk.edu.pk/wp-content/uploads/2025/10/Migration-form-up-dated.pdf}]}
+      - {item: Duplicate migration certificate (within 2 weeks), versions: [{amount: 17700, effective_from: 2025-10-01, date_basis: form published 2025-10, source: https://uajk.edu.pk/wp-content/uploads/2025/10/Migration-form-up-dated.pdf}]}
+    required_documents:
+      - Migration Certificate Form, attested by the principal/head of institution (regular students) or a first-class Gazetted Officer (private candidates)
+      - Original HBL challan pasted on the form at the marked place (deposited in UAJK's normal account; challans for another university's account are not accepted). Overseas candidates may attach an original HBL bank draft in favour of Director Finance & Planning, UAJK.
+      - Attested clear copies of the last result card / degree available
+      - Attested copy of CNIC
+      - If attaching a fail result card and remaining chances were not availed - affidavit on stamp paper attested by an oath commissioner
+      - For duplicate migration (within one year of the first) - FIR, two original national newspaper advertisements, and a court-attested affidavit that the first certificate was lost and not used
+    steps:
+      - Pay the fee in UAJK's normal account through an HBL challan.
+      - Fill and get the form attested; paste the challan; attach documents.
+      - Send the case within 15 days of paying the fee, addressed to the Assistant Registrar (General), UAJK Muzaffarabad.
+    deadlines:
+      - {rule: Submit the case within 15 days after depositing the fee, days_after_payment: 15}
+    sources: [https://uajk.edu.pk/wp-content/uploads/2025/10/Migration-form-up-dated.pdf, https://challan.uajk.edu.pk/]
+    trust: official
+
+  - id: uajk.transfer
+    institution: uajk
+    name: Transfer / migration between universities or colleges (university-to-university, college-to-college, university-to-college)
+    keywords: [transfer, university to university, college to college, university to college, credit transfer, shift university]
+    office: Registrar Office, General / Registration Section (05822-960425)
+    forms:
+      - {title: University To University Transfer Form, local: documents/uajk/University_To_University_Transfer_Form.pdf, url: https://uajk.edu.pk/wp-content/uploads/2024/11/UNIVERSITY-TO-UNIVERSITY-MIGRATION-Update-1.pdf}
+      - {title: College To College Transfer Form, local: documents/uajk/College_To_College_Transfer_Form.pdf, url: https://uajk.edu.pk/wp-content/uploads/2024/11/College-to-college-Migration-updated.pdf}
+      - {title: University To College Transfer Form, local: documents/uajk/University_To_College_Transfer_Form.pdf, url: https://uajk.edu.pk/wp-content/uploads/2024/11/UNIVERSITY-TO-COLLEGE-New.pdf}
+    fees:
+      - {item: University-to-university transfer application (non-refundable), versions: [{amount: 5300, effective_from: 2024-11-01, date_basis: form published 2024-11, source: https://uajk.edu.pk/wp-content/uploads/2024/11/UNIVERSITY-TO-UNIVERSITY-MIGRATION-Update-1.pdf}]}
+    required_documents:
+      - Transfer form sent through the principal / chairman / dean where the student is enrolled (they certify the statement)
+      - Sanction (no-objection) of the head of the department/college the student wants to join
+      - Original university fee receipt (no form is entertained without it)
+      - Registration return with usual fees, if not already forwarded
+      - Medical certificate, if the reason is illness
+    notes:
+      - The leaving certificate is not issued until the Vice-Chancellor sanctions the transfer; admission without that sanction is invalid.
+      - Detained/degraded students or those facing disciplinary action must have this stated by the principal.
+    escalate_when: [Every transfer - it requires Vice-Chancellor sanction and credit-transfer decisions by the department]
+    sources: [https://uajk.edu.pk/wp-content/uploads/2024/11/UNIVERSITY-TO-UNIVERSITY-MIGRATION-Update-1.pdf]
+    trust: official
+
+  - id: uajk.bonafide
+    institution: uajk
+    name: Bonafide certificate
+    keywords: [bonafide, bona fide, bonafide certificate, enrolment certificate, student certificate]
+    office: Registrar Office, Registration and Affiliation Section (05822-960425, dr.general@ajku.edu.pk)
+    forms:
+      - {title: Application Form for Bonafide Certificate, local: documents/uajk/Application_Form_For_Bonafide_Certificate.docx, url: https://uajk.edu.pk/wp-content/uploads/2025/10/Bonafide-Application-form.docx}
+    fees:
+      - {item: Bonafide certificate (non-refundable), versions: [{amount: 2000, effective_from: 2025-10-01, date_basis: form published 2025-10, source: https://uajk.edu.pk/wp-content/uploads/2025/10/Bonafide-Application-form.docx}]}
+    required_documents:
+      - Clear attested photocopies of the UAJK passed result card / DMC / degree of the last examination
+      - Clear attested photocopy of CNIC
+      - Original paid bank challan from any HBL branch (Rs. 2,000)
+      - Purpose (local or international)
+    processing_time: 7 working days
+    sources: [https://uajk.edu.pk/wp-content/uploads/2025/10/Bonafide-Application-form.docx]
+    trust: official
+
+  - id: uajk.english_proficiency
+    institution: uajk
+    name: English proficiency certificate (medium of instruction letter)
+    keywords: [english proficiency, medium of instruction, moi, english certificate, ielts waiver]
+    office: Registrar Office, Registration and Affiliation Section (05822-960425, dr.general@ajku.edu.pk)
+    forms:
+      - {title: Application Form for English Proficiency Certificate, local: documents/uajk/English_Proficiency_Form.pdf, url: https://uajk.edu.pk/wp-content/uploads/2025/10/English-Proficiency-Application.pdf}
+    fees:
+      - {item: English proficiency certificate (non-refundable), versions: [{amount: 3900, effective_from: 2025-10-01, date_basis: form published 2025-10, source: https://uajk.edu.pk/wp-content/uploads/2025/10/English-Proficiency-Application.pdf}]}
+    required_documents:
+      - Attested photocopies of UAJK passed result card / DMC / degree of the last examination
+      - Attested photocopy of CNIC
+      - Original paid HBL challan (Rs. 3,900)
+    processing_time: 7 working days
+    sources: [https://uajk.edu.pk/wp-content/uploads/2025/10/English-Proficiency-Application.pdf]
+    trust: official
+
+  - id: uajk.rechecking
+    institution: uajk
+    name: Re-checking of answer book / result
+    keywords: [rechecking, re-checking, recheck, re-evaluation, result objection, answer book]
+    office: Controller of Examinations (05822-960400)
+    forms:
+      - {title: Application Form for Re-Checking of the Answer Book/Result, local: documents/uajk/Application_Form_for_Re_Checking_of_the_Answer_Book_Result.pdf, url: https://uajk.edu.pk/wp-content/uploads/2025/10/Rechecking-Form.pdf}
+    fees:
+      - {item: Re-checking per paper, versions: [{amount: 4500, effective_from: 2025-10-01, date_basis: form published 2025-10, source: https://uajk.edu.pk/wp-content/uploads/2025/10/Rechecking-Form.pdf}]}
+      - {item: Wrong roll number on answer sheet, versions: [{amount: 5300, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+    required_documents:
+      - Re-checking form attested by the Principal or a Gazetted Officer
+      - Bank receipt of the fee (Rs. 4,500 per paper)
+    deadlines:
+      - {rule: Application must reach the Controller of Examinations within 40 days of result declaration; late applications are not entertained, days_after_result: 40}
+    processing_time: Disposed within 15 days of receipt
+    notes:
+      - Re-checking confirms the result was correctly compiled and the answer book is in the candidate's handwriting; it is not a re-marking.
+    sources: [https://uajk.edu.pk/wp-content/uploads/2025/10/Rechecking-Form.pdf]
+    trust: official
+
+  - id: uajk.convocation
+    institution: uajk
+    name: Convocation registration
+    keywords: [convocation, graduation ceremony, convocation form, gold medal]
+    office: Examinations Department / Degree Branch
+    forms:
+      - {title: Convocation Form 2026, local: documents/uajk/Convocation_Form.doc, url: https://uajk.edu.pk/wp-content/uploads/2026/04/convocation-Form-2026.doc}
+    fees:
+      - {item: Convocation fee, versions: [{amount: 8000, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+    sources: [https://uajk.edu.pk/downloads/, https://challan.uajk.edu.pk/]
+    trust: official
+
+  - id: uajk.exam_misc
+    institution: uajk
+    name: Examination services (centre change, duplicate roll number slip, special chance, subject change)
+    keywords: [roll number slip, duplicate roll no, centre change, center change, special chance, subject change]
+    office: Controller of Examinations (05822-960400); Examination Help Desk (05822-960465)
+    fees:
+      - {item: Centre change, versions: [{amount: 8800, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Duplicate roll no. slip, versions: [{amount: 2800, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Special chance, versions: [{amount: 6100, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Subject change (per subject), versions: [{amount: 5500, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Extra fee for candidates appearing outside UAJK jurisdiction, versions: [{amount: 11000, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+    sources: [https://challan.uajk.edu.pk/]
+    trust: official
+
+  - id: uajk.hostel
+    institution: uajk
+    name: Hostel admission and dues
+    keywords: [hostel, accommodation, hostel fee, boarding, lodging]
+    office: Directorate of Students' Affairs / Provost
+    forms:
+      - {title: Hostel Seat Allotment Form, local: documents/uajk/Hostel_Seat_Allotment_Form.pdf, url: https://uajk.edu.pk/wp-content/uploads/2025/10/Hostel-Seat-Allotment-Form.pdf}
+    fees:
+      - {item: Hostel admission fee, versions: [{amount: 2750, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Hostel security (refundable), versions: [{amount: 2970, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Boarding & lodging (per semester), versions: [{amount: 6600, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+      - {item: Utility charges (per semester), versions: [{amount: 9350, effective_from: 2026-09-29, date_basis: fetched, source: https://challan.uajk.edu.pk/}]}
+    sources: [https://challan.uajk.edu.pk/]
+    trust: official
+
+  - id: uajk.clearance
+    institution: uajk
+    name: Clearance (no-dues) before degree
+    keywords: [clearance, no dues, no-dues, clearance certificate, clearance form]
+    office: Your department / college, then Degree Branch
+    required_documents:
+      - Head-of-department / principal no-objection on the Degree Form (regular students)
+    notes:
+      - UAJK does not publish a stand-alone student clearance form on its website. The Degree Form carries the department's "no objection regarding issuance of this candidate's degree" attestation.
+    escalate_when: [Always confirm the department's internal clearance checklist (library, hostel, dues) with your department office]
+    sources: [https://uajk.edu.pk/wp-content/uploads/2025/10/Degree-Form.pdf]
+    trust: official
+
+  # ------------------------------------------------------------------ MUST
+  - id: must.degree
+    institution: must
+    name: Degree issuance (original degree)
+    keywords: [degree, original degree, get my degree, degree before convocation, degree after convocation, urgent degree, degree form]
+    office: Controller of Examinations, Admin Block, Jarikas Campus, Mirpur (05827-961038 / 961068 / 961065, controller@must.edu.pk)
+    forms:
+      - {title: "Degree Form (2026 update, scanned)", local: documents/must/Degree_Application_Form.pdf, url: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}
+    fees:
+      - item: Degree before convocation (including form fee)
+        versions:
+          - {amount: 7500, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}
+          - {amount: 9080, effective_from: 2026-07-28, source: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}
+      - item: Degree after convocation (including form fee)
+        versions:
+          - {amount: 2700, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}
+          - {amount: 3270, effective_from: 2026-07-28, source: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}
+      - item: Urgent degree on declaration of special result (including form fee)
+        versions:
+          - {amount: 19350, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}
+          - {amount: 22840, effective_from: 2026-07-28, source: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}
+      - item: Degree under process letter / degree completion letter
+        versions:
+          - {amount: 1100, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}
+          - {amount: 1210, effective_from: 2026-07-28, source: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}
+      - item: Merit certificate
+        versions: [{amount: 3810, effective_from: 2026-07-28, source: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}]
+      - item: Duplicate merit certificate
+        versions: [{amount: 7610, effective_from: 2026-07-28, source: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}]
+    required_documents:
+      - Completed Degree Form (names in English block letters and Urdu, CNIC, registration no., session, marks/CGPA)
+      - Attested copy of Secondary School Certificate (SSC)
+      - Attested copy of Detailed Marks Certificate (DMC)
+      - Attested copy of CNIC
+      - Clearance Certificate from the department (regular university students only) - see must.clearance
+      - Original internship letter of minimum 3 months (compulsory for B.Com and ADC annual-system students)
+      - Paid HBL/ABL challan or bank draft (amount in digits and words on the form)
+      - Attestation by Dean / Chairman / Director / Coordinator / Principal (regular/college) or Gazetted Officer Class-I (external/private)
+    steps:
+      - Get your departmental Clearance Certificate signed by all offices (must.clearance).
+      - Pay the degree fee for your case (before/after convocation or urgent).
+      - Fill the Degree Form, get it attested and attach the documents.
+      - Submit to the Controller of Examinations. The degree is posted to the postal address on the form (not the CNIC address).
+    processing_time: About 2 months from receipt of a complete application; urgent degree about 20-35 days. Incomplete forms are not entertained.
+    notes:
+      - If you cannot collect it yourself, an authorised person may collect the degree with an original affidavit on stamp paper and the degree holder's original CNIC.
+      - Fee versions - the 28 July 2026 schedule applies "to all sessions from 28 July 2026"; earlier payments followed the 2 Sept 2024 schedule.
+    sources: [https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf, https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf]
+    trust: official
+
+  - id: must.transcript
+    institution: must
+    name: Transcript / DMC (semester and final), duplicate and verification
+    keywords: [transcript, dmc, detail marks certificate, detailed marks certificate, final dmc, semester dmc, duplicate transcript, duplicate dmc, marksheet]
+    office: Controller of Examinations (05827-961038 / 961068 / 961065, controller@must.edu.pk)
+    fees:
+      - {item: Semester DMC (per semester), versions: [{amount: 945, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}]}
+      - {item: Final DMC (within two weeks), versions: [{amount: 1575, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}]}
+      - {item: Final DMC (within three working days), versions: [{amount: 8650, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}]}
+      - item: Duplicate DMC / transcript, or verification of DMC / transcript
+        versions:
+          - {amount: 3975, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf, note: "2024 schedule listed duplicate DMC 3,975 and DMC verification 3,935 separately"}
+          - {amount: 4760, effective_from: 2026-07-28, source: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}
+      - {item: All prescribed forms fee, versions: [{amount: 475, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}]}
+    notes:
+      - Per MUST semester rules, the Controller of Examinations issues the final transcript/DMC on payment of the prescribed fee only on completion of the degree programme; semester results are issued by the department after the Controller verifies them.
+      - The transcript reports course number, title, credit hours, percentage, grade, semester GPAs, overall percentage and CGPA.
+      - The semester and final DMC fees above are from the 2024 schedule; the 2026 degree form does not restate them - confirm with the Controller's office.
+    sources: [https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf, "https://must.edu.pk/?page_id=6258", "https://must.edu.pk/?page_id=6252"]
+    trust: official
+
+  - id: must.degree_verification
+    institution: must
+    name: Degree verification (local and foreign)
+    keywords: [verification, degree verification, verify degree, foreign verification, wes, embassy verification]
+    office: Controller of Examinations (controller@must.edu.pk)
+    fees:
+      - item: Degree verification
+        versions:
+          - {amount: 4720, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}
+          - {amount: 5710, effective_from: 2026-07-28, source: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}
+      - item: Foreign verification of degree / transcript / DMC
+        versions:
+          - {amount: 17305, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}
+          - {amount: 20940, effective_from: 2026-07-28, source: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}
+    sources: [https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf]
+    trust: official
+
+  - id: must.duplicate_degree
+    institution: must
+    name: Duplicate degree
+    keywords: [duplicate degree, lost degree, degree lost, damaged degree]
+    office: Controller of Examinations
+    forms:
+      - {title: "Degree Form (2026 update, scanned)", local: documents/must/Degree_Application_Form.pdf, url: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}
+    fees:
+      - item: Duplicate degree (including form fee)
+        versions:
+          - {amount: 17780, effective_from: 2024-09-02, source: https://must.edu.pk/wp-content/uploads/2024/09/Miscellaneous-Fee-Structure-2024.pdf}
+          - {amount: 20940, effective_from: 2026-07-28, source: https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf}
+    required_documents:
+      - Affidavit on stamp paper of proper value
+      - Original press advertisement of the loss
+      - FIR from the police station
+      - Degree Form with paid challan
+    sources: [https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf]
+    trust: official
+
+  - id: must.clearance
+    institution: must
+    name: Clearance certificate (no-dues) for university students
+    keywords: [clearance, clearance certificate, no dues, no-dues, clearance form, ntc clearance, library clearance]
+    office: Your department (Chairperson), then Dean of the faculty
+    forms:
+      - {title: Clearance Certificate for Students, local: documents/must/Clearance_Certificate_Students.pdf, url: https://must.edu.pk/wp-content/uploads/2022/10/Clearance-Certificate-MUST-Students-1.pdf}
+      - {title: Student Clearance form Process at NTC, local: documents/must/Student_Clearance_Process_NTC.pdf, url: https://must.edu.pk/wp-content/uploads/2022/12/Clearance-forms-Registration.pdf}
+    required_documents:
+      - Clearance Certificate with a recent passport-size photograph pasted
+      - Signature and stamp of each office - 1 Directorate of Students' Affairs; 2 Directorate of Sports; 3 Central Library (Ali Ahmed Shah Library); 4 Provost Hostels; 5 Students' Assistant Centre (SAC); 6 Networking & Telecommunication Centre (NTC); 7 Transport Office; 8 Laboratories; 9 Departmental Library; 10 Examination Cell (concerned department); 11 Accountant (concerned department)
+      - Final signature and stamp of the Chairperson (department) and Dean (faculty)
+    steps:
+      - Register on the alumni portal https://alumni.must.edu.pk (register/login, fill the form; the password is emailed) - NTC signs only after this.
+      - Take the certificate to each of the 11 offices and clear any dues (library books, hostel, transport, lab items).
+      - Get the Chairperson's and Dean's signatures; attach the certificate to your degree / provisional certificate application.
+    sources: [https://must.edu.pk/wp-content/uploads/2022/10/Clearance-Certificate-MUST-Students-1.pdf, https://must.edu.pk/wp-content/uploads/2022/12/Clearance-forms-Registration.pdf]
+    trust: official
+
+  - id: must.provisional
+    institution: must
+    name: Provisional certificate (before the degree is issued)
+    keywords: [provisional, provisional certificate, degree completion, completion certificate]
+    office: Submitted through the Chairman of the department; approved by the Dean (Faculty of Engineering form 05827-961008)
+    forms:
+      - {title: Application Form for Provisional Certificate (scanned), local: documents/must/Provisional_Certificate_Form.pdf, url: https://must.edu.pk/wp-content/uploads/2025/05/provisional-form-2025.pdf}
+    required_documents:
+      - Application form with academic record (Matric, FSc, BSc/MSc marks)
+      - Clearance certificate (the Chairman checks credentials along with it)
+      - Paid challan of the provisional certificate fee
+    notes:
+      - MUST semester rules - a candidate who fulfils all degree requirements is issued a provisional certificate on payment of the prescribed fee, before the degree.
+      - The provisional certificate fee is not printed on the form; ask your department.
+    sources: [https://must.edu.pk/wp-content/uploads/2025/05/provisional-form-2025.pdf, "https://must.edu.pk/?page_id=6258"]
+    trust: official
+
+  - id: must.migration
+    institution: must
+    name: Migration certificate (leaving MUST)
+    keywords: [migration, migration certificate, noc, leave university, transfer to another university]
+    office: Assistant Registrar (General), General Section, Admin Block (05827-961068)
+    forms:
+      - {title: Migration Certificate Form, local: documents/must/Migration_Form.pdf, url: https://must.edu.pk/wp-content/uploads/2022/10/Migration-Form-1.pdf}
+      - {title: University to University Migration Form (scanned), local: documents/must/University_to_University_Migration_Form.pdf, url: https://must.edu.pk/wp-content/uploads/2022/10/New-Doc-07-29-2022-11.39.pdf}
+      - {title: College to College Migration Form, local: documents/must/College_to_College_Migration.pdf, url: https://must.edu.pk/wp-content/uploads/2022/10/ctcmf.pdf}
+      - {title: Evaluation Proforma for Migration, local: documents/must/Evaluation_Proforma_Migration.pdf, url: https://must.edu.pk/wp-content/uploads/2026/04/Evaluation-Proforma-for-Migration.pdf}
+    required_documents:
+      - Migration Certificate Form with photo, attested by the head of institution (regular) or a first-class Gazetted Officer (private)
+      - Original HBL challan (MUST normal account, HBL Main Branch Mirpur) pasted on the form; overseas candidates may attach an HBL bank draft in the name of MUST Mirpur
+      - Attested clear copies of the last result card / degree and CNIC
+      - Affidavit (oath commissioner) if attaching a fail result card with unavailed chances
+    steps:
+      - Pay the migration fee (current amount from the General Section - the form does not print it).
+      - Send the case within 15 days of the fee submission to the Assistant Registrar (General), MUST.
+      - For a duplicate migration certificate, call 05827-961068 first.
+    deadlines:
+      - {rule: Submit within 15 days after fee submission, days_after_payment: 15}
+    sources: [https://must.edu.pk/wp-content/uploads/2022/10/Migration-Form-1.pdf]
+    trust: official
+
+  - id: must.rechecking
+    institution: must
+    name: Re-checking of answer book / result
+    keywords: [rechecking, re-checking, recheck, re-evaluation, paper rechecking, result objection]
+    office: Controller of Examinations
+    forms:
+      - {title: Paper Rechecking Application, local: documents/must/Paper_Rechecking_Application.pdf, url: https://must.edu.pk/wp-content/uploads/2022/10/Paper-Rechecking-Application-1.pdf}
+    required_documents:
+      - Rechecking application attested by an officer
+      - Attested photocopy of CNIC
+      - Photocopy of university student ID card (if issued)
+      - Photocopy of the result card
+      - Bank receipt of the prescribed per-paper fee
+    deadlines:
+      - {rule: Application with fee must be received within 15 days of the result declaration, days_after_result: 15}
+    notes:
+      - For semester courses, first see your marked answer script with the teacher; if still dissatisfied, request the Head of Department to form a two-expert re-evaluation committee (decision final).
+    sources: [https://must.edu.pk/wp-content/uploads/2022/10/Paper-Rechecking-Application-1.pdf, "https://must.edu.pk/?page_id=6258"]
+    trust: official
+
+  - id: must.refund
+    institution: must
+    name: Fee refund
+    keywords: [refund, fee refund, withdraw admission, cancel admission, money back]
+    office: Department (DDO) -> Director Students' Affairs -> Head of Faculty -> Treasurer
+    forms:
+      - {title: Application Form for Refund of Fee & Funds (Rs. 200), local: documents/must/Refund_of_Fee_Form.pdf, url: https://must.edu.pk/wp-content/uploads/2022/12/Refund-of-Fee-Form.pdf}
+    required_documents:
+      - Refund form (price Rs. 200)
+      - Original bank challan of the fee paid
+      - Photocopy of registration card
+      - Student bank account details (compulsory)
+    notes:
+      - Only tuition fee is refundable (all other charges are not), and only for the 1st semester - 100% up to the 7th day after classes convene, 50% from the 8th to 15th day, 0% from the 16th day.
+      - Also refundable - ineligible admission, death before classes, withdrawal before classes start, excess or erroneous deposits.
+    sources: [https://must.edu.pk/wp-content/uploads/2022/12/Refund-of-Fee-Form.pdf]
+    trust: official
+
+  - id: must.convocation
+    institution: must
+    name: Convocation registration
+    keywords: [convocation, graduation ceremony, convocation form]
+    office: Controller of Examinations
+    forms:
+      - {title: Convocation Form 2024 (scanned), local: documents/must/Convocation_Form_2024.pdf, url: https://must.edu.pk/wp-content/uploads/2024/08/CamScanner-08-13-2024-15.04.pdf}
+    notes: [The latest published convocation form is the 2024 edition; check for a newer notice before applying.]
+    sources: [https://must.edu.pk/downloads/]
+    trust: official
+
+  # ------------------------------------------------------------------ UHS (MBBS/BDS degrees of AJK public medical colleges)
+  - id: uhs.degree
+    institution: uhs
+    name: MBBS / BDS degree, duplicate degree, degree verification, bonafide letter (UHS Degree Issuance Portal)
+    keywords: [mbbs degree, bds degree, medical degree, uhs degree, degree issuance, duplicate degree, degree verification, bonafide]
+    office: UHS Degree Cell (042-99231304-9 Ext. 395, 042-99231075, degreecell@uhs.edu.pk)
+    portal: https://dip.uhs.edu.pk/
+    fees:
+      - {item: Verification of documents (all types), versions: [{amount: 2000, effective_from: 2026-09-29, date_basis: fetched, urgent_amount: 4000, source: https://www.uhs.edu.pk/fee-struct.php}]}
+      - {item: Correction of documents (all types), versions: [{amount: 2000, effective_from: 2026-09-29, date_basis: fetched, urgent_amount: 4000, source: https://www.uhs.edu.pk/fee-struct.php}]}
+      - {item: Issuance of NOC, versions: [{amount: 2000, effective_from: 2026-09-29, date_basis: fetched, urgent_amount: 4000, source: https://www.uhs.edu.pk/fee-struct.php}]}
+    required_documents:
+      - UHS Registration No. and father's name (to start the online case)
+      - Principal / HOD Approval Form for Degree (downloadable on the portal)
+      - Paid fee voucher (printed from the portal, uploaded back after payment)
+    steps:
+      - Open https://dip.uhs.edu.pk/, enter UHS Registration No. + Father's Name, choose the case type (Degree Issuance, Duplicate Degree, Degree Verification, Bonafide Letter) and follow the instructions.
+      - Get the Principal / HOD Approval Form signed at your college.
+      - Print the fee voucher, pay, and upload the paid voucher; track status with your Case Number + CNIC/Passport.
+    notes:
+      - The degree-issuance fee itself is shown on the portal's voucher; it is not listed on the public fee page.
+    sources: [https://dip.uhs.edu.pk/, https://www.uhs.edu.pk/fee-struct.php]
+    trust: official
+
+  - id: uhs.transcript
+    institution: uhs
+    name: MBBS / BDS transcript, transcript verification, duplicate DMC
+    keywords: [mbbs transcript, bds transcript, medical transcript, uhs transcript, transcript verification, duplicate dmc, dmc]
+    office: UHS Examination Cell (042-99231304-9 Ext. 356, 042-99231075, tab@uhs.edu.pk)
+    portal: https://dip.uhs.edu.pk/
+    fees:
+      - {item: Issuance of transcript (per transcript), versions: [{amount: 2000, effective_from: 2026-09-29, date_basis: fetched, urgent_amount: 4000, source: https://www.uhs.edu.pk/fee-struct.php}]}
+      - {item: "Issuance of duplicate DMC (all types, per DMC)", versions: [{amount: 2000, effective_from: 2026-09-29, date_basis: fetched, urgent_amount: 4000, source: https://www.uhs.edu.pk/fee-struct.php}]}
+      - {item: Re-checking of result (per subject), versions: [{amount: 3500, effective_from: 2026-09-29, date_basis: fetched, source: https://www.uhs.edu.pk/fee-struct.php}]}
+      - {item: Review of paper (per subject), versions: [{amount: 7000, effective_from: 2026-09-29, date_basis: fetched, source: https://www.uhs.edu.pk/fee-struct.php}]}
+    required_documents:
+      - UHS Registration No. and father's name
+      - Principal / HOD Approval Form for Transcript (downloadable on the portal)
+      - Paid fee voucher
+    steps:
+      - On https://dip.uhs.edu.pk/ choose Transcript Issuance, Transcript with Verification, or Transcript Verification.
+      - Get the Principal/HOD approval form signed, pay the voucher and upload it; track with Case Number + CNIC.
+    sources: [https://dip.uhs.edu.pk/, https://www.uhs.edu.pk/fee-struct.php]
+    trust: official
+
+  - id: uhs.migration
+    institution: uhs
+    name: Migration between medical colleges (UHS)
+    keywords: [medical migration, mbbs migration, migrate medical college, uhs migration]
+    office: UHS
+    forms:
+      - {title: Application Form for Migration Certificate / NOC and Rules for Migration, url: https://www.uhs.edu.pk/Downloadslink.php}
+    fees:
+      - {item: Migration fee (public sector colleges), versions: [{amount: 4000, effective_from: 2026-09-29, date_basis: fetched, source: https://www.uhs.edu.pk/fee-struct.php}]}
+      - {item: Migration fee (private colleges), versions: [{amount: 12000, effective_from: 2026-09-29, date_basis: fetched, source: https://www.uhs.edu.pk/fee-struct.php}]}
+    escalate_when: [Medical college migration also needs PM&DC rules and both colleges' consent - always route to the college admission cell]
+    sources: [https://www.uhs.edu.pk/fee-struct.php, https://www.uhs.edu.pk/downloads/migrationrules.pdf]
+    trust: official

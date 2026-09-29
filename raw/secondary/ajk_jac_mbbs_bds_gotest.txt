@@ -1,0 +1,10 @@
+SOURCE (SECONDARY, UNVERIFIED): https://gotest.com.pk/admissions/ajk-mbbs-bds-admission-2025-joint-admission-committee/ (fetched 2026-09-29)
+Official source jac.ajk.gov.pk is behind a Cloudflare challenge and could not be fetched automatically.
+Official guideline PDFs (not fetched): https://jac.ajk.gov.pk/wp-content/uploads/2025/11/GUIDELINE-FOR-ADMISSION-OF-MBBS-BDS-AJK-STATE-SUBJECT.pdf ; https://jac.ajk.gov.pk/wp-content/uploads/2024/08/Guideline-Regarding-Admission-AJK-Nationals.pdf
+- Application completely online via JAC web portal; no paper applications.
+- Eligibility: minimum 60% aggregate in FSc/A-level/equivalent HSSC; MDCAT minimum 55% (MBBS), 50% (BDS); First Class State Subject of AJ&K (exceptions for foreign / overseas categories).
+- Merit weightage: SSC 10%, HSSC 40%, MDCAT 50%.
+- Uploads: State Subject Class-I certificate, domicile, PRC, CNIC, photograph, signature, left thumb impression. 1947/1989 refugees have exemptions.
+- Processing fee Rs. 3,000 + Rs. 400 IT charges (Easy Paisa / debit card / online banking).
+- Timeline reported for 2026 session: applications 21-29 January; provisional merit list 5 February; first selection list 11 February; classes 1 March.
+- Order of college preferences cannot be changed after submission.

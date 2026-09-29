@@ -1,0 +1,1174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University of Health Sciences City Campus & Jinah Campus</title>
+
+  <!-- Bootstrap & Icons -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/font-awesome.min.css">
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"> -->
+  <!-- Bootstrap 5.3 CSS -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+  <!-- Font Awesome for carousel arrows -->
+  <link rel="stylesheet" href="css/all.min.css">
+  <link rel="stylesheet" href="css/slick.min.css">
+  <link rel="stylesheet" href="css/slick-theme.min.css">
+  <script src="script/bootstrap.bundle.min.js"></script>
+
+  <link rel="stylesheet" href="css/animate.min.css" />
+
+
+  <!-- Bootstrap 5.3 CSS -->
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+  <!-- Font Awesome for carousel arrows -->
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+  <link rel="stylesheet" href="css/newstyle-uhs.css" />
+
+</head>
+
+<body>
+  <!-- BLACK TOP BAR - Always on top, normal flow -->
+  <div class="container-fluid bg-dark text-light top-bar-container">
+    <div class="row">
+      <div class="col-12">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-center py-2 custom-margin">
+
+          <!-- MENU LINKS -->
+          <ul class="list-inline mb-2 mb-md-0 text-center text-md-start">
+
+            <!-- ALWAYS VISIBLE (mobile + desktop) -->
+            <li class="list-inline-item mx-2">
+              <a class="text-light text-decoration-none" style="font-size:14px;"
+                href="index.php">HOME</a>
+            </li>
+
+            <li class="list-inline-item mx-2">
+              <a class="text-light text-decoration-none" style="font-size:14px;"
+                href="about-us.php">ABOUT US</a>
+            </li>
+
+            <li class="list-inline-item mx-2">
+              <a class="text-light text-decoration-none" style="font-size:14px;"
+                href="admissions.php">ADMISSION NEWS</a>
+            </li>
+
+            <!-- DESKTOP ONLY -->
+            <li class="list-inline-item mx-2 d-none d-md-inline-block">
+              <a class="text-light text-decoration-none" style="font-size:14px;"
+                href="intlink.php">INTERNATIONAL COLLABORATION</a>
+            </li>
+
+            <li class="list-inline-item mx-2 d-none d-md-inline-block">
+              <a class="text-light text-decoration-none" style="font-size:14px;"
+                href="https://biomedicapk.com">BIOMEDICA</a>
+            </li>
+
+            <li class="list-inline-item mx-2 d-none d-md-inline-block">
+              <a class="text-light text-decoration-none" style="font-size:14px;"
+                href="newsletter.php">NEWSLETTER</a>
+            </li>
+
+
+          </ul>
+
+
+
+
+
+          <div class="social-icons text-center text-md-end custom-margin">
+    <a href="https://www.facebook.com/uhs.lhrofficial" target="_blank" class="text-light mx-2">
+        <i class="fa fa-facebook"></i>
+    </a>
+    <a href="https://www.twitter.com/uhslhrofficial" target="_blank" class="text-light mx-2">
+        <i class="fa fa-twitter"></i>
+    </a>
+    <a href="https://www.instagram.com/uhs.lhrofficial" target="_blank" class="text-light mx-2">
+        <i class="fa fa-instagram"></i>
+    </a>
+    <a href="http://www.linkedin.com/company/uhslhrofficial" target="_blank" class="text-light mx-2">
+        <i class="fa fa-linkedin"></i>
+    </a>
+    <a target="_blank" href="https://www.youtube.com/channel/UCxsMXV4O7adTAjrkkJkz3_A" class="text-light mx-2">
+        <i class="fab fa-youtube"></i>
+    </a>
+
+    <!-- Search Icon - Sirf EK baar -->
+    <button class="search-icon-header" id="searchIconBtn">
+        <i class="fas fa-search"></i>
+    </button>
+</div>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+    /* Header Search Button Style */
+    .search-icon-header {
+        background: transparent !important;
+        color: white !important;
+        border: none !important;
+        font-size: 18px !important;
+        cursor: pointer !important;
+        transition: 0.3s !important;
+        margin-left: 10px !important;
+        padding: 0 !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .search-icon-header:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        transform: scale(1.05) !important;
+    }
+
+    /* Overlay Styles */
+    .search-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.95);
+        display: none;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 100px;
+        z-index: 9999;
+    }
+
+    .search-overlay.active {
+        display: flex;
+    }
+
+    .search-container {
+        width: 90%;
+        max-width: 600px;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        font-size: 28px;
+        cursor: pointer;
+        color: #666;
+        font-weight: bold;
+        transition: 0.2s;
+        background: transparent;
+        border: none;
+        z-index: 10;
+    }
+
+    .close-btn:hover {
+        color: #000;
+    }
+
+    /* Google Search Box Styling */
+    .gcse-search {
+        margin-top: 10px;
+    }
+</style>
+
+<!-- Overlay with Search Bar -->
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+        <button class="close-btn" id="closeSearchBtn">&times;</button>
+        <script async src="https://cse.google.com/cse.js?cx=40191e48283be4f31"></script>
+        <div class="gcse-search"></div>
+    </div>
+</div>
+
+<script>
+    // Ensure DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const iconBtn = document.getElementById('searchIconBtn');
+        const overlay = document.getElementById('searchOverlay');
+        const closeBtn = document.getElementById('closeSearchBtn');
+
+        // Make sure overlay is NOT active on page load
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+
+        if (iconBtn && overlay && closeBtn) {
+            iconBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                overlay.classList.add('active');
+            });
+
+            closeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                overlay.classList.remove('active');
+            });
+
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+
+            // ESC key se close
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    overlay.classList.remove('active');
+                }
+            });
+        }
+    });
+</script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+    /* Header Search Button Style */
+    .search-icon-header {
+        background: transparent !important;
+        color: white !important;
+        border: none !important;
+        font-size: 18px !important;
+        cursor: pointer !important;
+        transition: 0.3s !important;
+        margin-left: 10px !important;
+        padding: 0 !important;
+        width: 32px !important;
+        height: 32px !important;
+        border-radius: 50% !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }
+
+    .search-icon-header:hover {
+        background: rgba(255, 255, 255, 0.2) !important;
+        transform: scale(1.05) !important;
+    }
+
+    /* Overlay Styles - Increased opacity (more transparent) */
+    .search-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.3) !important;  /* 30% white - website zyada visible */
+        display: none;
+        justify-content: center;
+        align-items: flex-start;
+        padding-top: 100px;
+        z-index: 9999;
+    }
+
+    .search-overlay.active {
+        display: flex;
+    }
+
+    .search-container {
+        width: 90%;
+        max-width: 600px;
+        background: white;
+        border-radius: 12px;
+        padding: 20px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+        position: relative;
+    }
+
+    .close-btn {
+        position: absolute;
+        right: 15px;
+        top: 10px;
+        font-size: 28px;
+        cursor: pointer;
+        color: #666;
+        font-weight: bold;
+        transition: 0.2s;
+        background: transparent;
+        border: none;
+        z-index: 10;
+    }
+
+    .close-btn:hover {
+        color: #000;
+    }
+
+    /* Google Search Box Styling */
+    .gcse-search {
+        margin-top: 10px;
+    }
+    
+    /* Force placeholder style for Google search input */
+    .gsc-input-box input,
+    .gsc-input input,
+    input.gsc-input {
+        background-color: #fff !important;
+    }
+    
+    /* Placeholder color */
+    ::placeholder {
+        color: #aaa !important;
+        font-size: 14px !important;
+    }
+</style>
+
+<!-- Overlay with Search Bar -->
+<div class="search-overlay" id="searchOverlay">
+    <div class="search-container">
+        <button class="close-btn" id="closeSearchBtn">&times;</button>
+        
+        <script>
+            // Function to add placeholder to Google search
+            function addSearchPlaceholder() {
+                setTimeout(function() {
+                    var searchInput = document.querySelector('.gsc-input input, .gsc-search-box input[type="text"], .gsc-input-box input');
+                    if (searchInput) {
+                        searchInput.placeholder = "Search";
+                        searchInput.setAttribute('placeholder', 'Search');
+                        searchInput.style.padding = "12px";
+                        searchInput.style.fontSize = "14px";
+                    }
+                }, 300);
+            }
+            
+            // Google CSE callback
+            window.__gcse = {
+                callback: addSearchPlaceholder
+            };
+        </script>
+        
+        <script async src="https://cse.google.com/cse.js?cx=40191e48283be4f31"></script>
+        <div class="gcse-search"></div>
+    </div>
+</div>
+
+<script>
+    // Ensure DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        const iconBtn = document.getElementById('searchIconBtn');
+        const overlay = document.getElementById('searchOverlay');
+        const closeBtn = document.getElementById('closeSearchBtn');
+
+        // Make sure overlay is NOT active on page load
+        if (overlay) {
+            overlay.classList.remove('active');
+        }
+
+        if (iconBtn && overlay && closeBtn) {
+            iconBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                overlay.classList.add('active');
+                
+                // Add placeholder when overlay opens
+                setTimeout(function() {
+                    var searchInput = document.querySelector('.gsc-input input, .gsc-search-box input[type="text"], .gsc-input-box input');
+                    if (searchInput) {
+                        searchInput.placeholder = "Search";
+                        searchInput.setAttribute('placeholder', 'Search');
+                        searchInput.focus();
+                    }
+                }, 400);
+            });
+
+            closeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                overlay.classList.remove('active');
+            });
+
+            overlay.addEventListener('click', function(e) {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+
+            // ESC key se close
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    overlay.classList.remove('active');
+                }
+            });
+        }
+        
+        // Initial attempt to add placeholder
+        setTimeout(function() {
+            var searchInput = document.querySelector('.gsc-input input, .gsc-search-box input[type="text"], .gsc-input-box input');
+            if (searchInput) {
+                searchInput.placeholder = "Search";
+                searchInput.setAttribute('placeholder', 'Search');
+            }
+        }, 1000);
+    });
+</script>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <header>
+    <nav class="navbar navbar-expand-lg bg-white sticky-top d-none d-lg-flex" id="mainNavbar">
+      <div class="container">
+
+        <a class="navbar-brand" href="index.php">
+          <img src="images/logo-3-2-1-9.png" alt="University of Health Sciences">
+        </a>
+
+        <ul class="navbar-nav ms-auto">
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">The University</a>
+            <ul class="dropdown-menu" style="font-size: 14px;">
+              <li><a class="dropdown-item border-bottom" href="about-us.php">Overview</a></li>
+              <li><a class="dropdown-item border-bottom" href="extensions.php">Contact US</a></li>
+              <li><a class="dropdown-item border-bottom" href="uhsbog.php">Governing Bodies</a></li>
+              <li><a class="dropdown-item border-bottom" href="uhs.admin.php">Administration</a></li>
+              <li><a class="dropdown-item border-bottom" href="organogram.php">Organogram</a></li>
+              <li><a class="dropdown-item border-bottom" href="dps.php">Directorate of Postgraduate Studies(DPS)</a></li>
+              <li><a class="dropdown-item border-bottom" href="qec/index.html">QEC</a></li>
+              <li><a class="dropdown-item border-bottom" href="affiliation-process.php">Affiliation</a></li>
+              <li><a class="dropdown-item border-bottom" href="intlink.php">International Collaboration</a></li>
+              <li><a class="dropdown-item border-bottom" href="planning.php">Projects</a></li>
+              <li><a class="dropdown-item" href="UHS-Budget.php">Budget</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Academics</a>
+            <ul class="dropdown-menu" style="font-size: 14px;">
+              <li><a class="dropdown-item border-bottom" href="http://lms.uhs.edu.pk/">E Learning Portal</a></li>
+              <li><a class="dropdown-item border-bottom" href="clinicalpg.php">Clinical Postgraduate Program</a></li>
+              <li><a class="dropdown-item border-bottom" href="Departments-uhs.php">Departments</a></li>
+              <li><a class="dropdown-item border-bottom" href="uhs-fulltime-faculty.php">UHS Full Time Faculty</a></li>
+              <li><a class="dropdown-item" href="Academic-Calendar.php">Academic Calendar</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Research</a>
+            <ul class="dropdown-menu" style="font-size: 14px;">
+              <li><a class="dropdown-item border-bottom" href="oric.php">ORIC</a></li>
+              <li><a class="dropdown-item border-bottom" href="R&D.php">R&D Centre</a></li>
+              <li><a class="dropdown-item border-bottom" href="pdphd.php">Public Defence</a></li>
+              <li><a class="dropdown-item border-bottom" href="proformas.php">Synposis/ Thesis Proformas</a></li>
+              <li><a class="dropdown-item border-bottom" href="Research-Repository.php">Research Repository</a></li>
+              <li><a class="dropdown-item" href="https://biomedicapk.com">Biomedica</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Admissions</a>
+            <ul class="dropdown-menu" style="font-size: 14px;">
+              <li><a class="dropdown-item border-bottom" href="undergraduateprograms.php">Undergraduate Programs</a></li>
+              <li><a class="dropdown-item border-bottom" href="pg-PostgraduatePrograms.php">Postgraduate Programs</a></li>
+              <li><a class="dropdown-item border-bottom" href="certification.php">Certifications</a></li>
+              <li><a class="dropdown-item border-bottom" href="fee-struct.php">Fee Structure</a></li>
+              <li><a class="dropdown-item border-bottom" href="admissions.php">Admission Notice</a></li>
+              <li><a class="dropdown-item border-bottom" href="MeritList.php">Merit Lists</a></li>
+              <!-- <li><a class="dropdown-item border-bottom" href="mdcatadmissionnews.php">Entry Tests</a></li> -->
+              <li><a class="dropdown-item border-bottom" href="https://new-exam.uhs.edu.pk">Examination Form</a></li>
+              <li><a class="dropdown-item" href="http://regstatus.uhs.edu.pk">Registration Status</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Life at UHS</a>
+            <ul class="dropdown-menu" style="font-size: 14px;">
+              <li><a class="dropdown-item border-bottom" href="news.php">Latest News</a></li>
+                                    <li><a class="dropdown-item border-bottom" href="sports-activity.php">Sports Activity</a></li>
+
+              <li><a class="dropdown-item border-bottom" href="events.php">Events</a></li>
+              <li><a class="dropdown-item border-bottom" href="convocation.php">Convocation</a></li>
+              <li><a class="dropdown-item border-bottom" href="society.php">Student Socities <span class="blink">Membership open</span></a></li>
+              <li><a class="dropdown-item border-bottom" href="hostel.php">Boys Hostel</a></li>
+              <li><a class="dropdown-item border-bottom" href="hostel1.php">Girls Hostel</a></li>
+              <li><a class="dropdown-item border-bottom" href="admin.php">Administration Facilities</a></li>
+              <li><a class="dropdown-item" href="https://www.uhs.edu.pk/gallery.php">Gallery</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#">Quick Links</a>
+            <ul class="dropdown-menu" style="font-size: 14px;">
+              <li><a class="dropdown-item border-bottom" href="https://fms.uhs.edu.pk/">Miscellaneous Challan</a></li>
+              <li><a class="dropdown-item border-bottom" href="QECproforma.php">QEC Proforma</a></li>
+              <li><a class="dropdown-item border-bottom" href="downloads/defaultedscholars.pdf">UHS Defaulted Scholars</a></li>
+              <li><a class="dropdown-item border-bottom" href="uhs.admin.php">Staff</a></li>
+              <li><a class="dropdown-item border-bottom" href="tenders2026.php">Tenders</a></li>
+              <li><a class="dropdown-item border-bottom" href="jobs.php">Careers</a></li>
+              <li><a class="dropdown-item" href="https://dip.uhs.edu.pk/">Degree Issuance Portal</a></li>
+            </ul>
+          </li>
+
+          <li class="nav-item"><a class="nav-link" href="rti.php">RTI</a></li>
+          <!-- <li class="nav-item"><a class="nav-link" href="alumniconference.php">Alumni</a></li> -->
+          <li class="nav-item"><a class="nav-link" href="uhsalumni1.php">Alumni</a></li>
+
+        </ul>
+
+      </div>
+    </nav>
+  </header>
+
+  <!-- ===================== -->
+  <!-- MOBILE NAVBAR -->
+  <!-- ===================== -->
+  <nav class="navbar navbar-light bg-white d-lg-none">
+    <div class="container">
+      <a class="navbar-brand" href="index.php">
+        <img src="images/logo-3-2-1-9.png" alt="University of Health Sciences">
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#mainDrawer">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ===================== -->
+  <!-- MOBILE MAIN DRAWER -->
+  <!-- ===================== -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="mainDrawer">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title">Menu</h5>
+      <button class="btn-close" data-bs-dismiss="offcanvas"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      <ul class="list-group">
+
+        <li>
+          <button class="list-group-item border-0 bg-white text-start" data-bs-toggle="offcanvas" data-bs-target="#subTheUniversity" onclick="closeMainDrawer()">The University </button>
+        </li>
+
+        <li>
+          <button class="list-group-item border-0 bg-white text-start" data-bs-toggle="offcanvas" data-bs-target="#subAcademics" onclick="closeMainDrawer()">Academics </button>
+        </li>
+
+        <li>
+          <button class="list-group-item border-0 bg-white text-start" data-bs-toggle="offcanvas" data-bs-target="#subResearch" onclick="closeMainDrawer()">Research </button>
+        </li>
+
+        <li>
+          <button class="list-group-item border-0 bg-white text-start" data-bs-toggle="offcanvas" data-bs-target="#subAdmissions" onclick="closeMainDrawer()">Admissions </button>
+        </li>
+
+        <li>
+          <button class="list-group-item border-0 bg-white text-start" data-bs-toggle="offcanvas" data-bs-target="#subLife" onclick="closeMainDrawer()">Life at UHS </button>
+        </li>
+
+        <li>
+          <button class="list-group-item border-0 bg-white text-start" data-bs-toggle="offcanvas" data-bs-target="#subQuick" onclick="closeMainDrawer()">Quick Links </button>
+        </li>
+
+        <li><a class="list-group-item border-0 bg-white text-start" href="rti.php">RTI</a></li>
+        <li><a class="list-group-item border-0 bg-white text-start" href="alumniconference.php">Alumni</a></li>
+
+      </ul>
+    </div>
+  </div>
+
+  <!-- ===================== -->
+  <!-- MOBILE SUB DRAWERS -->
+  <!-- ===================== -->
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="subTheUniversity">
+    <div class="offcanvas-header">
+      <button class="btn btn-light" onclick="goBackToMain()"> Back</button>
+      <h5 class="offcanvas-title ms-2">The University</h5>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-group">
+        <li><a class="list-group-item" href="about-us.php">Overview</a></li>
+        <li><a class="list-group-item" href="extensions.php">Contact US</a></li>
+        <li><a class="list-group-item" href="uhsbog.php">Governing Bodies</a></li>
+        <li><a class="list-group-item" href="uhs.admin.php">Administration</a></li>
+        <li><a class="list-group-item" href="organogram.php">Organogram</a></li>
+        <li><a class="list-group-item" href="dps.php">Directorate of Postgraduate Studies(DPS)</a></li>
+        <li><a class="list-group-item" href="qec/index.html">QEC</a></li>
+        <li><a class="list-group-item" href="affiliation-process.php">Affiliation</a></li>
+        <li><a class="list-group-item" href="intlink.php">International Collaboration</a></li>
+        <li><a class="list-group-item" href="planning.php">Projects</a></li>
+        <li><a class="list-group-item" href="UHS-Budget.php">Budget</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="subAcademics">
+    <div class="offcanvas-header">
+      <button class="btn btn-light" onclick="goBackToMain()"> Back</button>
+      <h5 class="offcanvas-title ms-2">Academics</h5>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-group">
+        <li><a class="list-group-item" href="http://lms.uhs.edu.pk/">E Learning Portal</a></li>
+        <li><a class="list-group-item" href="clinicalpg.php">Clinical Postgraduate Program</a></li>
+        <li><a class="list-group-item" href="Departments-uhs.php">Departments</a></li>
+        <li><a class="list-group-item" href="uhs-fulltime-faculty.php">UHS Full Time Faculty</a></li>
+        <li><a class="list-group-item" href="Academic-Calendar.php">Academic Calendar</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="subResearch">
+    <div class="offcanvas-header">
+      <button class="btn btn-light" onclick="goBackToMain()"> Back</button>
+      <h5 class="offcanvas-title ms-2">Research</h5>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-group">
+        <li><a class="list-group-item" href="oric.php">ORIC</a></li>
+        <li><a class="dropdown-item border-bottom" href="R&D.php">R&D Centre</a></li>
+        <li><a class="dropdown-item border-bottom" href="pdphd.php">Public Defence</a></li>
+        <li><a class="dropdown-item border-bottom" href="proformas.php">Synposis/ Thesis Proformas</a></li>
+        <li><a class="dropdown-item border-bottom" href="Research-Repository.php">Research Repository</a></li>
+        <li><a class="list-group-item" href="biomedicapk.com">Biomedica</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="subAdmissions">
+    <div class="offcanvas-header">
+      <button class="btn btn-light" onclick="goBackToMain()"> Back</button>
+      <h5 class="offcanvas-title ms-2">Admissions</h5>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-group">
+        <li><a class="list-group-item" href="undergraduateprograms.php">Undergraduate Programs</a></li>
+        <li><a class="list-group-item" href="pg-PostgraduatePrograms.php">Postgraduate Programs</a></li>
+        <li><a class="list-group-item" href="certification.php">Certifications</a></li>
+        <li><a class="list-group-item" href="fee-struct.php">Fee Structure</a></li>
+        <li><a class="list-group-item" href="admissions.php">Admission Notice</a></li>
+        <li><a class="list-group-item" href="MeritList.php">Merit Lists</a></li>
+        <!-- <li><a class="list-group-item" href="https://results.uhs.edu.pk/Results/main">Entry Tests</a></li> -->
+        <li><a class="list-group-item" href="https://new-exam.uhs.edu.pk">Examination Form</a></li>
+        <li><a class="list-group-item" href="http://regstatus.uhs.edu.pk">Registration Status</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="subLife">
+    <div class="offcanvas-header">
+      <button class="btn btn-light" onclick="goBackToMain()">Back</button>
+      <h5 class="offcanvas-title ms-2">Life At UHS</h5>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-group">
+        <li><a class="list-group-item" href="news.php">Latest News</a></li>
+                                    <li><a class="dropdown-item border-bottom" href="sports-activity.php">Sports Activity</a></li>
+
+        <li><a class="list-group-item" href="event.php">Events</a></li>
+        <li><a class="list-group-item" href="convocation.php">Convocation</a></li>
+        <li><a class="list-group-item" href="society.php">Student Socities <blink>Membership open</blink></a></li>
+        <li><a class="list-group-item" href="hostel.php">Boys Hostel</a></li>
+        <li><a class="list-group-item" href="hostel1.php">Girls Hostel</a></li>
+        <li><a class="list-group-item" href="admin.php">Administration Facilities</a></li>
+        <li><a class="list-group-item" href="https://www.uhs.edu.pk/gallery.php">Gallery</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="subQuick">
+    <div class="offcanvas-header">
+      <button class="btn btn-light" onclick="goBackToMain()"> Back</button>
+      <h5 class="offcanvas-title ms-2">Quick Links</h5>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="list-group">
+        <li><a class="list-group-item" href="https://fms.uhs.edu.pk/">Miscellaneous Challan</a></li>
+        <li><a class="list-group-item" href="QECproforma.php">QEC Proforma</a></li>
+        <li><a class="list-group-item" href="downloads/defaultedscholars.pdf">UHS Defaulted Scholars</a></li>
+        <li><a class="list-group-item" href="uhs.admin.php">Staff</a></li>
+        <li><a class="list-group-item" href="tenders2026.php">Tenders</a></li>
+        <li><a class="list-group-item" href="jobs.php">Careers</a></li>
+        <li><a class="list-group-item" href="https://dip.uhs.edu.pk/">Degree Issuance Portal</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Repeat similar sub drawers for Academics, Research, Admissions, Life at UHS, Quick Links -->
+  <!-- You can copy the list items from your desktop dropdowns -->
+
+  <!-- ===================== -->
+  <!-- JS TO CONTROL DRAWERS -->
+  <!-- ===================== -->
+
+
+
+
+
+
+  <!-- Bootstrap JS -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+
+  <!-- ================== STICKY NAVBAR SCRIPT ================== -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const navbar = document.getElementById('mainNavbar');
+      const blackBar = document.querySelector('.top-bar-container');
+      const blackBarHeight = blackBar.offsetHeight;
+
+      // Set initial top position for navbar
+      navbar.style.top = blackBarHeight + 'px';
+
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > blackBarHeight) {
+          // Jab black bar ke neeche scroll karen, navbar top par stick ho jaye
+          navbar.classList.add('sticked');
+          navbar.style.top = '0';
+        } else {
+          // Jab top par hain, navbar black bar ke neeche rahe
+          navbar.classList.remove('sticked');
+          navbar.style.top = blackBarHeight + 'px';
+        }
+      });
+
+      // Auto close hamburger menu when clicking outside
+      document.addEventListener("click", function(event) {
+        let navbarCollapse = document.querySelector(".navbar-collapse");
+        let toggler = document.querySelector(".navbar-toggler");
+
+        // Close menu if open and click is outside
+        if (navbarCollapse && navbarCollapse.classList.contains("show") &&
+          !navbarCollapse.contains(event.target) &&
+          !toggler.contains(event.target)) {
+
+          new bootstrap.Collapse(navbarCollapse, {
+            toggle: true
+          });
+        }
+      });
+    });
+  </script>
+  <script src="script/jquery-3.6.0.min.js"></script>
+  <script src="script/slick.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+      $('.colleges-slider').slick({
+        autoplay: true,
+        autoplaySpeed: 2500,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        arrows: true,
+        dots: true,
+        infinite: true,
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 2
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 1
+            }
+          }
+        ]
+      });
+    });
+  </script>
+  <script>
+    // Counter animation
+    document.addEventListener('DOMContentLoaded', function() {
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target').replace(/,/g, ''));
+        let count = 0;
+        const increment = target / 100; // Adjust for animation speed
+        const updateCounter = () => {
+          if (count < target) {
+            count += increment;
+            counter.textContent = Math.ceil(count).toLocaleString();
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target.toLocaleString();
+          }
+        };
+        // Start animation when element is in viewport
+        const observer = new IntersectionObserver(entries => {
+          if (entries[0].isIntersecting) {
+            updateCounter();
+            observer.disconnect();
+          }
+        }, {
+          threshold: 0.1
+        });
+        observer.observe(counter);
+      });
+    });
+
+    // JavaScript for controlling the marquee on mouse hover
+    const marquee = document.getElementById('myMarquee');
+
+    // Mouse enter event to stop scrolling
+    marquee.addEventListener('mouseenter', function() {
+      marquee.stop();
+    });
+
+    // Mouse leave event to start scrolling again
+    marquee.addEventListener('mouseleave', function() {
+      marquee.start();
+    });
+    // JavaScript for controlling the marquee on mouse hover
+    const marqueee = document.getElementById('Marquee');
+
+    // Mouse enter event to stop scrolling
+    marqueee.addEventListener('mouseenter', function() {
+      marqueee.stop();
+    });
+
+    // Mouse leave event to start scrolling again
+    marqueee.addEventListener('mouseleave', function() {
+      marqueee.start();
+    });
+  </script>
+
+  <script>
+    function closeMainDrawer() {
+      let main = document.getElementById('mainDrawer');
+      let instance = bootstrap.Offcanvas.getInstance(main);
+      instance.hide();
+    }
+
+    function goBackToMain() {
+      // Close all currently open offcanvas
+      let openDrawers = document.querySelectorAll('.offcanvas.show');
+      openDrawers.forEach(el => {
+        let inst = bootstrap.Offcanvas.getInstance(el);
+        if (inst) inst.hide();
+      });
+
+      // Wait for drawer to fully close, then remove backdrop & open main
+      setTimeout(() => {
+        // Remove any lingering backdrop
+        let backdrops = document.querySelectorAll('.offcanvas-backdrop');
+        backdrops.forEach(b => b.remove());
+
+        // Open main drawer
+        let main = new bootstrap.Offcanvas('#mainDrawer');
+        main.show();
+      }, 300);
+    }
+  </script><body >
+
+  
+<!-- PAGE CONTENT -->
+<div class="container-fluid p-0">
+
+    <!-- Banner Image -->
+
+<section class="my-4">
+    <div class="container">
+        <img src="images/Finance.jpg"
+             alt="UHS"
+             class="img-fluid rounded shadow-sm d-block mx-auto">
+    </div>
+</section>
+
+
+
+    
+
+    <!-- Spacer -->
+    <div class="my-5"></div>
+
+    <!-- ICON MENU SECTION -->
+    <section class="container my-5">
+        <div class="row text-center g-4">
+
+            <!-- Introduction -->
+            <div class="col-md-3 col-sm-6">
+                <a href="finance.php" class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <i class="fas fa-scroll fa-2x text-success mb-3"></i>
+                            <h5>Introduction</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Budget Allocation -->
+            <div class="col-md-3 col-sm-6">
+                <a href="finance-budget.php" class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <i class="fas fa-chart-line fa-2x text-success mb-3"></i>
+                            <h5>Budget Allocation</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Fee Structure -->
+            <div class="col-md-3 col-sm-6">
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <i class="fas fa-star-of-life fa-2x text-success mb-3"></i>
+                        <h5>Fee Structure</h5>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staff -->
+            <div class="col-md-3 col-sm-6">
+                <a href="finance-staff.php" class="text-decoration-none text-dark">
+                    <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                            <i class="fas fa-users fa-2x text-success mb-3"></i>
+                            <h5>Staff</h5>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTENT SECTION -->
+    <section class="container my-5">
+        <div class=" shadow-sm">
+            <div class=" ">
+					<center><h1><a href="https://fms.uhs.edu.pk/" style="color:red">Online Challan</a></h1></center>
+					
+					
+<h4 class="subtitle">Examination Fee</h4>
+					
+					
+					
+					
+<table width="96%" cellspacing="0" cellpadding="5" border="1"><tbody><tr><td><b>Sr.#</b></td><td><b>Name of activity</b></td><td><b>Fee Structure</b></td></tr>
+<tr><td valign="top"><p>1</p></td><td valign="top"><p>MBBS</p></td><td valign="top"><p>Rs. 8,750/-</p></td></tr>
+
+<tr><td valign="top"><p>2</p></td><td valign="top"><p>MBBS (Modular Integrated System)</p></td><td valign="top"><p>Rs. 15,000/-</p></td></tr>
+
+<tr><td valign="top"><p>3</p></td><td valign="top"><p>BDS</p></td><td valign="top"><p>Rs. 8,750/-</p></td></tr>
+
+<tr><td valign="top"><p>4</p></td><td valign="top"><p>BDS (Modular Integrated System)</p></td><td valign="top"><p>Rs. 15,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>5</p></td><td valign="top"><p>Pharm-D</p></td><td valign="top"><p>Rs. 8,750/-</p></td></tr>
+
+
+<tr><td valign="top"><p>6</p></td><td valign="top"><p>DPT</p><td valign="top"><p>Rs. 8,750/-</p></td></tr>
+
+
+<tr><td valign="top"><p>7</p></td><td valign="top"><p>TDPT</p></td><td valign="top"><p>Rs. 8,750/-</p></td></tr>
+
+
+<tr><td valign="top"><p>8</p></td><td valign="top"><p>BSc</p></td><td valign="top"><p>Rs. 8,750/-</p></td></tr>
+
+<tr><td valign="top"><p>9</p></td><td valign="top"><p>M.Phil</p></td><td valign="top"><p>Rs. 15,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>10</p></td><td valign="top"><p>M.Sc / MS Nursing</p></td><td valign="top"><p>Rs. 10,000/-</p></td></tr>
+
+<tr><td valign="top"><p>11</p></td><td valign="top"><p>Postgraduate Diplomas, MPH, MMCH, MHM</p></td><td valign="top"><p>Rs. 10,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>12</p></td><td valign="top"><p>M.D, M.S, M.D.S.</p></td><td valign="top"><p>Rs. 20,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>13</p></td><td valign="top"><p>MHPE</p></td><td valign="top"><p>Rs. 25,000/-</p></td></tr>
+
+
+
+<tr><td valign="top"><p>14</p></td><td valign="top"><p>PhD comprehensive</p></td><td valign="top"><p>Rs. 25,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>15</p></td><td valign="top"><p>Thesis Fee ( M.Phil & MSc (Nursing) )</p></td><td valign="top"><p>Rs. 25,000/-</p></td></tr>
+
+
+<!--<tr><td valign="top"><p>16</p></td><td valign="top"><p>Thesis Fee (  MS, MD, MDS, MSc / MHPE</p></td><td valign="top"><p>Rs. 6,750/-</p></td></tr> -->
+<tr><td valign="top"><p>16</p></td><td valign="top"><p>Thesis Fee (  MS, MD, MDS, MSc / MHPE )</p></td><td valign="top"><p>Rs. 25,000/-</p></td></tr>
+
+<!--<tr><td valign="top"><p>17</p></td><td valign="top"><p>PhD thesis Evaluation</p></td><td valign="top"><p>Rs. 10,750/-</p></td></tr> -->
+<tr><td valign="top"><p>17</p></td><td valign="top"><p>PhD thesis Evaluation</p></td><td valign="top"><p>Rs. 50,000/-</p></td></tr>
+<!--
+<tr><td valign="top"><p>16</p></td><td valign="top"><p>Master of Public Health(MPH) </p></td><td valign="top"><p>Rs. 50,000/-</p></td></tr>-->
+</table>
+
+
+<h4 class="subtitle">Registration Fee</h4>
+
+
+<table width="96%" cellspacing="0" cellpadding="5" border="1"><tbody><tr><td><b>Sr.#</b></td><td><b>Name of activity</b></td><td><b>Public Colleges (Rs)</b></td><td><b>Private Colleges (Rs)</b></td></tr>
+<tr><td valign="top"><p>1</p></td><td valign="top"><p>MBBS</p></td><td valign="top"><p>Rs. 10,000/-</p></td><td valign="top"><p>Rs. 24,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>2</p></td><td valign="top"><p>BDS</p></td><td valign="top"><p>Rs. 10,000/-</p></td><td valign="top"><p>Rs. 24,000/-</p></td></tr>
+
+
+
+
+<tr><td valign="top"><p>3</p></td><td valign="top"><p>Pharm-D</p></td><td valign="top"><p>Rs. 15,000/-</p></td><td valign="top"><p>Rs. 24,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>4</p></td><td valign="top"><p>DPT</p><td valign="top"><p>Rs. 10,000/-</p></td><td valign="top"><p>Rs. 24,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>5</p></td><td valign="top"><p>TDPT</p></td><td valign="top"><p>Rs. 10,000/-</p></td><td valign="top"><p>Rs. 15,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>6</p></td><td valign="top"><p>BSc</p></td><td valign="top"><p>Rs. 6,000/-</p></td><td valign="top"><p>Rs. 15,000/-</p></td></tr>
+
+<tr><td valign="top"><p>7</p></td><td valign="top"><p>M.Phil</p></td><td valign="top"><p>Rs. 15,000/-</p></td><td valign="top"><p>Rs. 25,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>8</p></td><td valign="top"><p>M.Sc</p></td><td valign="top"><p>Rs. 10,000/-</p></td><td valign="top"><p>Rs. 25,000/-</p></td></tr>
+
+<tr><td valign="top"><p>9</p></td><td valign="top"><p>Postgraduate Diplomas, MPH, MMCH, MHM</p></td><td valign="top"><p>Rs. 6,000/-</p></td><td valign="top"><p>Rs. 10,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>10</p></td><td valign="top"><p>M.D, M.S, M.D.S.</p></td><td valign="top"><p>Rs. 15,000/-</p></td><td valign="top"><p>Rs. 25,000/-</p></td></tr>
+
+
+<tr><td valign="top"><p>11</p></td><td valign="top"><p>MHPE</p></td><td valign="top"><p>Rs. 15,000/-</p></td><td valign="top"><p>Rs. 25,000/-</p></td></tr>
+
+
+
+<tr><td valign="top"><p>12</p></td><td valign="top"><p>PhD</p></td><td valign="top"><p>Rs. 25,000/-</p></td><td valign="top"><p>Rs. 35,000/-</p></td></tr>
+
+
+
+
+
+
+
+</tbody></table>
+					<div class="wrapper row3"><strong><span class="subtitle">Fee Structure of degrees, certificates, migration, etc.</span><a name="feestructure"></a></strong><table width="96%" cellspacing="0" cellpadding="5" border="1"><tbody><tr><td><b>Sr.#</b></td><td><b>Name of Activity</b></td><td><b>Revised Fee (Normal)</b></td><td><b>Urgent Fee</b></td></tr><tr><td valign="top"><p>1.</p></td><td valign="top"><p>Issuance of transcript</p></td><td valign="top"><p>Rs. 2000/- per transcript</p></td><td valign="top"><p>Rs. 4,000/-</p></td></tr><tr><td valign="top"><p>2</p></td><td valign="top"><p>Issuance of duplicate DMC (all types)</p></td><td valign="top"><p>Rs. 2,000/- per DMC</p></td><td valign="top"><p>Rs. 4,000/-</p></td></tr><tr><td valign="top"><p>3</p></td><td valign="top"><p>Verification of documents (all types)</p></td><td valign="top"><p>Rs. 2,000/- per document</p></td><td valign="top"><p>Rs. 4,000/-</p></td></tr><tr><td valign="top"><p>4</p></td><td valign="top"><p>Correction of documents (all types)</p></td><td valign="top"><p>Rs. 2,000/- per document</p></td><td valign="top"><p>Rs. 4,000/-</p></td></tr><tr><td valign="top"><p>5</p></td><td valign="top"><p>Issuance of NOC</p></td><td valign="top"><p>Rs. 2,000/-</p></td><td valign="top"><p>Rs. 4,000/-</p></td></tr><tr><td valign="top"><p>6</p></td><td valign="top"><p>Change of Supervisor/Faculty</p></td><td valign="top"><p>Rs. 6,000/- (per candidate)</p></td><td valign="top"><p>Nil</p></td></tr><tr><td valign="top"><p>7</p></td><td valign="top"><p>Change of practical examination date</p></td><td valign="top"><p>Rs. 3,000/- per candidate / subject</p></td><td valign="top"><p>Nil</p></td></tr><tr><td valign="top"><p>8</p></td><td valign="top"><p>Migration fee for public sector colleges</p></td><td valign="top"><p>Rs. 4,000/- per candidate</p></td><td valign="top"><p>Nil</p></td></tr><tr><td valign="top"><p>9</p></td><td valign="top"><p>Migration fee for private colleges</p></td><td valign="top"><p>Rs. 12,000/- per candidate</p></td><td valign="top"><p>Nil</p></td></tr><tr><td valign="top"><p>10</p></td><td valign="top"><p>Re-checking of result</p></td><td valign="top"><p>Rs. 3,500/- per subject</p></td><td valign="top"><p>Nil</p></td></tr><tr><td valign="top"><p>11</p></td><td valign="top"><p>Review of Paper</p></td><td valign="top"><p>Rs. 7,000/- per subject</p></td><td valign="top"><p>Nil</p></td></tr><tr><td valign="top"><p>12</p></td><td valign="top"><p>Appeal against decision</p></td><td valign="top"><p>Rs. 2,500/- per candidate</p></td><td valign="top"><p>Nil</p></td></tr><tr><td valign="top"><p>13</p></td><td valign="top"><p>Change of centre when permissible</p></td><td valign="top"><p>Rs. 6,000/- per candidate</p></td><td valign="top"><p>Nil</p></td></tr></tbody></table>
+
+
+
+
+
+</div></div>            </div>
+        </div>
+    </section>
+
+</div>
+
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<style>
+  footer {
+    background: #212529;
+    color: #ddd;
+    padding: 40px 0;
+  }
+
+  footer a {
+    color: #ffc107;
+    text-decoration: none;
+  }
+
+  .stats .col {
+    background: #f8f9fa;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 10px;
+  }
+
+  .stats h2 {
+    color: #0077b6;
+  }
+</style>
+
+<script src="script/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="script/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+
+<footer class="bg-dark text-white pt-5 pb-4 mt-5">
+  <div class="container  text-md-left">
+    <div class="row  text-md-left">
+
+      <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-2 font-weight-bold text-warning">University of Health Sciences</h5>
+        <ul style="list-style: none; padding-left: 0; margin: 0;">
+          <li>
+            University of Health Sciences, Khayaban-e-Jamia Punjab, Lahore-54600.
+          </li>
+          <li> Helpline (24/7) # 111-33-33-66 </li>
+          <li><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fb92959d94bb8e9388d59e9f8ed58b90">[email&#160;protected]</a></li>
+          <li><a class="text-white" style="text-decoration: none;" href="extensions.php">Contact US</a></li>
+        </ul>
+      </div>
+
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h5 class="text-uppercase mb-2 font-weight-bold text-warning">Site Links</h5>
+
+        <ul style="list-style: none; padding-left: 0; margin: 0;">
+          <li style="margin-bottom: 6px;">
+            <a href="index.php" class="text-white" style="text-decoration: none;">Home</a>
+          </li>
+          <li style="margin-bottom: 6px;">
+            <a href="about-us.php" class="text-white" style="text-decoration: none;">About Us</a>
+          </li>
+          <li style="margin-bottom: 6px;">
+            <a href="admissions.php" class="text-white" style="text-decoration: none;">Admission News</a>
+          </li>
+          <li style="margin-bottom: 6px;">
+            <a href="intlink.php" class="text-white" style="text-decoration: none;">Internal Collaboration</a>
+          </li>
+          <li style="margin-bottom: 6px;">
+            <a href="https://mail.google.com/mail/u/0/#inbox" class="text-white" style="text-decoration: none;">Web Mail</a>
+          </li>
+          <li>
+            <a href="jobs.php" class="text-white" style="text-decoration: none;">Careers</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+        <h5 class="text-uppercase mb-2 font-weight-bold text-warning">Examinations</h5>
+        <ul style="list-style: none; padding-left: 0; margin: 0;">
+          <li> <a href="fee-struct.php" class="text-white" style="text-decoration: none;"> Fee Structure</a></li>
+          <li><a href="convocation.php" class="text-white" style="text-decoration: none;"> Convocation</a></li>
+          <li><a href="https://datesheets.uhs.edu.pk/" class="text-white" style="text-decoration: none;"> Date sheets</a></li>
+          <li><a href="http://results.uhs.edu.pk
+          " class="text-white" style="text-decoration: none;"> Results</a></li>
+          <li><a href="https://new-exam.uhs.edu.pk/Login" class="text-white" style="text-decoration: none;"> Online Examination Form</a></li>
+
+        </ul>
+      </div>
+
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+        <h5 class="text-uppercase mb-2 font-weight-bold text-warning">Imporant Links</h5>
+        <ul style="list-style: none; padding-left: 0; margin: 0;">
+          <li><a href="tenders2026.php" class="text-white" style="text-decoration: none;"> Tenders </a>
+          <li><a href="affiliation-process.php" class="text-white" style="text-decoration: none;"> Affiliation</a></li>
+          <li>
+            <a href="https://biomedicapk.com" target="_blank" class="text-white" style="text-decoration: none;">Biomedica </a>
+          </li>
+          <li><a href="newsletter.php" class="text-white" style="text-decoration: none;"> News Letter</a></li>
+          <li><a href="library.php" class="text-white" style="text-decoration: none;"> Library</a></li>
+          <li><a href="QECproforma.php" class="text-white" style="text-decoration: none;"> QEC</a></li>
+          <li><a href="https://lms.uhs.edu.pk/" class="text-white" style="text-decoration: none;"> E Learning Portal</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <hr class="mb-4">
+
+    <div class="row align-items-center">
+      <div class="col-md-12  ">
+        <p class="text-center ">© Copyright 2025 Site Developed and Maintained by IT Department, UHS.</p>
+      </div>
+
+    </div>
+
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a42abd400d3198c7',t:'MTc5MDY4MjMwMQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script></body>

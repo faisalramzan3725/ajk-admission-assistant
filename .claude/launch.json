@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "jk-assistance",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "uvicorn", "jk_assistance.api:app", "--port", "8010"],
+      "port": 8010
+    }
+  ]
+}

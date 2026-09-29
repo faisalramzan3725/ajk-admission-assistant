@@ -1,0 +1,110 @@
+# JK Assistance - institution directory.
+# Every fact carries a source. trust: official = fetched from the institution's own site/document;
+# secondary = third-party site, must be verified before being relied on.
+retrieved_on: 2026-09-29
+
+institutions:
+  - id: uajk
+    name: The University of Azad Jammu & Kashmir (UAJK)
+    aliases: [uajk, ajku, ajk university, university of ajk, azad jammu and kashmir university, muzaffarabad university, chellah, chella, king abdullah campus, chatter klass]
+    city: Muzaffarabad
+    website: https://uajk.edu.pk/
+    portals:
+      online_admission: https://admissions.uajk.edu.pk/
+      online_challan_and_forms: https://challan.uajk.edu.pk/
+      student_portal_umis: https://umis.ajku.edu.pk/frmSLogin.aspx
+      annual_system_admission: https://result.ajku.edu.pk/oef/
+      downloads: https://uajk.edu.pk/downloads/
+    campuses: [Chellah (Main) Campus Muzaffarabad, King Abdullah Campus Chatter Klass, Jhelum Valley Campus Hattian Bala, Neelum Campus Athmuqam]
+    contacts:
+      - {office: Admissions help (Directorate of Students' Affairs), phone: "05822-960440"}
+      - {office: DSA Chellah Campus, phone: "05822-960463", email: dsa@uajk.edu.pk}
+      - {office: DSA King Abdullah Campus, phone: "05822-962324"}
+      - {office: Controller of Examinations, phone: "05822-960400", email: controller@uajk.edu.pk}
+      - {office: Examination Help Desk, phone: "05822-960465"}
+      - {office: Degree Section (degree verification), phone: "05822-960477", email: deputy.controller.degree@uajk.edu.pk}
+      - {office: Result Section, phone: "05822-920735"}
+      - {office: Semester Desk, phone: "05822-960506"}
+      - {office: Tabulation Section (MA/BA), phone: "05822-960520"}
+      - {office: Registrar, phone: "05822-960418", email: registrar@uajk.edu.pk}
+      - {office: "Registration & Affiliation / General Section (migration, bonafide, English proficiency)", phone: "05822-960425", email: dr.general@ajku.edu.pk}
+      - {office: Student Financial Assistance (scholarships), phone: "05822-960410", email: director.sfaua@uajk.edu.pk}
+    fee_payment: HBL challan generated at https://challan.uajk.edu.pk/ (payable at any HBL branch); overseas applicants may use an HBL bank draft in favour of Director Finance & Planning, UAJK.
+    sources: [https://uajk.edu.pk/contact-us/, https://uajk.edu.pk/examination-department/, https://uajk.edu.pk/registrar-office/]
+    trust: official
+
+  - id: must
+    name: Mirpur University of Science and Technology (MUST)
+    aliases: [must, mirpur university, mirpur university of science and technology, mit mirpur, jarikas]
+    city: Mirpur
+    website: https://must.edu.pk/
+    portals:
+      online_admission: https://admission.must.edu.pk/
+      merit_lists: https://admission.must.edu.pk/meritlist.php
+      entry_test_seet: http://seet.must.edu.pk/
+      online_challan: https://challan.must.edu.pk/
+      alumni_portal_for_ntc_clearance: https://alumni.must.edu.pk
+      downloads: https://must.edu.pk/downloads/
+    contacts:
+      - {office: DSA Admission Office (City Campus Mirpur), phone: "05827-961045, 0355-8083673, 0333-9571065", email: dsa@must.edu.pk}
+      - {office: "Controller of Examinations (Admin Block, Jarikas Campus)", phone: "05827-961038 / 961068 / 961065", email: controller@must.edu.pk}
+      - {office: "General Section (migration, duplicate migration)", phone: "05827-961068"}
+      - {office: "Dean Faculty of Engineering (provisional certificates, engineering)", phone: "05827-961008", email: deen.engineering@must.edu.pk}
+    fee_payment: HBL / ABL challan (online challan at https://challan.must.edu.pk/); overseas applicants may use an HBL bank draft in the name of MUST Mirpur.
+    sources: [https://must.edu.pk/admissions/, https://must.edu.pk/wp-content/uploads/2026/08/Degree-from-updates.pdf]
+    trust: official
+
+  - id: uhs
+    name: University of Health Sciences (UHS), Lahore - degree-awarding university for AJK public medical colleges
+    aliases: [uhs, university of health sciences, uhs lahore, mbbs degree, bds degree, medical degree, medical transcript]
+    city: Lahore
+    website: https://www.uhs.edu.pk/
+    portals:
+      degree_and_transcript_portal: https://dip.uhs.edu.pk/
+      fee_structure: https://www.uhs.edu.pk/fee-struct.php
+      downloads: https://www.uhs.edu.pk/Downloadslink.php
+    contacts:
+      - {office: UHS Degree Cell, phone: "042-99231304-9 Ext. 395, 042-99231075", email: degreecell@uhs.edu.pk}
+      - {office: UHS Examination Cell (transcripts), phone: "042-99231304-9 Ext. 356, 042-99231075", email: tab@uhs.edu.pk}
+    note: Poonch Medical College's website links UHS Lahore, and Wikipedia lists PMC as UHS-affiliated. Affiliation of MBBSMC and AJKMC was not verified - confirm the degree-awarding university for your session with your college before applying.
+    sources: [https://pmcrajk.edu.pk/, https://dip.uhs.edu.pk/, https://www.uhs.edu.pk/fee-struct.php]
+    trust: official
+
+  - id: pmc
+    name: Poonch Medical College (PMC), Rawalakot
+    aliases: [pmc, poonch medical college, rawalakot medical college, pmc rawalakot]
+    city: Rawalakot (Trar Deewan)
+    website: https://pmcrajk.edu.pk/
+    warning: pmc.edu.pk is NOT this college (it belongs to Faisalabad Medical University). Use pmcrajk.edu.pk.
+    contacts:
+      - {office: Help desk / Admission Cell, phone: "05824-960065", email: info@pmcrajk.edu.pk}
+      - {office: Principal, email: principal@pmcrajk.edu.pk}
+    teaching_hospitals: [SKBZ/CMH Rawalakot, DHQ Bagh, THQ Hospital Hajira]
+    sources: [https://pmcrajk.edu.pk/admission.php, https://pmcrajk.edu.pk/contact.php]
+    trust: official
+
+  - id: mbbsmc
+    name: Mohtarma Benazir Bhutto Shaheed Medical College (MBBSMC), Mirpur
+    aliases: [mbbsmc, benazir bhutto medical college, mirpur medical college, mohtarma benazir bhutto shaheed medical college]
+    city: Mirpur
+    website: https://mbbsmc.edu.pk/
+    contacts:
+      - {office: College office, phone: "05827-920453", email: info@mbbsmc.edu.pk}
+    sources: [https://mbbsmc.edu.pk/student-area/admissions]
+    trust: official
+    warning: Parts of the MBBSMC website look like template text (it cites "PMC requirements" and a private-style fee table). Verify fees with the college.
+
+  - id: ajkmc
+    name: Azad Jammu & Kashmir Medical College (AJKMC), Muzaffarabad
+    aliases: [ajkmc, ajk medical college, azad jammu kashmir medical college, muzaffarabad medical college]
+    city: Muzaffarabad
+    website: https://ajkmc.edu.pk/
+    note: The AJKMC website could not be reached on 2026-09-29, so JK Assistance holds no AJKMC-specific procedures. MBBS/BDS admission is centralised through JAC (see jac), and degrees/transcripts go through the affiliating university.
+    trust: official
+
+  - id: jac
+    name: Joint Admission Committee (JAC) AJ&K - MBBS/BDS admissions for the public medical & dental colleges of AJK
+    aliases: [jac, joint admission committee, mbbs admission, bds admission, medical admission, mdcat]
+    website: https://jac.ajk.gov.pk/
+    note: The JAC site is behind a Cloudflare bot check and could not be fetched automatically. Official guideline PDFs are listed in knowledge/admissions.yaml; facts marked trust=secondary come from gotest.com.pk.
+    trust: official
