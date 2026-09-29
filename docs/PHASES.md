@@ -2,7 +2,7 @@
 
 JK Assistance helps students in Azad Jammu & Kashmir who have finished 12 years of education decide **where to apply**, check **whether they are eligible** (including MDCAT out of 180 and ECAT out of 400), and follow **the exact steps and dates to enrol**.
 
-The system is built in 11 phases. Each phase below lists its purpose, inputs, outputs, how it works, how to run it, how to check it, and its limits.
+The system is built in 10 phases. Each phase below lists its purpose, inputs, outputs, how it works, how to run it, how to check it, and its limits.
 
 | # | Phase | Main files |
 |---|---|---|
@@ -16,8 +16,7 @@ The system is built in 11 phases. Each phase below lists its purpose, inputs, ou
 | 7 | Interfaces: portal, API, MCP | `web/index.html`, `jk_assistance/api.py`, `mcp_server/server.py` |
 | 8 | Testing and verification | `tests/`, `notebooks/`, `scripts/mcp_smoke_test.py` |
 | 9 | Automatic updating (update agent) | `scripts/update_agent.py`, `knowledge/sources.yaml`, `.github/workflows/update-sources.yml` |
-| 10 | Free deployment | `Dockerfile`, `render.yaml`, `deploy/huggingface/`, `docs/DEPLOYMENT.md` |
-| 11 | Operations (the yearly admission cycle) | this file, section 11 |
+| 10 | Operations (the yearly admission cycle) | this file, section 10 |
 
 ---
 
@@ -252,7 +251,7 @@ curl "http://localhost:8010/api/search?q=MDCAT%20passing%20marks"
 6. **PROPOSE (optional):** Claude reads the changed lines and returns draft `deadlines.yaml` entries as validated JSON, each with an evidence quote and confidence.
 7. **REPORT:** `reports/update_report.md` and `reports/proposals.json`, and the flag `changed=true|false`.
 
-**Automation:** `.github/workflows/update-sources.yml` runs daily at 08:00 PKT (or on demand). When `changed=true` it pushes a branch and opens a **pull request** whose description is the report. A person applies the verified changes to the YAML and merges; then the tests run and the host redeploys.
+**Automation:** `.github/workflows/update-sources.yml` runs daily at 08:00 PKT (or on demand). When `changed=true` it pushes a branch and opens a **pull request** whose description is the report. A person applies the verified changes to the YAML and merges; then the tests run.
 
 **Why not fully automatic edits:** fees, dates and minimum marks are official facts. The agent finds them; a human confirms them.
 
@@ -269,24 +268,16 @@ python scripts/update_agent.py --no-llm
 **Limits:**
 - Pages that render only with JavaScript (MBBSMC) or sit behind Cloudflare (JAC) can't be read by the agent; it only reports their status.
 - Scanned notices are detected as new links but must be read by a person.
+- GitHub Actions gives private repos 2,000 free minutes a month; one agent run takes about 3-5 minutes, so the daily schedule uses about 150.
 
-## Phase 10 - Free deployment
+**One-time setup** (in the GitHub repo):
+1. **Settings → Actions → General**: allow all actions. Set Workflow permissions to **Read and write**, and tick **Allow GitHub Actions to create and approve pull requests** (the agent opens PRs).
+2. Optional: **Settings → Secrets and variables → Actions → New repository secret** `ANTHROPIC_API_KEY`, which lets Claude draft the new date entries.
+3. **Actions → update-sources → Run workflow** to test it now. Otherwise it runs daily at 03:00 UTC (08:00 PKT).
 
-**Recommended: Render.**
-- `render.yaml` defines a free Docker web service with a health check and auto-deploy from `main`.
-- `Dockerfile` runs the app on `$PORT` as user 1000, which is Hugging Face-compatible.
-- `requirements-app.txt` holds only the runtime dependencies.
+**When a PR arrives:** open it and follow the source links. Add or edit the entries in `knowledge/deadlines.yaml` or `knowledge/admissions.yaml` on the same branch (the GitHub web editor works). Merge once the **tests** check passes.
 
-**Alternative: Hugging Face Spaces** (Docker SDK, `deploy/huggingface/README.md` card).
-
-**Free-tier notes:**
-- Render sleeps after 15 idle minutes, with about a 1-minute wake-up, and gives 750 hours/month.
-- GitHub Actions: 2,000 minutes/month for private repos; the agent uses about 150.
-- Claude is optional.
-
-**Full steps and the verification table:** [DEPLOYMENT.md](DEPLOYMENT.md).
-
-## Phase 11 - Operations: the yearly admission cycle
+## Phase 10 - Operations: the yearly admission cycle
 
 | When | What to do |
 |---|---|
@@ -294,12 +285,11 @@ python scripts/update_agent.py --no-llm
 | **May-July** (MDCAT/ECAT registration) | Check that the MDCAT and ECAT fees, dates and format in `admissions.yaml → tests` match the new PM&DC / UET notices. Update the `2026` fields to the new year. |
 | **July-September** (university advertisements) | Update the UAJK and MUST last dates and merit-list schedule, the new eligibility PDFs (MUST publishes one each Fall), and fee sheets (UAJK notes about 10% yearly increases). Add a new session's fees as a new session value. |
 | **After MDCAT results** (Sep-Oct) | Add the AJK MBBS/BDS and SZABMU application windows. When the agent reports **jac.portal: now UP**, update `institutions.yaml → jac.website_status` and the JAC steps. |
-| **Each change** | Run `python -m pytest -q`, check the portal locally, then merge. Render deploys automatically. |
+| **Each change** | Run `python -m pytest -q`, check the portal locally, then merge. |
 | **Once a year** | Review the relaxations (e.g. the 2025-26 MDCAT 52%/47% rule is session-specific), remove expired notes, and rebuild the notebook. |
 
 **Who does what:**
 - **The agent:** watch and report.
 - **You (or an admission-office volunteer):** verify and edit the YAML.
-- **GitHub Actions:** test.
-- **Render:** serve.
+- **GitHub Actions:** run the agent and the tests.
 - **Students:** use the portal or chat.

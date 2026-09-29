@@ -2,7 +2,7 @@ name: update-sources
 
 # The update agent: re-checks every official admission source daily and opens a pull request
 # with a report when something changed. A person reviews the PR, adds any new dates/fees to
-# knowledge/*.yaml, and merges -> the host (Render) redeploys automatically.
+# knowledge/*.yaml, and merges.
 #
 # One-time setup (repo Settings):
 #   Actions > General > Workflow permissions: "Read and write" + tick "Allow GitHub Actions to create and approve pull requests"

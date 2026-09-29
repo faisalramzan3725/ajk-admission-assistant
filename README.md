@@ -67,18 +67,15 @@ Sample notebook with executed outputs: [notebooks/JK_Assistance_Samples.ipynb](n
 python scripts/build_notebook.py
 ```
 
-## Free hosting and automatic updates
+## Automatic updates
 
-- **Host for free** on Render (`render.yaml`, auto-deploys from `main`) or Hugging Face Spaces (`Dockerfile`).
-- **Stays current automatically.** An **update agent** (`scripts/update_agent.py`) runs daily through GitHub Actions. It re-checks 23 official sources and detects new dates, fees, rules, notices and dead links. When something changes it opens a pull request with a report. A person verifies and merges, and the site redeploys.
-- Step-by-step setup: [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+An **update agent** (`scripts/update_agent.py`) runs daily through GitHub Actions. It re-checks 23 official sources and detects new dates, fees, rules, notices and dead links. When something changes it opens a pull request with a report, and a person verifies and merges. Setup steps are in [docs/PHASES.md](docs/PHASES.md), Phase 9.
 
 ## Documentation
 
 | Document | Contents |
 |---|---|
-| [docs/PHASES.md](docs/PHASES.md) | **Complete documentation, phase by phase**: data collection, extraction, knowledge, retrieval, eligibility engine, chat, interfaces, testing, update agent, deployment, yearly operations |
-| [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) | Free hosting (Render / Hugging Face), GitHub Actions setup, what was verified |
+| [docs/PHASES.md](docs/PHASES.md) | **Complete documentation, phase by phase**: data collection, extraction, knowledge, retrieval, eligibility engine, chat, interfaces, testing, update agent, yearly operations |
 | [docs/MANUAL.md](docs/MANUAL.md) | Install, localhost, portal walkthrough, REST API, MCP, testing, how the assistant works, implementation, updating data |
 | [knowledge/README.md](knowledge/README.md) | Sources, trust levels, known gaps, how to update |
 | [mcp_server/README.md](mcp_server/README.md) | MCP tools and client configuration |
