@@ -1,0 +1,7 @@
+# Runtime dependencies for the web app only (used by the Dockerfile / free hosting).
+# requirements.txt = everything (data collection, update agent, tests, notebook).
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pyyaml>=6.0
+rank_bm25>=0.2.2
+anthropic>=1.9

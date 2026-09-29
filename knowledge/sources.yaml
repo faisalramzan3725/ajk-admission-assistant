@@ -1,0 +1,36 @@
+# Sources watched by the update agent (scripts/update_agent.py).
+# site:  folder under raw/ where the fresh text is saved
+# watch: what the agent looks for when the page changes
+#        dates  -> admission dates / deadlines / merit lists
+#        fees   -> rupee amounts
+#        rules  -> minimum marks, percentages, eligibility wording
+#        links  -> new PDF / notice links (new advertisements, new eligibility criteria)
+#        status -> only whether the site is reachable (e.g. the JAC portal)
+sources:
+  # ---- UAJK
+  - {id: uajk.admission_procedure, site: uajk, url: "https://uajk.edu.pk/admission-procedure/", watch: [dates, fees, links]}
+  - {id: uajk.eligibility, site: uajk, url: "https://uajk.edu.pk/eligibility-criteria/", watch: [rules]}
+  - {id: uajk.required_documents, site: uajk, url: "https://uajk.edu.pk/required-documents/", watch: [rules]}
+  - {id: uajk.reserved_seats, site: uajk, url: "https://uajk.edu.pk/reserved-seats/", watch: [rules]}
+  - {id: uajk.ug_programs, site: uajk, url: "https://uajk.edu.pk/under-graduate-programs/", watch: [rules]}
+  - {id: uajk.fee_structure, site: uajk, url: "https://uajk.edu.pk/fee-structure/", watch: [fees, links]}
+  - {id: uajk.merit_rebate, site: uajk, url: "https://uajk.edu.pk/merit-scholarship-tuition-fee-rebate/", watch: [dates]}
+  - {id: uajk.scholarships, site: uajk, url: "https://uajk.edu.pk/directorate-students-financial-assistance/", watch: [dates, links]}
+  - {id: uajk.contacts, site: uajk, url: "https://uajk.edu.pk/contact-us/", watch: [rules]}
+  - {id: uajk.portal, site: uajk, url: "https://admissions.uajk.edu.pk/", watch: [status]}
+  # ---- MUST
+  - {id: must.admissions, site: must, url: "https://must.edu.pk/admissions/", watch: [dates, links]}
+  - {id: must.merit_schedule, site: must, url: "https://must.edu.pk/schedule-for-displaying-merit-lists-of-the-admissions-fall-2026/", watch: [dates, links]}
+  - {id: must.scholarships, site: must, url: "https://must.edu.pk/scholarships/", watch: [dates, links]}
+  - {id: must.portal, site: must, url: "https://admission.must.edu.pk/", watch: [status]}
+  - {id: must.merit_lists, site: must, url: "https://admission.must.edu.pk/meritlist.php", watch: [dates, links]}
+  # ---- Medical: regulator, test body, colleges
+  - {id: pmdc.home, site: pmdc, url: "https://pmdc.pk/", watch: [dates, links]}
+  - {id: pmdc.mdcat_results, site: pmdc, url: "https://pmdc.pk/result/MDCATResult", watch: [dates, links]}
+  - {id: szabmu.mbbs, site: szabmu, url: "http://www.szabmu.edu.pk/admission/mbbs-admission", watch: [dates, fees, rules, links]}
+  - {id: pmc.admission, site: pmc, url: "https://pmcrajk.edu.pk/admission.php", watch: [dates, rules]}
+  - {id: pmc.news, site: pmc, url: "https://pmcrajk.edu.pk/news.php", watch: [dates, links]}
+  # ---- Sites that were DOWN on 2026-09-29: the agent reports when they come back
+  - {id: jac.portal, site: jac, url: "https://jac.ajk.gov.pk/", watch: [status]}
+  - {id: ajkmc.site, site: ajkmc, url: "https://ajkmc.edu.pk/", watch: [status]}
+  - {id: pmdc.mdcat_portal, site: pmdc, url: "https://mdcat.pmdc.pk", watch: [status]}

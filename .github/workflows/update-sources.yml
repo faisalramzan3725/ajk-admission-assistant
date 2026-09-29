@@ -1,0 +1,66 @@
+name: update-sources
+
+# The update agent: re-checks every official admission source daily and opens a pull request
+# with a report when something changed. A person reviews the PR, adds any new dates/fees to
+# knowledge/*.yaml, and merges -> the host (Render) redeploys automatically.
+#
+# One-time setup (repo Settings):
+#   Actions > General > Workflow permissions: "Read and write" + tick "Allow GitHub Actions to create and approve pull requests"
+#   Secrets and variables > Actions > New secret ANTHROPIC_API_KEY  (optional - enables Claude-drafted date entries)
+
+on:
+  schedule:
+    - cron: "0 3 * * *"   # 03:00 UTC = 08:00 Pakistan time, every day
+  workflow_dispatch: {}    # "Run workflow" button in the Actions tab
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: update-sources
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: pip install -r requirements.txt
+
+      - name: Run the update agent
+        id: agent
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python scripts/update_agent.py
+
+      - name: Upload the report
+        uses: actions/upload-artifact@v4
+        with:
+          name: update-report
+          path: reports/
+
+      - name: Open a pull request with the changes
+        if: steps.agent.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          branch="update/sources-$(date -u +%Y-%m-%d)"
+          git config user.name  "jk-update-agent"
+          git config user.email "jk-update-agent@users.noreply.github.com"
+          git checkout -B "$branch"
+          git add raw knowledge/source_state.json reports
+          git commit -m "Update agent: official admission sources changed ($(date -u +%Y-%m-%d))"
+          git push -f origin "$branch"
+          if gh pr view "$branch" >/dev/null 2>&1; then
+            gh pr edit "$branch" --body-file reports/update_report.md
+          else
+            gh pr create --base main --head "$branch" \
+              --title "Admission sources changed - $(date -u +%Y-%m-%d)" \
+              --body-file reports/update_report.md
+          fi
