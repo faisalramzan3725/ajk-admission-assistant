@@ -1,49 +1,44 @@
-# JK Assistance MCP server
+# JK Assistance MCP server (admissions)
 
-Exposes JK Assistance's knowledge base and rule engines as MCP tools, so Claude Desktop, Claude Code or any MCP client can answer AJK admission, document, fee, deadline and semester-promotion questions, grounded in official sources.
+Lets Claude Desktop, Claude Code or any MCP client check a student's admission eligibility for AJK programs, explain the entry tests (MDCAT out of 180, ECAT out of 400), and walk them through applying.
 
 ## Run
+
+For stdio:
 
 ```bash
 python mcp_server/server.py
 ```
 
-That runs over stdio (what Claude Desktop / Claude Code launch). For remote clients or the MCP Inspector, use Streamable HTTP on `http://localhost:8765/mcp`:
+For Streamable HTTP at `http://localhost:8765/mcp`:
 
 ```bash
 python mcp_server/server.py --http
 ```
 
-## Configure a client
-
-Claude Code (`.mcp.json` in your project) or Claude Desktop (`%APPDATA%\Claude\claude_desktop_config.json`):
+## Configure
 
 ```json
-{
-  "mcpServers": {
-    "jk-assistance": {
-      "command": "python",
-      "args": ["C:\\Users\\Faisal Ramzan\\Desktop\\AJK university VA\\mcp_server\\server.py"],
-      "env": {"JK_DISABLE_LLM": "1"}
-    }
-  }
-}
+{"mcpServers": {"jk-assistance": {"command": "python",
+  "args": ["C:\\Users\\Faisal Ramzan\\Desktop\\AJK university VA\\mcp_server\\server.py"],
+  "env": {"JK_DISABLE_LLM": "1"}}}}
 ```
 
-Use the full path to the Python interpreter that has `requirements.txt` installed if `python` is not on PATH.
+Put this in Claude Code's `.mcp.json` or Claude Desktop's `%APPDATA%\Claude\claude_desktop_config.json`. Use the full path to the Python that has `requirements.txt` installed if `python` isn't on PATH.
 
 ## Tools
 
 | Tool | Purpose |
 |---|---|
-| `advise_admission` | Programs a 12th-grade student can apply for, with chance (heuristic), tests, fees, documents, how to apply and deadlines |
-| `list_services` / `get_service` | Degree, transcript, verification, migration, clearance, bonafide... checklists with the fee in force today |
-| `get_deadlines` | Admission and merit-list dates, fee fine windows, re-checking and registration rules |
-| `evaluate_progression` | MUST promotion/probation/relegation and GPA/CGPA from a transcript |
-| `student_dashboard` | Proactive findings for a stored student (GUIDE / ASK_INFO / ALERT / ESCALATE) |
-| `start_application` | Open a tracked application case |
-| `search_knowledge` | Evidence search over all fetched official pages and documents |
-| `ask_jk_assistance` | The complete assistant pipeline for a free-text question |
+| `check_admission` | Eligible programs with checklists (needed vs obtained), MBBS/BDS merit aggregate, chance, fees, how to apply |
+| `get_test` | Max/min marks, format, fee, dates, merit formula (`mdcat`, `ecat`, `uajk_entry_test`, `must_seet`, `hec_lat`) |
+| `how_to_apply` | Steps, documents, contacts, dates (`uajk`, `must`, `jac`) |
+| `admission_dates` | Upcoming and recent admission dates, plus rules |
+| `list_programs` | Program catalog |
+| `search_admission_sources` | Evidence from the official sources |
+| `ask_jk_assistance` | Full assistant for a free-text question |
+
+Example prompt: *"Using jk-assistance: I did FSc pre-medical 946/1100, matric 1010/1100 and got 140 in MDCAT. Where can I apply and what do I do next?"*
 
 ## Smoke test
 

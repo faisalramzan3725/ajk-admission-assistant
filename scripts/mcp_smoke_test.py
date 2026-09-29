@@ -1,4 +1,4 @@
-"""Spawn the JK Assistance MCP server over stdio and call a few tools with the official MCP client.
+"""Spawn the JK Assistance MCP server over stdio and call its admission tools with the official MCP client.
 
 Usage: python scripts/mcp_smoke_test.py
 """
@@ -14,6 +14,15 @@ from mcp.client.stdio import stdio_client
 ROOT = Path(__file__).resolve().parent.parent
 sys.stdout.reconfigure(encoding="utf-8")
 
+CALLS = [
+    ("get_test", {"test_id": "mdcat"}),
+    ("check_admission", {"group": "pre_med", "hssc_obtained": 946, "hssc_total": 1100, "ssc_obtained": 1010, "ssc_total": 1100,
+                         "mdcat_obtained": 140, "interests": "medicine"}),
+    ("check_admission", {"group": "pre_eng", "hssc_obtained": 80, "ecat_obtained": 210, "interests": "engineering"}),
+    ("how_to_apply", {"institution": "jac"}),
+    ("admission_dates", {"institution": "uajk"}),
+]
+
 
 async def main():
     params = StdioServerParameters(command=sys.executable, args=[str(ROOT / "mcp_server" / "server.py")],
@@ -21,20 +30,11 @@ async def main():
     async with stdio_client(params) as (read, write):
         async with ClientSession(read, write) as session:
             await session.initialize()
-            tools = await session.list_tools()
-            print("tools:", ", ".join(t.name for t in tools.tools))
-            calls = [
-                ("get_service", {"service_id": "must.clearance"}),
-                ("advise_admission", {"group": "ics", "hssc_percent": 64, "interests": "computing"}),
-                ("get_deadlines", {"institution": "uajk"}),
-                ("evaluate_progression", {"semesters": [{"number": 1, "courses": [
-                    {"code": "A", "credits": 3, "percent": 40}, {"code": "B", "credits": 3, "percent": 45},
-                    {"code": "C", "credits": 3, "percent": 70}, {"code": "D", "credits": 3, "percent": 30}]}]}),
-            ]
-            for name, args in calls:
+            print("tools:", ", ".join(t.name for t in (await session.list_tools()).tools))
+            for name, args in CALLS:
                 res = await session.call_tool(name, args)
-                text = res.content[0].text
-                print(f"\n== {name} ->", json.dumps(json.loads(text), ensure_ascii=False)[:400])
+                print(f"\n== {name} ->", json.dumps(json.loads(res.content[0].text), ensure_ascii=False)[:400])
 
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())

@@ -6,9 +6,6 @@ venv*/
 .env
 *.tmp
 
-# runtime data (regenerate with: python scripts/seed_demo.py)
-data/*.json
-
 # very large source PDFs (>30 MB) - download with: python scripts/fetch_large_documents.py
 # their extracted text is committed under documents/*/text/
 documents/uajk/UAJK_Prospectus.pdf

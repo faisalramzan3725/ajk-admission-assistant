@@ -1,47 +1,25 @@
-# Knowledge layer
+# Knowledge layer (admissions)
 
-The curated, machine-readable policy layer JK Assistance reasons over. It was retrieved on **2026-09-29**.
+Retrieved **2026-09-29**. Every fact carries its source URL. `trust: official` means it was read from the institution's or regulator's own site or document; `trust: secondary` means a third-party site, shown to students as "verify".
 
 | File | Contents |
 |---|---|
-| `institutions.yaml` | UAJK, MUST, UHS, PMC, MBBSMC, AJKMC, JAC: portals, offices, phone numbers, emails, fee-payment method |
-| `services.yaml` | 27 procedures (degree, duplicate degree, verification, correction/name change, DMC/transcript, migration, transfer, clearance, provisional certificate, bonafide, English proficiency, re-checking, refund, convocation, hostel, exam services, UHS degree/transcript/migration). Each has documents, steps, forms, versioned fees, deadlines and sources. |
-| `admissions.yaml` | 38 program entries for students after 12 years of education (eligibility by group and minimum %, tests, first-semester fees), entry tests (UAJK test, SEET, MDCAT, LAT), and the application process, documents, reserved seats, self-support and scholarships per institution |
-| `deadlines.yaml` | Dated deadlines (UAJK Fall 2026 last date 5 Oct 2026, MUST Fall 2026 merit lists, JAC 2026 schedule, PMC closure) and relative rules (fee fine windows, re-checking, registration, refund, withdrawal, freezing, migration submission) |
-| `progression_rules.yaml` | MUST semester regulations (grading, promotion, probation, relegation, degree requirements, maximum durations); UAJK and UHS marked unpublished/not ingested |
+| `institutions.yaml` | UAJK, MUST, JAC (website **not working**, with working channels), PMC, MBBSMC, AJKMC (unreachable), SZABMU, PM&DC, UET: portals and admission contacts |
+| `admissions.yaml` | **tests** (MDCAT max 180, MBBS 99, BDS 90, relaxation, fee, dates, merit formula; ECAT max 400, PEC 132, Fall 2026 averages; SEET 33%; UAJK test 50%; LAT 50%); **application_process** for uajk / must / jac (steps, documents, age limits, reserved seats, scholarships, fee and refund rules); **programs** (groups, minimum HSSC %, `test_rules` as any-one-of, fees, seats) |
+| `deadlines.yaml` | MDCAT 2026 schedule, MUST Fall 2026 deadline and merit lists, UAJK Fall 2026 last date (5 Oct 2026), PM&DC 2025-26 last admission date, and admission rules |
 
-## Trust and provenance
+## Sources
 
-- `trust: official` means the fact was read from the institution's own website or document. The source URL is stored next to it, and the raw page/document is in `raw/` or `documents/`.
-- `trust: secondary` means it came from a third-party site because the official site could not be fetched (JAC is behind Cloudflare). The UI and answers label these "verify".
-- Scanned PDFs (MUST degree form, provisional form, UAJK fee sheets, the MUST merit-list notice) were read visually and transcribed by hand. Their original files are in `documents/`.
-
-## Fee versioning
-
-```yaml
-- item: Degree before convocation (including form fee)
-  versions:
-    - {amount: 7500, effective_from: 2024-09-02, source: .../Miscellaneous-Fee-Structure-2024.pdf}
-    - {amount: 9080, effective_from: 2026-07-28, source: .../Degree-from-updates.pdf}
-```
-
-The engine selects the newest version whose `effective_from` is on or before the question date, and shows the superseded one. When a fee's effective date is unknown, `effective_from` is the publication or fetch date and `date_basis` says so.
-
-## Source coverage
-
-| Institution | Pages fetched | Documents | Notes |
-|---|---|---|---|
-| UAJK | admission procedure, eligibility, required documents, reserved seats, UG/PG programs, fee structure, exam department, registrar, contacts, scholarships, results, downloads, challan portal (full fee schedule) | 24 forms + 13 fee sheets + Prospectus + UG Education Policy | semester promotion rules not published |
-| MUST | admissions, Fall 2026 merit schedule, examination, semester rules & regulations, grading system, downloads, student corner | 20 forms incl. 2026 degree form, misc fee structure 2024, eligibility Fall 2026, prospectus 2024-25 | page 6252 vs 6258 GPA example conflict flagged |
-| UHS | fee structure, downloads, degree issuance portal | - | MBBS/BDS degrees, transcripts, verification |
-| PMC Rawalakot | home, admission, downloads, contact, about | - | pmc.edu.pk is a different (Faisalabad) institution |
-| MBBSMC | admissions and examinations (rendered in a browser) | - | page content looks partly templated - verify fees |
-| JAC | - (Cloudflare) | - | secondary source: gotest.com.pk |
-| AJKMC | - (site unreachable) | - | - |
+| Body | Official sources used |
+|---|---|
+| PM&DC | MDCAT-2026 public notices (registration, fee, 180 MCQs, test centres), press release (test moved to 20 Sep 2026), notification of 8 Apr 2026 (52% / 47% vacant-seat relaxation, 15 Apr 2026 last date), Admissions Regulations 2025 (eligibility, 60% HSSC, merit formula 50/40/10) - `documents/pmdc/` |
+| SZABMU | MBBS admission page (eligibility, documents, AJK-quota seats at FMC Islamabad and SKBZ Lahore) - `raw/szabmu/` |
+| UET | ECAT total 400 and Fall 2026 group averages (aggregates only; the source file lists candidate names and was not stored) |
+| UAJK | admission procedure, eligibility, required documents, reserved seats, programs, fee structure (scanned sheets transcribed for 2025-29), scholarships, contacts; prospectus text |
+| MUST | admissions, Fall 2026 eligibility, merit-list schedule, semester rules (admission and age-limit sections), prospectus 2024-25 fees, refund form, undertaking and medical forms |
+| PMC / MBBSMC | admission pages (documents, process, contacts) |
+| Secondary | gotest.com.pk - the last JAC cycle's application fee and dates (JAC site blocked) |
 
 ## Updating
 
-1. Fetch: `python scripts/fetch_pages.py uajk https://uajk.edu.pk/some-page/` saves `raw/uajk/<slug>.html` and `.txt`, and lists the document links it found.
-2. Documents: save them into `documents/<site>/`, then `python scripts/extract_docs.py <site>` writes `documents/<site>/text/*.txt`. A count near 0 means a scanned PDF; transcribe it manually.
-3. Edit the YAML. Add fee **versions** rather than overwriting, and quote values containing commas.
-4. `python -m pytest -q`. The index rebuilds automatically on the next start.
+See `docs/MANUAL.md` section 9. Quote YAML values that contain commas. `tests/test_advisor.py::test_yaml_values_not_split_by_commas` guards this.

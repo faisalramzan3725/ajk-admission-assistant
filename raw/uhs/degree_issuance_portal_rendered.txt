@@ -1,9 +1,0 @@
-SOURCE: https://dip.uhs.edu.pk/ (rendered in browser, fetched 2026-09-29)
-UHS Degree & Transcript Issuance Portal
-- Track application: Case Number + CNIC/Passport No.
-- Initiate new application: UHS Registration No. + Father's Name + Case Type
-- Case types: Degree Issuance; Duplicate Degree; Degree Verification; Bonafide Letter; Transcript Issuance; Transcript with Verification; Transcript Verification
-- Principal / HOD Approval Form required (separate forms for Degree and Transcript), downloadable on the portal
-- Portal lets you print fee voucher and upload the paid fee voucher
-- Degree queries: Degree Cell 042-99231304-9 Ext. 395, 042-99231075, degreecell@uhs.edu.pk
-- Transcript queries: Examination Cell 042-99231304-9 Ext. 356, 042-99231075, tab@uhs.edu.pk

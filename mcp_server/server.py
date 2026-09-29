@@ -1,24 +1,15 @@
 """
-MCP server for JK Assistance: exposes the AJK student-services knowledge base and rule engines as MCP tools,
-so any MCP-capable agent (Claude Desktop, Claude Code, ...) can answer admission, document, fee, deadline and
-semester-promotion questions for UAJK, MUST and the AJK medical colleges - grounded in official sources.
+MCP server for JK Assistance (admissions): lets Claude Desktop, Claude Code or any MCP client guide AJK students
+after 12 years of education - which programs they are eligible for, the entry tests (MDCAT out of 180, ECAT out of 400),
+documents, fees, step-by-step application and admission dates - grounded in official sources.
 
-Run directly (stdio):
-    python mcp_server\\server.py
-Run over HTTP (streamable-http) for remote clients / the MCP Inspector:
-    python mcp_server\\server.py --http          (listens on http://localhost:8765/mcp)
+Run (stdio):             python mcp_server\\server.py
+Run (streamable HTTP):   python mcp_server\\server.py --http     -> http://localhost:8765/mcp
 
-Add to an MCP client config (Claude Desktop claude_desktop_config.json, or Claude Code .mcp.json):
-    {
-      "mcpServers": {
-        "jk-assistance": {
-          "command": "python",
-          "args": ["C:\\Users\\Faisal Ramzan\\Desktop\\AJK university VA\\mcp_server\\server.py"],
-          "env": {"JK_DISABLE_LLM": "1"}
-        }
-      }
-    }
-JK_DISABLE_LLM=1 makes the tools return rule-engine results + evidence only (the calling agent does the writing).
+Client config (Claude Desktop claude_desktop_config.json / Claude Code .mcp.json):
+    {"mcpServers": {"jk-assistance": {"command": "python",
+        "args": ["C:\\Users\\Faisal Ramzan\\Desktop\\AJK university VA\\mcp_server\\server.py"],
+        "env": {"JK_DISABLE_LLM": "1"}}}}
 """
 import os
 import sys
@@ -29,118 +20,88 @@ sys.path.insert(0, str(PROJECT_DIR))
 
 from mcp.server.mcpserver import MCPServer  # noqa: E402
 
-from jk_assistance import advisor, applications, assistant, monitor, progression, store  # noqa: E402
+from jk_assistance import advisor, assistant  # noqa: E402
 from jk_assistance.config import today  # noqa: E402
-from jk_assistance.decision import triage  # noqa: E402
 from jk_assistance.knowledge import get_knowledge  # noqa: E402
 
 mcp = MCPServer("jk-assistance", instructions=(
-    "JK Assistance: official admission, document, fee/challan, deadline and semester-promotion information for "
-    "the University of Azad Jammu & Kashmir (uajk), Mirpur University of Science & Technology (must), the AJK public "
-    "medical colleges (JAC admissions: jac; Poonch Medical College: pmc; MBBSMC Mirpur: mbbsmc; AJKMC: ajkmc) and "
-    "UHS Lahore (uhs) for MBBS/BDS degrees and transcripts. Every fee carries its effective date and source; items with "
-    "trust='secondary' come from third-party sites and must be presented as 'to be verified'. When a tool returns "
-    "action=ESCALATE or rules_unavailable, tell the user a university official must decide and give the contact."
+    "JK Assistance - admission guidance for students in Azad Jammu & Kashmir after 12 years of education. Institutions: "
+    "uajk (University of AJK), must (Mirpur University), jac (AJK public MBBS/BDS - its website jac.ajk.gov.pk is NOT working; "
+    "use the working channels returned by how_to_apply), szabmu (federal medical colleges with AJK-quota seats). Tests: mdcat "
+    "(max 180; MBBS >= 99, BDS >= 90), ecat (max 400; PEC >= 132), uajk_entry_test, must_seet, hec_lat. Always show required vs "
+    "obtained marks, and mark trust='secondary' facts as 'verify'. Admissions only."
 ))
+kb = get_knowledge()
 
-kb = get_knowledge()  # build the index once at start-up
 
-
-@mcp.tool()
-def list_services(institution: str = "") -> list:
-    """List student-service procedures (degree, transcript/DMC, verification, duplicate degree, migration, transfer,
-    clearance, bonafide, English proficiency, re-checking, refund, convocation, hostel...) with their ids.
-    institution: one of uajk, must, uhs (empty = all)."""
-    return [{"id": s["id"], "institution": s["institution"], "name": s["name"]} for s in kb.services.values()
-            if not institution or s["institution"] == institution]
+def _score(obtained: float, total: float = 0):
+    return None if obtained < 0 else ({"obtained": obtained, "total": total} if total else obtained)
 
 
 @mcp.tool()
-def get_service(service_id: str) -> dict:
-    """Full checklist for one procedure: required documents, steps, office, forms (with URLs), the fee version in
-    force today (with previous versions), deadlines, processing time and sources. Get ids from list_services."""
-    if service_id not in kb.services:
-        return {"error": f"unknown service_id; call list_services. Known: {', '.join(kb.services)}"}
-    return assistant._service_card(kb.services[service_id], kb, today())
-
-
-@mcp.tool()
-def search_knowledge(query: str, institution: str = "", k: int = 6) -> list:
-    """BM25 search over all official pages, forms, prospectuses and the curated rules. Returns evidence snippets
-    with source URL and trust level. Use for anything not covered by the structured tools."""
-    return [{"score": round(s, 2), "source": c.source, "trust": c.trust, "kind": c.kind, "text": c.text[:1500]}
-            for s, c in kb.search(query, institution or None, k=k)]
-
-
-@mcp.tool()
-def advise_admission(group: str, hssc_percent: float, ssc_percent: float = -1, mdcat_percent: float = -1,
-                     interests: str = "", institutions: str = "", age: int = 0, state_subject: bool = True,
-                     studied_math: bool = False) -> dict:
-    """Admission advice for a student who completed 12 years of education. group: pre_med | pre_eng | ics | fa |
-    icom | general_science | dae | a_level. interests: free text or comma-separated fields (computing, engineering,
-    medicine, dentistry, health, sciences, social_sciences, business, law, education, arts). institutions:
-    comma-separated (uajk, must, jac). Returns eligible programs, heuristic chance, tests, fees, documents,
-    how to apply and upcoming deadlines. Use -1 / 0 for unknown numbers."""
-    profile = {"group": group, "hssc_percent": hssc_percent, "state_subject": state_subject, "studied_math": studied_math}
-    if ssc_percent >= 0:
-        profile["ssc_percent"] = ssc_percent
-    if mdcat_percent >= 0:
-        profile["mdcat_percent"] = mdcat_percent
+def check_admission(group: str, hssc_obtained: float, hssc_total: float = 0, ssc_obtained: float = -1, ssc_total: float = 0,
+                    mdcat_obtained: float = -1, ecat_obtained: float = -1, uajk_test_percent: float = -1, seet_percent: float = -1,
+                    lat_percent: float = -1, interests: str = "", institutions: str = "", age: int = 0,
+                    state_subject: bool = True, studied_math: bool = False) -> dict:
+    """Programs a student can apply to, each with an eligibility checklist (criterion / required / yours / pass-fail-pending),
+    MBBS/BDS merit aggregate, heuristic chance, fees and how to apply.
+    group: pre_med | pre_eng | ics | fa | icom | general_science | dae | a_level.
+    hssc/ssc: obtained marks with total (e.g. 946 of 1100), or obtained as a percentage with total 0.
+    mdcat_obtained: out of 180; ecat_obtained: out of 400; other tests as percentages. Use -1 when not taken.
+    interests: comma-separated (medicine, dentistry, health, engineering, computing, sciences, social_sciences, business, law...).
+    institutions: comma-separated subset of uajk, must, jac, szabmu."""
+    tests = {k: v for k, v in {"mdcat": _score(mdcat_obtained, 180), "ecat": _score(ecat_obtained, 400), "uajk_entry_test": _score(uajk_test_percent),
+                               "must_seet": _score(seet_percent), "hec_lat": _score(lat_percent)}.items() if v is not None}
+    profile = {"group": group, "hssc": _score(hssc_obtained, hssc_total), "tests": tests, "state_subject": state_subject, "studied_math": studied_math}
+    if ssc_obtained >= 0:
+        profile["ssc"] = _score(ssc_obtained, ssc_total)
     if age:
         profile["age"] = age
     if interests:
         profile["interests"] = [i.strip() for i in interests.split(",") if i.strip()]
     if institutions:
         profile["institutions"] = [i.strip() for i in institutions.split(",") if i.strip()]
-    return assistant._trim_advice(advisor.advise(profile, kb))
+    return assistant._trim(advisor.advise(profile, kb))
 
 
 @mcp.tool()
-def get_deadlines(institution: str = "", audience: str = "", include_past_days: int = 30) -> dict:
-    """Dated deadlines (admission last dates, merit lists, scholarship dates) with days left, plus relative rules
-    (fee fine windows, re-checking windows, registration, refund, migration submission). audience: applicants or empty."""
-    dl = advisor.upcoming_deadlines(kb, today(), audience=audience or None, include_past_days=include_past_days)
-    rules = list(kb.relative_rules.values())
-    if institution:
-        dl = [d for d in dl if d["institution"] == institution]
-        rules = [r for r in rules if r["institution"] == institution]
-    return {"today": today().isoformat(), "dated": dl, "rules": rules}
+def get_test(test_id: str) -> dict:
+    """Entry test details: max marks, passing marks (as % and x/max), format, fee, dates, merit formula, reference averages.
+    test_id: mdcat | ecat | uajk_entry_test | must_seet | hec_lat"""
+    return advisor.test_info(test_id, kb) if test_id in kb.tests else {"error": f"unknown test; one of {list(kb.tests)}"}
 
 
 @mcp.tool()
-def evaluate_progression(semesters: list, program_type: str = "bs4", institution: str = "must") -> dict:
-    """Apply semester promotion rules to a transcript. semesters: [{"number": 1, "courses": [{"code": "CS-101",
-    "credits": 3, "percent": 72, "attendance": 90, "lab_percent": null}], "summer": [...]}]. percent null = pending.
-    Returns per-semester outcome (promoted/probation/dropped/relegated/pending), probation state, GPA/CGPA.
-    Only MUST rules are published; other institutions return rules_unavailable (escalate)."""
-    return progression.evaluate({"institution": institution, "program_type": program_type, "semesters": semesters})
+def how_to_apply(institution: str) -> dict:
+    """Step-by-step application process, document checklist, contacts, fees rules and upcoming dates.
+    institution: uajk | must | jac (MBBS/BDS in AJK, including SZABMU federal colleges)."""
+    return advisor.how_to_apply(institution, kb) if institution in kb.processes else {"error": "institution must be uajk, must or jac"}
 
 
 @mcp.tool()
-def student_dashboard(student_id: str) -> dict:
-    """Proactive scan for a stored student/applicant: findings routed to GUIDE / ASK_INFO / ALERT / ESCALATE
-    (dues and fines, deadlines, attendance, probation risk, re-checking windows, application deadlines)."""
-    s = store.get("students", student_id)
-    if not s:
-        return {"error": "unknown student_id", "known": [x["id"] for x in store.load("students")]}
-    return {"student": {k: s.get(k) for k in ("id", "name", "type", "institution", "program")},
-            "findings": triage(monitor.scan(s), student_id)}
+def admission_dates(institution: str = "", include_past_days: int = 45) -> dict:
+    """Admission dates with days left (last dates, merit lists, MDCAT schedule) and admission rules."""
+    dl = advisor.upcoming_deadlines(kb, today(), include_past_days=include_past_days)
+    return {"today": today().isoformat(), "dated": [d for d in dl if not institution or d["institution"] == institution],
+            "rules": [r for r in kb.rules if not institution or r["institution"] == institution]}
 
 
 @mcp.tool()
-def start_application(service_id: str, student_id: str = "") -> dict:
-    """Open a tracked application case (document checklist, fees in force today, forms, steps) for a service."""
-    try:
-        return applications.create(service_id, student_id or None)
-    except KeyError as e:
-        return {"error": str(e)}
+def list_programs(institution: str = "", field: str = "") -> list:
+    """Programs with eligibility rules and first-semester fees. field: computing, engineering, medicine, health, sciences..."""
+    return [p for p in kb.programs.values() if (not institution or p["institution"] == institution) and (not field or p["field"] == field)]
 
 
 @mcp.tool()
-def ask_jk_assistance(message: str, student_id: str = "") -> dict:
-    """Full assistant pipeline for a free-text question: routing, rule engines, evidence retrieval, decision
-    (GUIDE/ASK_INFO/ALERT/ESCALATE). Returns the answer markdown, action and citations."""
-    return assistant.answer(message, student_id or None)
+def search_admission_sources(query: str, institution: str = "", k: int = 6) -> list:
+    """Evidence search over the official admission pages, prospectuses and PM&DC/SZABMU documents."""
+    return [{"score": round(s, 2), "source": c.source, "trust": c.trust, "text": c.text[:1500]} for s, c in kb.search(query, institution or None, k=k)]
+
+
+@mcp.tool()
+def ask_jk_assistance(message: str) -> dict:
+    """The full assistant for a free-text admission question (English or Roman Urdu)."""
+    return assistant.answer(message)
 
 
 if __name__ == "__main__":

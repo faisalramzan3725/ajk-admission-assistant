@@ -1,9 +1,10 @@
-# JK Assistance - admissions knowledge for students who have completed 12 years of education (HSSC/FSc/FA/ICS/I.Com/DAE/A-level).
+# JK Assistance - admission knowledge for students who have completed 12 years of education.
 #
-# groups vocabulary: pre_eng, pre_med, ics, fa, icom, general_science, dae, a_level
-# min_percent: minimum HSSC (or equivalent) aggregate percent. null = the institution does not publish it (ask the office).
-# fees.first_semester: total payable in the 1st semester for the normal/subsidized seat, with its session and source.
-# demand: high / normal - used only by the heuristic chance estimate; it is NOT an official closing merit.
+# groups: pre_eng, pre_med, ics, fa, icom, general_science, dae, a_level
+# min_percent: minimum HSSC/equivalent percentage (null = not published; ask the office)
+# test_rules: the student must satisfy ANY ONE rule: {test: <id>, min_percent: N}
+# fees.first_semester: 1st-semester total for the normal (merit/subsidized) seat; session + source given.
+# demand: high / normal - only used by the heuristic chance label (no official closing merit is published).
 retrieved_on: 2026-09-29
 
 groups:
@@ -17,148 +18,178 @@ groups:
   a_level: A-level (with IBCC equivalence)
 
 tests:
+  mdcat:
+    name: MDCAT (Medical & Dental Colleges Admission Test)
+    max_marks: 180
+    format: "180 MCQs, 1 mark each, NO negative marking - Biology 81, Chemistry 45, Physics 36, English 9, Logical reasoning 9; paper-based, in English"
+    passing:
+      mbbs: {percent: 55, marks: 99}
+      bds: {percent: 50, marks: 90}
+      relaxation: "Session 2025-26 only: PM&DC allowed up to 3% lower (MBBS 52% = 94 marks, BDS 47% = 85 marks) ONLY to fill seats left vacant after all eligible candidates (notification 8 April 2026)"
+    conducted_for_ajk_by: SZABMU Islamabad - test centres in Muzaffarabad, Rawalakot and Mirpur (you must test in your domicile region)
+    registration: https://mdcat.pmdc.pk
+    fee: "PKR 9,000 (late PKR 13,000); international centre PKR 45,000 (late 55,000) - non-refundable"
+    dates_2026: "Registration 22 June - 8 July 2026 (extended to 13 July, late fee till 18 July); test rescheduled from 16 August to 20 September 2026"
+    merit_formula: {mdcat: 50, hssc: 40, ssc: 10}
+    sources:
+      - "https://pmdc.pk/Documents/Others/Public%20Notice%20Regarding%20Opening%20of%20Online%20Registration%20Portal%20for%20MDCAT-2026.pdf"
+      - "https://pmdc.pk/Documents/law/Admissions%20Regulations-2025.pdf"
+      - "https://pmdc.pk/Documents/Others/Notification%20regarding%20timeline%20Extension%20&%20Reduction%20of%20MDAT%20passing%20Percentage%20for%20Session%202025-26..pdf"
+      - "https://pmdc.pk/Documents/press/PRESS%20RELEASE-MDCAT%20Rescheduled.pdf"
+    trust: official
+  ecat:
+    name: ECAT (UET Engineering College Admission Test)
+    max_marks: 400
+    format: "100 MCQs x 4 marks = 400; 1 mark deducted per wrong answer (negative marking)"
+    passing:
+      pec_engineering: {percent: 33, marks: 132, note: "PEC minimum for accredited engineering programs (MUST states 33% in a test by a PEC-approved testing body)"}
+    reference_averages_fall_2026_first: {pre_eng: 203, ics: 201, pre_med: 222, note: "UET official statistics, ECAT Fall 2026 (first) - averages of all candidates by group"}
+    use_in_ajk: "MUST engineering accepts a test by a PEC-approved testing body; confirm with MUST DSA (05827-961045) that your ECAT score is accepted for the current intake. UAJK engineering uses its own entry test."
+    registration: https://ecat.uet.edu.pk/
+    sources: ["https://ecat.uet.edu.pk/statsECATFirst.pdf", "https://must.edu.pk/wp-content/uploads/2026/08/Eligibility-Criteria-for-Admission-in-UG-Fall-2026-Faculty-Wise.pdf"]
+    trust: "official (total marks, averages, 33% PEC rule); negative-marking detail from maqsad.io (secondary)"
+  must_seet:
+    name: MUST SEET (State Entry Examination Test)
+    max_marks: null
+    passing:
+      engineering: {percent: 33}
+    portal: http://seet.must.edu.pk/
+    note: "Conducted by MUST as a PEC-approved testing body for its engineering and engineering-technology programs. Total marks are shown on your result card."
+    sources: ["https://must.edu.pk/wp-content/uploads/2026/08/Eligibility-Criteria-for-Admission-in-UG-Fall-2026-Faculty-Wise.pdf"]
+    trust: official
   uajk_entry_test:
     name: UAJK Entry Test
-    applies_to: UAJK programs "where applicable" (engineering, health sciences, most BS)
-    passing: 50%
-    fee: Rs. 1,000 for the first program + Rs. 200 per additional program (included in the online challan)
-    note: Candidates report to the campus they applied to for the test; no separate call letter is issued. Sample paper - https://uajk.edu.pk/admission-procedure/
-    source: https://uajk.edu.pk/admission-procedure/
-  must_seet:
-    name: MUST State Entry Examination Test (SEET)
-    portal: http://seet.must.edu.pk/
-    applies_to: MUST engineering (PEC-approved test, 33% minimum) and MIT engineering-technology programs (state-level entry test conducted by MUST)
-    passing: 33% for engineering programs
-    source: https://must.edu.pk/wp-content/uploads/2026/08/Eligibility-Criteria-for-Admission-in-UG-Fall-2026-Faculty-Wise.pdf
-  mdcat:
-    name: MDCAT (Medical & Dental Colleges Admission Test, conducted under PM&DC)
-    applies_to: MBBS and BDS
-    passing: 55% for MBBS, 50% for BDS (as reported for the JAC AJK cycle)
-    trust: secondary
-    source: https://gotest.com.pk/admissions/ajk-mbbs-bds-admission-2025-joint-admission-committee/
+    max_marks: null
+    passing:
+      general: {percent: 50}
+    fee: "Rs. 1,000 for the first program + Rs. 200 per additional program (added to the online challan)"
+    note: "Taken at the campus you applied to; no separate call letter. Sample paper on https://uajk.edu.pk/admission-procedure/"
+    sources: ["https://uajk.edu.pk/admission-procedure/", "https://uajk.edu.pk/eligibility-criteria/"]
+    trust: official
   hec_lat:
     name: HEC Law Admission Test (LAT)
-    applies_to: LLB (UAJK - 50% required), BA LLB (MUST - as per HEC requirement)
-    source: https://uajk.edu.pk/eligibility-criteria/
-  ntc_interview:
-    name: Entry test + interview (NTC-accredited technology programs, UAJK)
-    applies_to: UAJK B.Sc. Engineering Technology programs
-    source: https://uajk.edu.pk/eligibility-criteria/
+    max_marks: null
+    passing:
+      uajk_llb: {percent: 50}
+    note: "Required for LLB / BA-LLB. UAJK requires 50% in LAT; MUST requires LAT as per HEC requirements."
+    sources: ["https://uajk.edu.pk/eligibility-criteria/", "https://must.edu.pk/wp-content/uploads/2026/08/Eligibility-Criteria-for-Admission-in-UG-Fall-2026-Faculty-Wise.pdf"]
+    trust: official
 
 application_process:
   uajk:
     portal: https://admissions.uajk.edu.pk/
-    how_to_apply:
-      - Apply online at https://admissions.uajk.edu.pk/ (or collect a hard-copy form from the DSA office, Chellah Campus).
-      - Generate the online challan - Rs. 3,000 for the first program, plus Rs. 1,000 per additional program; entry test fee Rs. 1,000 + Rs. 200 per additional program is added automatically. Pay at any HBL branch.
-      - Payment against the FIRST challan is mandatory - an application is not accepted if only the 2nd/3rd challans are paid.
-      - Online applicants must also send printed copies of each application, with the challan copy and documents, to the Directorate of Students' Affairs (or their campus).
-      - Appear in the entry test at your campus (where applicable). Merit lists are displayed on DSA / department notice boards and the website; no admission letter is issued.
-      - Bring ORIGINAL documents for verification at the interview.
+    steps:
+      - {step: Check eligibility, detail: "Match your HSSC group and marks with the program (see the results table)."}
+      - {step: Apply online, detail: "Create an account and fill the form at https://admissions.uajk.edu.pk/ (or collect a hard-copy form from the DSA office, Chellah Campus)."}
+      - {step: Pay the challan, detail: "Rs. 3,000 for the first program + Rs. 1,000 per additional program; entry test Rs. 1,000 + Rs. 200 per extra program is added automatically. Pay at any HBL branch. The FIRST challan must be paid - applications with only later challans paid are rejected."}
+      - {step: Send printed copies, detail: "Online applicants also send a printed copy of each application with the challan copy and attested documents to the Directorate of Students' Affairs (or their campus)."}
+      - {step: Entry test, detail: "Appear at the campus you applied to (where a test applies; 50% to pass). No call letter is issued - watch the website."}
+      - {step: Merit list, detail: "Merit lists are displayed on DSA / department notice boards and the website; no admission letter is issued."}
+      - {step: Interview and verification, detail: "Bring ORIGINAL documents for verification (engineering/DPT also have an interview)."}
+      - {step: Deposit fee and enrol, detail: "Pay the 1st-semester fee by the date on the merit list. Self-support seats pay the normal fee + the self-support fee by demand draft to Director Finance, UAJK."}
     required_documents:
-      - Attested copies of all educational certificates and degrees
+      - Attested copies of all educational certificates (SSC, HSSC result cards/certificates)
       - Character certificate from the college/institute last attended
       - NOC / migration certificate if HSSC is from a board other than BISE Mirpur AJ&K
       - Copy of Domicile and State Subject certificate
       - Copy of CNIC or Form-B
       - Four recent passport-size photographs
       - Copy of guardian's CNIC
-      - NOC from employer (government/other employees); study leave certificate for full-time study
-      - Relevant nomination/certificate for reserved seats (see reserved_seats)
-    age_limit: Maximum 23 years for BS programs (Prospectus 2022-23 - confirm with the current advertisement)
-    reserved_seats:
-      - Open merit (AJK nationals) 31 per discipline; self-support 6 per discipline
-      - Children of armed forces 2 (GHQ nomination); children of school teachers 1 and college teachers 1 (Secretariat of Colleges AJ&K); children of university employees 1 and university teachers 1 (VC office)
-      - Physically disabled 1 (university medical board); sports 1 (university sports committee)
-      - Gilgit-Baltistan 4; FATA 2; Punjab 1; KPK 1; Sindh 1; Balochistan 1 (concerned nomination boards)
-      - AJK nationals settled abroad / overseas 1 (valid OPF membership)
-      - Nominations must reach the DSA within the time given in the advertisement; late submissions are not accepted
-    self_support: Self-support (payment) seats pay the normal fee PLUS the self-support fee (Rs. 25,000 per semester for most BS; Rs. 40,000 for DPT/Pharm-D, Nursing, Cyber Security), paid in a single demand draft in favour of Director Finance, UAJK. Selection is on merit; AJK nationals and refugees settled in Pakistan get preference.
-    scholarships:
-      - Merit scholarship / tuition fee rebate 2026-27 (undergraduate) - top 3 students in each program get 50%, 40% and 30% tuition fee rebate
-      - Need-based and external scholarships through the Directorate of Student Financial Assistance (HEC need-based, PEEF, Muslim Hands, HBL Foundation) - https://uajk.edu.pk/directorate-students-financial-assistance/
-    fee_payment_rule: 2nd semester onward - fee without fine up to the end of the 3rd week after classes start; with a 10% fine from the 4th to the end of the 6th week. After the normal 8 semesters, an extra semester with up to 3 courses costs Rs. 7,000 per course; more than 3 courses = full last-semester fee.
-    fee_note: UAJK says fees typically rise by about 10% per year; the figures here are for sessions starting 2025 (notification of 12 Sept 2025).
-    sources: [https://uajk.edu.pk/admission-procedure/, https://uajk.edu.pk/required-documents/, https://uajk.edu.pk/reserved-seats/, https://uajk.edu.pk/merit-scholarship-tuition-fee-rebate/, https://uajk.edu.pk/fee-structure/]
+      - NOC from employer if employed (study leave for full-time study)
+      - Nomination/certificate for any reserved-seat category
+    age_limit: 23 years for BS programs (Prospectus 2022-23 - confirm in the current advertisement)
+    reserved_seats: "Per department: open merit 31, self-support 6, armed forces children 2 (GHQ), school-teacher child 1, college-teacher child 1, university-employee child 1, university-teacher child 1, disabled 1, sports 1, Gilgit-Baltistan 4, FATA 2, Punjab 1, KPK 1, Sindh 1, Balochistan 1, AJK overseas (OPF) 1. Nominations must reach DSA before the advertised date."
+    scholarships: "Merit rebate 2026-27: top 3 students in each undergraduate program get 50% / 40% / 30% tuition rebate. Need-based: HEC need-based, PEEF, Muslim Hands, HBL Foundation via the Directorate of Student Financial Assistance."
+    fee_rules: "Fees shown are for sessions starting 2025 (UAJK notification of 12 Sept 2025); UAJK notes fees typically rise about 10% per year. From the 2nd semester, fee is due by the end of week 3 of classes; 10% fine from week 4 to week 6."
+    sources: ["https://uajk.edu.pk/admission-procedure/", "https://uajk.edu.pk/required-documents/", "https://uajk.edu.pk/reserved-seats/", "https://uajk.edu.pk/merit-scholarship-tuition-fee-rebate/", "https://uajk.edu.pk/wp-content/uploads/2025/09/bs-all.pdf"]
+    trust: official
   must:
     portal: https://admission.must.edu.pk/
-    how_to_apply:
-      - Apply online at https://admission.must.edu.pk/ and register for SEET (http://seet.must.edu.pk/) where an entry test is required.
-      - Choose a category - Subsidized (merit-based, normal fee) or Open Merit (self-financing, pays the additional non-subsidized tuition fee).
-      - Check merit lists at https://admission.must.edu.pk/meritlist.php.
-      - After selection, the admission committee chairperson verifies ORIGINAL documents; then deposit the admission fee through the bank challan.
+    steps:
+      - {step: Check eligibility, detail: "Match your group and marks (MUST Fall 2026 eligibility criteria)."}
+      - {step: Register for the entry test, detail: "Engineering and engineering-technology need a PEC-approved test (MUST SEET at http://seet.must.edu.pk/; ask DSA whether an ECAT score is accepted)."}
+      - {step: Apply online, detail: "Apply at https://admission.must.edu.pk/ and choose your category - Subsidized (merit, normal fee) or Open Merit (self-financing, pays additional tuition)."}
+      - {step: Merit lists, detail: "Check https://admission.must.edu.pk/meritlist.php on the scheduled dates."}
+      - {step: Document verification, detail: "The admission committee chairperson verifies your ORIGINAL documents."}
+      - {step: Deposit admission fee, detail: "Deposit the fee through the bank challan after verification."}
+      - {step: Enrolment forms, detail: "Submit the New Student's Undertaking (affidavit) and the Medical Certificate."}
     required_documents:
-      - Attested academic certificates / result cards (SSC, HSSC)
-      - NOC if F.A./F.Sc. (or equivalent) was passed from a board other than BISE Mirpur AJ&K
-      - CNIC / Form-B and domicile/State Subject (confirm with the current advertisement)
+      - Attested SSC and HSSC certificates / result cards
+      - NOC if F.A./F.Sc. was passed from a board other than BISE Mirpur AJ&K
+      - CNIC / Form-B and domicile / State Subject (confirm with the advertisement)
       - New Student's Undertaking (affidavit) - https://must.edu.pk/wp-content/uploads/2025/09/newstudentUndertaking-1.pdf
-      - Medical certificate - https://must.edu.pk/wp-content/uploads/2025/09/medical_certificate-1.pdf
-    age_limit: 24 years after 12 years of education; 26 years after 14 years (at the closing date of applications)
-    contacts: DSA admission office 05827-961045, 0355-8083673, 0333-9571065, dsa@must.edu.pk
-    fee_note: Fees are from the MUST Prospectus 2024-25 (session 2024-25); expect revision for Fall 2026.
-    sources: [https://must.edu.pk/admissions/, "https://must.edu.pk/?page_id=6258", https://must.edu.pk/wp-content/uploads/2024/11/E-Prospectus_2024-25.pdf, https://must.edu.pk/downloads/]
-  jac_medical:
-    portal: https://jac.ajk.gov.pk/
-    how_to_apply:
-      - Pass MDCAT (MBBS 55%, BDS 50%) in your domicile region.
-      - Apply ONLINE on the JAC AJ&K portal (no paper applications) - register with email, fill the profile, upload scanned documents, set college preferences (they cannot be changed after submission).
-      - Pay the processing fee (reported as Rs. 3,000 + Rs. 400 IT charges via Easy Paisa / debit card / online banking).
-      - Follow the provisional merit list and selection lists notified by the JAC Muzaffarabad secretariat.
-    merit_formula: {ssc: 10, hssc: 40, mdcat: 50, trust: secondary}
+      - Medical Certificate - https://must.edu.pk/wp-content/uploads/2025/09/medical_certificate-1.pdf
+    age_limit: 24 years after 12 years of education; 26 years after 14 years (at the closing date)
+    refund: "1st-semester tuition only: 100% up to day 7 after classes start, 50% on days 8-15, nothing from day 16; other charges are not refundable."
+    fee_rules: "Fees shown are from the MUST Prospectus 2024-25; expect revision for Fall 2026."
+    sources: ["https://must.edu.pk/admissions/", "https://must.edu.pk/?page_id=6258", "https://must.edu.pk/wp-content/uploads/2024/11/E-Prospectus_2024-25.pdf", "https://must.edu.pk/wp-content/uploads/2022/12/Refund-of-Fee-Form.pdf"]
+    trust: official
+  jac:
+    portal: "https://jac.ajk.gov.pk/ (NOT WORKING - use the channels below)"
+    steps:
+      - {step: Pass MDCAT, detail: "Register at https://mdcat.pmdc.pk (PKR 9,000) and sit the test in your domicile region - SZABMU conducts it for AJK at Muzaffarabad, Rawalakot and Mirpur. You need 99/180 for MBBS or 90/180 for BDS."}
+      - {step: Compute your merit, detail: "PM&DC formula - MDCAT 50% + HSSC 40% + SSC 10%."}
+      - {step: Apply to the AJK public colleges, detail: "Applications for AJKMC, MBBSMC and PMC are taken online by the AJK Joint Admission Committee. Its site jac.ajk.gov.pk is not working, so follow announcements through the PMC admission cell (05824-960065), MBBSMC (05827-920453) and PM&DC. The last cycle's application fee was reported as Rs. 3,000 + Rs. 400 (secondary source)."}
+      - {step: Also apply to federal colleges (SZABMU), detail: "AJK-domicile students compete on open merit AND on 2 AJK-quota seats each at Federal Medical College Islamabad and Shaikh Khalifa Bin Zayed College Lahore - http://www.szabmu.edu.pk/admission/mbbs-admission"}
+      - {step: Merit and selection lists, detail: "Provisional merit list, then selection lists; college preferences cannot be changed after submission."}
+      - {step: Join the college, detail: "Verify original documents, pay the fee and register with PM&DC (every admitted student must be registered)."}
     required_documents:
-      - Secondary School Certificate (SSC) and result card
-      - HSSC / F.Sc. (Pre-Medical) certificate and result card (A-level needs an IBCC equivalence certificate)
-      - Official MDCAT result card (valid for the current session)
-      - State Subject certificate (Class-I) and domicile (AJ&K); Permanent Resident Certificate (PRC)
+      - SSC certificate / result card (O-level needs IBCC equivalence)
+      - HSSC (Pre-Medical) certificate / transcript (A-level needs IBCC equivalence)
+      - PM&DC MDCAT result certificate
+      - AJK State Subject certificate (Class-I) and domicile; Permanent Resident Certificate (PRC)
+      - Proof of residence / property / education in the domicile region (required by SZABMU for domicile quotas)
       - Candidate's CNIC / Form-B and guardian's CNIC
-      - 8 passport-size photographs with blue background
-      - Different-abilities certificate (if applicable)
-    eligibility: Minimum 60% in F.Sc. Pre-Medical (or equivalent); First Class State Subject of AJ&K for AJK-national seats (separate rules for overseas / foreign / refugee categories).
-    note: Official guideline PDFs (Cloudflare-protected, open in a browser) - https://jac.ajk.gov.pk/wp-content/uploads/2025/11/GUIDELINE-FOR-ADMISSION-OF-MBBS-BDS-AJK-STATE-SUBJECT.pdf and https://jac.ajk.gov.pk/wp-content/uploads/2024/08/Guideline-Regarding-Admission-AJK-Nationals.pdf
-    sources: [https://pmcrajk.edu.pk/admission.php, https://gotest.com.pk/admissions/ajk-mbbs-bds-admission-2025-joint-admission-committee/]
-    trust: documents list and eligibility official (PMC); merit formula, fee, MDCAT thresholds secondary
+      - Passport-size photographs with blue background (8 for PMC)
+      - Paid application-fee challan (separate for MBBS and BDS at SZABMU)
+      - Disability certificate from a government disability board (disabled quota only)
+    eligibility: "HSSC/F.Sc. Pre-Medical (Biology + Chemistry compulsory, Physics or Maths) with at least 60%, and MDCAT at least 55% for MBBS / 50% for BDS."
+    sources: ["https://pmdc.pk/Documents/law/Admissions%20Regulations-2025.pdf", "http://www.szabmu.edu.pk/admission/mbbs-admission", "https://pmcrajk.edu.pk/admission.php", "https://gotest.com.pk/admissions/ajk-mbbs-bds-admission-2025-joint-admission-committee/"]
+    trust: official (PM&DC, SZABMU, PMC); JAC application fee secondary
 
 programs:
-  # ---------------- UAJK (fees: sessions 2025-29 notification, 12 Sept 2025; source https://uajk.edu.pk/wp-content/uploads/2025/09/bs-all.pdf)
-  - {id: uajk.bsc_ee, institution: uajk, name: B.Sc. Electrical Engineering (PEC), campus: Chellah Muzaffarabad, field: engineering, years: 4, groups: [pre_eng, ics, dae], min_percent: 60, tests: [uajk_entry_test], interview: true, demand: high, fees: {first_semester: 89600, later_semesters_from: 60010, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.bsc_se, institution: uajk, name: B.Sc. Software Engineering (PEC), campus: Chellah Muzaffarabad, field: computing, years: 4, groups: [pre_eng, ics, dae], min_percent: 60, tests: [uajk_entry_test], interview: true, demand: high, fees: {first_semester: 78830, later_semesters_from: 55620, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.bsc_tech, institution: uajk, name: "B.Sc. Engineering Technology (Biomedical / Computer / Software Engineering Technology, NTC)", campus: Chellah Muzaffarabad, field: engineering_technology, years: 4, groups: [pre_eng, pre_med, ics, dae], min_percent: 50, tests: [uajk_entry_test, ntc_interview], interview: true, demand: normal, fees: null}
-  - {id: uajk.bs_cs_ai, institution: uajk, name: BS Computer Science / BS Artificial Intelligence, campus: King Abdullah Campus Chatter Klass, field: computing, years: 4, groups: [pre_eng, pre_med, ics, general_science], math_required: true, min_percent: 50, tests: [uajk_entry_test], demand: high, fees: {first_semester: 77830, later_semesters_from: 54620, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.bs_cyber, institution: uajk, name: BS Cyber Security, campus: King Abdullah Campus Chatter Klass, field: computing, years: 4, groups: [pre_eng, pre_med, ics, general_science], math_required: true, min_percent: 50, tests: [uajk_entry_test], demand: high, fees: {first_semester: 78110, later_semesters_from: 60290, self_support_per_semester: 40000, session: 2025-29}}
-  - {id: uajk.bs_cs_jvn, institution: uajk, name: BS Computer Science (Jhelum Valley or Neelum Campus), campus: Jhelum Valley (Hattian Bala) / Neelum (Athmuqam), field: computing, years: 4, groups: [pre_eng, pre_med, ics, general_science], math_required: true, min_percent: 50, tests: [uajk_entry_test], demand: normal, fees: {first_semester: 71830, later_semesters_from: 48620, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.dpt, institution: uajk, name: "Doctor of Physical Therapy (DPT, 5 years)", campus: Chellah Muzaffarabad, field: health, years: 5, groups: [pre_med], min_percent: 60, tests: [uajk_entry_test], demand: high, fees: {first_semester: 118090, later_semesters_from: 98400, self_support_per_semester: 40000, session: 2025-30}}
-  - {id: uajk.pharmd, institution: uajk, name: Pharm-D, campus: Chellah Muzaffarabad, field: health, years: 5, groups: [pre_med], min_percent: 60, tests: [uajk_entry_test], demand: high, note: UAJK eligibility page says "similar to DPT (criteria not specified)" - confirm the program is offered this cycle, fees: {first_semester: 118090, later_semesters_from: 98400, self_support_per_semester: 40000, session: 2025-30}}
-  - {id: uajk.bs_ahs, institution: uajk, name: "BS Allied Health Sciences / Medical Technology (Anesthesia, Cardiovascular, Clinical Lab Sciences, Emergency, Surgery & OT, Radiology & Imaging, Optometry, Dialysis, Respiratory) / BS Public Health", campus: Chellah Muzaffarabad, field: health, years: 4, groups: [pre_med], min_percent: 45, tests: [uajk_entry_test], demand: normal, note: "Pre-Medical / Medical Technology, 2nd division", fees: {first_semester: 79920, later_semesters_from: 60230, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.bs_nursing, institution: uajk, name: BS Nursing (School of Nursing), campus: Chellah Muzaffarabad, field: health, years: 4, groups: [pre_med], min_percent: null, tests: [uajk_entry_test], demand: normal, note: Eligibility not published on the UAJK eligibility page - nursing programs follow PNC criteria; confirm with the School of Nursing, fees: {first_semester: 95320, later_semesters_from: 72330, self_support_per_semester: 40000, session: 2025-29}}
-  - {id: uajk.bs_phys_chem_math_stats, institution: uajk, name: "BS Physics / Chemistry / Mathematics / Statistics / Statistics (Data Science)", campus: King Abdullah Campus (Statistics-Data Science at Chellah), field: sciences, years: 4, groups: [pre_eng, pre_med, ics, general_science], min_percent: 45, tests: [uajk_entry_test], demand: normal, note: "2nd division in the relevant F.Sc. subjects", fees: {first_semester: 73430, later_semesters_from: 55610, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.bs_bio_sciences, institution: uajk, name: "BS Botany / Biotechnology / Zoology / GIS & Remote Sensing", campus: King Abdullah Campus Chatter Klass, field: sciences, years: 4, groups: [pre_med, pre_eng], min_percent: 45, tests: [uajk_entry_test], demand: normal, note: "2nd division in relevant F.Sc.; GIS accepts 45% with relevant science or DAE", fees: {first_semester: 75630, later_semesters_from: 57810, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.bs_geology, institution: uajk, name: BS Applied Geology, campus: King Abdullah Campus Chatter Klass, field: sciences, years: 4, groups: [pre_eng, pre_med, dae, general_science], min_percent: 45, tests: [uajk_entry_test], demand: normal, fees: {first_semester: 56050, later_semesters_from: 43950, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.bs_sports, institution: uajk, name: BS Sports Science & Physical Education, campus: Chellah Muzaffarabad, field: sciences, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: null, tests: [uajk_entry_test], demand: normal, note: Eligibility not published - ask DSA, fees: {first_semester: 75630, later_semesters_from: 57810, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.bs_humanities, institution: uajk, name: "BS English / Economics / Economics (Islamic Banking & Finance) / Sociology / Kashmir Studies / Urdu / Islamic Studies / Psychology / Political Science / Arabic / History", campus: Chellah or King Abdullah Campus (varies by subject), field: social_sciences, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, tests: [uajk_entry_test], demand: normal, note: "HSSC 2nd division; entry test 50%", fees: {first_semester: 65290, later_semesters_from: 53190, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.bs_ir_masscom, institution: uajk, name: BS International Relations / Mass Communication, campus: Chellah Muzaffarabad, field: social_sciences, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, tests: [uajk_entry_test], demand: normal, fees: {first_semester: 70130, later_semesters_from: 58030, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.bs_english_jvn, institution: uajk, name: BS English (Jhelum Valley or Neelum Campus), campus: Jhelum Valley / Neelum, field: social_sciences, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, tests: [uajk_entry_test], demand: normal, fees: {first_semester: 59290, later_semesters_from: 47190, self_support_per_semester: 25000, session: 2025-29}}
-  - {id: uajk.business, institution: uajk, name: "BBA (4-year) / BS Accounting & Finance / BS Islamic Economy & Banking", campus: Chellah / King Abdullah Campus, field: business, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, tests: [uajk_entry_test], demand: normal, note: BBA fee sheet https://uajk.edu.pk/wp-content/uploads/2025/09/bba.pdf (scanned) not transcribed, fees: null}
-  - {id: uajk.llb, institution: uajk, name: LLB (5-year), campus: Chellah Muzaffarabad, field: law, years: 5, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, tests: [hec_lat], demand: normal, note: "HSSC 2nd division + HEC LAT 50%; fee sheet https://uajk.edu.pk/wp-content/uploads/2025/09/llb-4-year.pdf (scanned) not transcribed", fees: null}
-  - {id: uajk.bed_jvn, institution: uajk, name: B.Ed (Hons) (Jhelum Valley / Neelum / main campus), campus: Jhelum Valley / Neelum / Chellah, field: education, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, tests: [uajk_entry_test], demand: normal, fees: null}
+  # ---------------- UAJK (fees: sessions 2025-29, notification 12 Sept 2025, https://uajk.edu.pk/wp-content/uploads/2025/09/bs-all.pdf)
+  - {id: uajk.bsc_ee, institution: uajk, name: "B.Sc. Electrical Engineering (PEC)", campus: Chellah Muzaffarabad, field: engineering, years: 4, groups: [pre_eng, ics, dae], min_percent: 60, test_rules: [{test: uajk_entry_test, min_percent: 50}], interview: true, demand: high, fees: {first_semester: 89600, later_semesters_from: 60010, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.bsc_se, institution: uajk, name: "B.Sc. Software Engineering (PEC)", campus: Chellah Muzaffarabad, field: computing, years: 4, groups: [pre_eng, ics, dae], min_percent: 60, test_rules: [{test: uajk_entry_test, min_percent: 50}], interview: true, demand: high, fees: {first_semester: 78830, later_semesters_from: 55620, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.bsc_tech, institution: uajk, name: "B.Sc. Engineering Technology (Biomedical / Computer / Software, NTC)", campus: Chellah Muzaffarabad, field: engineering_technology, years: 4, groups: [pre_eng, pre_med, ics, dae], min_percent: 50, test_rules: [{test: uajk_entry_test, min_percent: 50}], interview: true, demand: normal, fees: null}
+  - {id: uajk.bs_cs_ai, institution: uajk, name: "BS Computer Science / BS Artificial Intelligence", campus: King Abdullah Campus Chatter Klass, field: computing, years: 4, groups: [pre_eng, pre_med, ics, general_science], math_required: true, min_percent: 50, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: high, fees: {first_semester: 77830, later_semesters_from: 54620, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.bs_cyber, institution: uajk, name: BS Cyber Security, campus: King Abdullah Campus Chatter Klass, field: computing, years: 4, groups: [pre_eng, pre_med, ics, general_science], math_required: true, min_percent: 50, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: high, fees: {first_semester: 78110, later_semesters_from: 60290, self_support_per_semester: 40000, session: 2025-29}}
+  - {id: uajk.bs_cs_jvn, institution: uajk, name: "BS Computer Science (Jhelum Valley or Neelum Campus)", campus: Jhelum Valley / Neelum, field: computing, years: 4, groups: [pre_eng, pre_med, ics, general_science], math_required: true, min_percent: 50, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, fees: {first_semester: 71830, later_semesters_from: 48620, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.dpt, institution: uajk, name: "Doctor of Physical Therapy (DPT, 5 years)", campus: Chellah Muzaffarabad, field: health, years: 5, groups: [pre_med], min_percent: 60, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: high, fees: {first_semester: 118090, later_semesters_from: 98400, self_support_per_semester: 40000, session: 2025-30}}
+  - {id: uajk.pharmd, institution: uajk, name: Pharm-D, campus: Chellah Muzaffarabad, field: health, years: 5, groups: [pre_med], min_percent: 60, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: high, note: "UAJK lists criteria as similar to DPT - confirm the program is offered this intake", fees: {first_semester: 118090, later_semesters_from: 98400, self_support_per_semester: 40000, session: 2025-30}}
+  - {id: uajk.bs_ahs, institution: uajk, name: "BS Allied Health Sciences / Medical Technology / Public Health", campus: Chellah Muzaffarabad, field: health, years: 4, groups: [pre_med], min_percent: 45, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, note: "Anesthesia, Cardiovascular, Clinical Lab Sciences, Emergency, Surgery & OT, Radiology & Imaging, Optometry, Dialysis, Respiratory; Pre-Medical 2nd division", fees: {first_semester: 79920, later_semesters_from: 60230, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.bs_nursing, institution: uajk, name: "BS Nursing", campus: Chellah Muzaffarabad, field: health, years: 4, groups: [pre_med], min_percent: null, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, note: "Minimum marks not published by UAJK (PNC criteria apply) - confirm with the School of Nursing", fees: {first_semester: 95320, later_semesters_from: 72330, self_support_per_semester: 40000, session: 2025-29}}
+  - {id: uajk.bs_phys_chem_math_stats, institution: uajk, name: "BS Physics / Chemistry / Mathematics / Statistics / Statistics (Data Science)", campus: "King Abdullah Campus (Data Science at Chellah)", field: sciences, years: 4, groups: [pre_eng, pre_med, ics, general_science], min_percent: 45, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, note: "2nd division in the relevant F.Sc. subjects", fees: {first_semester: 73430, later_semesters_from: 55610, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.bs_bio_sciences, institution: uajk, name: "BS Botany / Biotechnology / Zoology / GIS & Remote Sensing", campus: King Abdullah Campus Chatter Klass, field: sciences, years: 4, groups: [pre_med, pre_eng], min_percent: 45, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, fees: {first_semester: 75630, later_semesters_from: 57810, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.bs_geology, institution: uajk, name: BS Applied Geology, campus: King Abdullah Campus Chatter Klass, field: sciences, years: 4, groups: [pre_eng, pre_med, dae, general_science], min_percent: 45, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, fees: {first_semester: 56050, later_semesters_from: 43950, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.bs_sports, institution: uajk, name: "BS Sports Science & Physical Education", campus: Chellah Muzaffarabad, field: sciences, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: null, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, note: "Minimum marks not published - ask DSA", fees: {first_semester: 75630, later_semesters_from: 57810, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.bs_humanities, institution: uajk, name: "BS English / Economics / Sociology / Kashmir Studies / Urdu / Islamic Studies / Psychology / Political Science / Arabic / History", campus: Chellah or King Abdullah Campus, field: social_sciences, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, fees: {first_semester: 65290, later_semesters_from: 53190, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.bs_ir_masscom, institution: uajk, name: "BS International Relations / Mass Communication", campus: Chellah Muzaffarabad, field: social_sciences, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, fees: {first_semester: 70130, later_semesters_from: 58030, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.bs_english_jvn, institution: uajk, name: "BS English (Jhelum Valley or Neelum Campus)", campus: Jhelum Valley / Neelum, field: social_sciences, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, fees: {first_semester: 59290, later_semesters_from: 47190, self_support_per_semester: 25000, session: 2025-29}}
+  - {id: uajk.business, institution: uajk, name: "BBA / BS Accounting & Finance / BS Islamic Economy & Banking", campus: Chellah / King Abdullah Campus, field: business, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, fees: null}
+  - {id: uajk.llb, institution: uajk, name: "LLB (5-year)", campus: Chellah Muzaffarabad, field: law, years: 5, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, test_rules: [{test: hec_lat, min_percent: 50}], demand: normal, fees: null}
+  - {id: uajk.bed, institution: uajk, name: "B.Ed (Hons)", campus: Jhelum Valley / Neelum / Chellah, field: education, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science], min_percent: 45, test_rules: [{test: uajk_entry_test, min_percent: 50}], demand: normal, fees: null}
 
-  # ---------------- MUST (eligibility Fall 2026; fees Prospectus 2024-25 - 1st semester total incl. one-time charges; open_merit = non-subsidized total)
-  - {id: must.engineering, institution: must, name: "B.Sc. Engineering - Electrical / Mechanical / Computer Systems / Software", campus: Mirpur, field: engineering, years: 4, groups: [pre_eng, pre_med, ics, a_level, dae], min_percent: 60, tests: [must_seet], demand: high, note: "60% + at least 33% in entry test by a PEC-approved testing body", fees: {first_semester: 70665, open_merit_first_semester: 141405, session: 2024-25}}
-  - {id: must.civil, institution: must, name: B.Sc. Civil Engineering, campus: Mirpur, field: engineering, years: 4, groups: [pre_eng, pre_med, ics, a_level, dae], min_percent: 60, tests: [must_seet], demand: high, fees: {first_semester: 74600, open_merit_first_semester: 145340, session: 2024-25}}
-  - {id: must.mit_tech, institution: must, name: "Mirpur Institute of Technology - Architectural / AI / Biomedical / Civil / Electrical / Information Engineering Technology", campus: Mirpur (MIT), field: engineering_technology, years: 4, groups: [pre_eng, pre_med, ics, dae], min_percent: 50, tests: [must_seet], demand: normal, fees: {first_semester: 58210, session: 2024-25, note: B.S. Technology fee (subsidized)}}
-  - {id: must.cs_it, institution: must, name: BS Computer Science / BS Information Technology, campus: Mirpur, field: computing, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science, a_level], min_percent: 50, math_note: "Without intermediate Mathematics you must pass two Mathematics deficiency courses (6 credits) in the first two semesters", tests: [], demand: high, fees: {first_semester: 59970, open_merit_first_semester: 103790, session: 2024-25}}
-  - {id: must.pharm_dpt, institution: must, name: "Doctor of Pharmacy (Pharm-D) / Doctor of Physical Therapy / BS Human Nutrition & Dietetics / BS Medical Lab Technology", campus: Mirpur, field: health, years: 5, groups: [pre_med], min_percent: 60, tests: [], demand: high, fees: null}
-  - {id: must.microbiology, institution: must, name: BS Microbiology, campus: Mirpur, field: health, years: 4, groups: [pre_med], min_percent: 50, tests: [], demand: normal, fees: null}
-  - {id: must.biotech, institution: must, name: BS Biotechnology, campus: Mirpur, field: sciences, years: 4, groups: [pre_med], min_percent: 50, no_d_grade: true, tests: [], demand: normal, fees: {first_semester: 54915, open_merit_first_semester: 98750, session: 2024-25}}
-  - {id: must.zoology_botany, institution: must, name: BS Zoology / BS Botany, campus: Mirpur, field: sciences, years: 4, groups: [pre_med], min_percent: 45, no_d_grade: true, tests: [], demand: normal, fees: {first_semester: 51520, open_merit_first_semester: 91705, session: 2024-25, note: Zoology fee shown}}
-  - {id: must.phys_chem_math, institution: must, name: "BS Physics / Chemistry / Mathematics / Statistics", campus: Mirpur, field: sciences, years: 4, groups: [pre_eng, pre_med, ics, general_science, icom], min_percent: 45, no_d_grade: true, tests: [], demand: normal, note: "Physics needs intermediate Physics; Chemistry needs Chemistry; Statistics accepts F.Sc. Pre-Eng / I.Com / General Science with Statistics", fees: {first_semester: 50335, open_merit_first_semester: 90520, session: 2024-25}}
-  - {id: must.env_forestry, institution: must, name: BS Environmental Science / BS Forestry, campus: Mirpur, field: sciences, years: 4, groups: [pre_med, pre_eng, ics], min_percent: 45, tests: [], demand: normal, note: "Environmental Science - no 3rd division in intermediate", fees: null}
-  - {id: must.social, institution: must, name: "BS Economics / Islamic Studies / International Relations / Sociology / Media & Communication Studies / Political Science / Arabic / Tourism & Hospitality", campus: Mirpur, field: social_sciences, years: 4, groups: [fa, pre_eng, pre_med, ics, icom, general_science], min_percent: 45, tests: [], demand: normal, fees: {first_semester: 45460, open_merit_first_semester: 69600, session: 2024-25}}
-  - {id: must.english, institution: must, name: BS English, campus: Mirpur, field: social_sciences, years: 4, groups: [fa, pre_eng, pre_med, ics, icom, general_science], min_percent: 45, tests: [], demand: normal, fees: {first_semester: 49590, open_merit_first_semester: 75925, session: 2024-25}}
-  - {id: must.home_fashion, institution: must, name: BS Home Economics / Fashion and Design, campus: Mirpur, field: arts, years: 4, groups: [fa, pre_eng, pre_med, ics, icom, general_science], min_percent: 45, tests: [], demand: normal, fees: {first_semester: 44910, open_merit_first_semester: 67885, session: 2024-25}}
-  - {id: must.education, institution: must, name: BS Education, campus: Mirpur, field: education, years: 4, groups: [fa, pre_eng, pre_med, ics, icom, general_science], min_percent: 45, tests: [], demand: normal, fees: {first_semester: 41260, open_merit_first_semester: 59640, session: 2024-25}}
-  - {id: must.ballb, institution: must, name: B.A. LLB (5 years), campus: Mirpur, field: law, years: 5, groups: [fa, pre_eng, pre_med, ics, icom, general_science], min_percent: 45, tests: [hec_lat], demand: normal, fees: {first_semester: 50540, open_merit_first_semester: 72580, session: 2024-25}}
-  - {id: must.management, institution: must, name: "BBA / BS Accounting & Finance / BS Banking & Finance / BS Commerce", campus: Mirpur, field: business, years: 4, groups: [fa, icom, pre_eng, pre_med, ics, general_science], min_percent: 45, tests: [], demand: normal, fees: null}
+  # ---------------- MUST (eligibility Fall 2026; fees Prospectus 2024-25; open_merit = self-financing total)
+  - {id: must.engineering, institution: must, name: "B.Sc. Engineering - Electrical / Mechanical / Computer Systems / Software", campus: Mirpur, field: engineering, years: 4, groups: [pre_eng, pre_med, ics, a_level, dae], min_percent: 60, test_rules: [{test: must_seet, min_percent: 33}, {test: ecat, min_percent: 33, confirm: true}], demand: high, fees: {first_semester: 70665, open_merit_first_semester: 141405, session: 2024-25}}
+  - {id: must.civil, institution: must, name: B.Sc. Civil Engineering, campus: Mirpur, field: engineering, years: 4, groups: [pre_eng, pre_med, ics, a_level, dae], min_percent: 60, test_rules: [{test: must_seet, min_percent: 33}, {test: ecat, min_percent: 33, confirm: true}], demand: high, fees: {first_semester: 74600, open_merit_first_semester: 145340, session: 2024-25}}
+  - {id: must.mit_tech, institution: must, name: "Engineering Technology (MIT) - Architectural / AI / Biomedical / Civil / Electrical / Information", campus: Mirpur Institute of Technology, field: engineering_technology, years: 4, groups: [pre_eng, pre_med, ics, dae], min_percent: 50, test_rules: [{test: must_seet, min_percent: 33}], demand: normal, fees: {first_semester: 58210, session: 2024-25}}
+  - {id: must.cs_it, institution: must, name: "BS Computer Science / BS Information Technology", campus: Mirpur, field: computing, years: 4, groups: [pre_eng, pre_med, ics, fa, icom, general_science, a_level], min_percent: 50, math_note: "Without intermediate Mathematics you must pass two Mathematics deficiency courses (6 credits) in the first two semesters", test_rules: [], demand: high, fees: {first_semester: 59970, open_merit_first_semester: 103790, session: 2024-25}}
+  - {id: must.pharm_dpt, institution: must, name: "Pharm-D / Doctor of Physical Therapy / BS Human Nutrition & Dietetics / BS Medical Lab Technology", campus: Mirpur, field: health, years: 5, groups: [pre_med], min_percent: 60, test_rules: [], demand: high, fees: null}
+  - {id: must.microbiology, institution: must, name: BS Microbiology, campus: Mirpur, field: health, years: 4, groups: [pre_med], min_percent: 50, test_rules: [], demand: normal, fees: null}
+  - {id: must.biotech, institution: must, name: BS Biotechnology, campus: Mirpur, field: sciences, years: 4, groups: [pre_med], min_percent: 50, test_rules: [], demand: normal, note: "No D grade in academic record", fees: {first_semester: 54915, open_merit_first_semester: 98750, session: 2024-25}}
+  - {id: must.zoology_botany, institution: must, name: "BS Zoology / BS Botany", campus: Mirpur, field: sciences, years: 4, groups: [pre_med], min_percent: 45, test_rules: [], demand: normal, note: "No D grade in academic record", fees: {first_semester: 51520, open_merit_first_semester: 91705, session: 2024-25}}
+  - {id: must.phys_chem_math, institution: must, name: "BS Physics / Chemistry / Mathematics / Statistics", campus: Mirpur, field: sciences, years: 4, groups: [pre_eng, pre_med, ics, general_science, icom], min_percent: 45, test_rules: [], demand: normal, note: "Physics needs intermediate Physics; Chemistry needs Chemistry; Statistics accepts Pre-Eng / I.Com / General Science with Statistics; no D grade", fees: {first_semester: 50335, open_merit_first_semester: 90520, session: 2024-25}}
+  - {id: must.env_forestry, institution: must, name: "BS Environmental Science / BS Forestry", campus: Mirpur, field: sciences, years: 4, groups: [pre_med, pre_eng, ics], min_percent: 45, test_rules: [], demand: normal, fees: null}
+  - {id: must.social, institution: must, name: "BS Economics / Islamic Studies / International Relations / Sociology / Media & Communication / Political Science / Arabic / Tourism & Hospitality", campus: Mirpur, field: social_sciences, years: 4, groups: [fa, pre_eng, pre_med, ics, icom, general_science], min_percent: 45, test_rules: [], demand: normal, fees: {first_semester: 45460, open_merit_first_semester: 69600, session: 2024-25}}
+  - {id: must.english, institution: must, name: BS English, campus: Mirpur, field: social_sciences, years: 4, groups: [fa, pre_eng, pre_med, ics, icom, general_science], min_percent: 45, test_rules: [], demand: normal, fees: {first_semester: 49590, open_merit_first_semester: 75925, session: 2024-25}}
+  - {id: must.home_fashion, institution: must, name: "BS Home Economics / Fashion and Design", campus: Mirpur, field: arts, years: 4, groups: [fa, pre_eng, pre_med, ics, icom, general_science], min_percent: 45, test_rules: [], demand: normal, fees: {first_semester: 44910, open_merit_first_semester: 67885, session: 2024-25}}
+  - {id: must.education, institution: must, name: BS Education, campus: Mirpur, field: education, years: 4, groups: [fa, pre_eng, pre_med, ics, icom, general_science], min_percent: 45, test_rules: [], demand: normal, fees: {first_semester: 41260, open_merit_first_semester: 59640, session: 2024-25}}
+  - {id: must.ballb, institution: must, name: "B.A. LLB (5 years)", campus: Mirpur, field: law, years: 5, groups: [fa, pre_eng, pre_med, ics, icom, general_science], min_percent: 45, test_rules: [{test: hec_lat, min_percent: 50, confirm: true}], demand: normal, fees: {first_semester: 50540, open_merit_first_semester: 72580, session: 2024-25}}
+  - {id: must.management, institution: must, name: "BBA / BS Accounting & Finance / BS Banking & Finance / BS Commerce", campus: Mirpur, field: business, years: 4, groups: [fa, icom, pre_eng, pre_med, ics, general_science], min_percent: 45, test_rules: [], demand: normal, fees: null}
 
-  # ---------------- Medical & dental (JAC AJ&K - public sector colleges)
-  - {id: jac.mbbs, institution: jac, name: "MBBS - AJK Medical College Muzaffarabad / MBBS Medical College Mirpur / Poonch Medical College Rawalakot", campus: Muzaffarabad / Mirpur / Rawalakot, field: medicine, years: 5, groups: [pre_med, a_level], min_percent: 60, tests: [mdcat], mdcat_min: 55, demand: high, merit_formula: {ssc: 10, hssc: 40, mdcat: 50}, fees: null, note: Fees for public-sector open-merit seats are not published on the college sites; MBBSMC's site shows a template-like fee table - ask the college. Degree awarded by the affiliating university (UHS for PMC).}
-  - {id: jac.bds, institution: jac, name: BDS (public dental seats through JAC), campus: AJK public colleges with dental sections, field: dentistry, years: 4, groups: [pre_med, a_level], min_percent: 60, tests: [mdcat], mdcat_min: 50, demand: high, merit_formula: {ssc: 10, hssc: 40, mdcat: 50}, fees: null, note: Confirm which AJK colleges offer BDS in the current JAC prospectus.}
+  # ---------------- Medical & dental
+  - {id: jac.mbbs, institution: jac, name: "MBBS - AJK Medical College Muzaffarabad / MBBS Medical College Mirpur / Poonch Medical College Rawalakot", campus: Muzaffarabad / Mirpur / Rawalakot, field: medicine, years: 5, groups: [pre_med, a_level], min_percent: 60, test_rules: [{test: mdcat, min_percent: 55}], demand: high, merit_formula: {mdcat: 50, hssc: 40, ssc: 10}, state_subject_required: true, fees: null, note: "Public-sector open-merit fees are not published online - ask the college."}
+  - {id: jac.bds, institution: jac, name: "BDS - AJK public dental seats", campus: AJK, field: dentistry, years: 4, groups: [pre_med, a_level], min_percent: 60, test_rules: [{test: mdcat, min_percent: 50}], demand: high, merit_formula: {mdcat: 50, hssc: 40, ssc: 10}, state_subject_required: true, fees: null, note: "Confirm which AJK colleges offer BDS in the current cycle."}
+  - {id: szabmu.fmc_mbbs, institution: szabmu, name: "MBBS - Federal Medical College Islamabad (SZABMU)", campus: Islamabad, field: medicine, years: 5, groups: [pre_med, a_level], min_percent: 60, test_rules: [{test: mdcat, min_percent: 55}], demand: high, merit_formula: {mdcat: 50, hssc: 40, ssc: 10}, seats: "100 total - open merit 6, AJK quota 2 (plus other provincial quotas)", domicile_proof_required: true, fees: null}
+  - {id: szabmu.skbz_mbbs, institution: szabmu, name: "MBBS - Shaikh Khalifa Bin Zayed Al-Nahyan Medical & Dental College Lahore (SZABMU)", campus: Lahore, field: medicine, years: 5, groups: [pre_med, a_level], min_percent: 60, test_rules: [{test: mdcat, min_percent: 55}], demand: high, merit_formula: {mdcat: 50, hssc: 40, ssc: 10}, seats: "100 total - open merit 6, AJK quota 2, foreign 10 (plus other provincial quotas)", domicile_proof_required: true, fees: null}

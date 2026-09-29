@@ -1,29 +1,40 @@
-"""JK Assistance orchestrator: routes a message to the right engine, gathers evidence, decides the action,
-and composes the answer (Claude when configured, deterministic markdown otherwise)."""
+"""JK Assistance orchestrator (admissions only): route the message, run the admission engines, gather evidence,
+and compose the answer (Claude when configured, deterministic markdown otherwise)."""
 from __future__ import annotations
 
 import re
 
-from . import advisor, llm, monitor, store
+from . import advisor, llm
 from .config import llm_enabled, today
-from .decision import ALERT, ASK_INFO, ESCALATE, GUIDE, escalate, route_message, triage
+from .decision import ALERT, ASK_INFO, ESCALATE, GUIDE, OFF_TOPIC, route_message
 from .knowledge import get_knowledge
 
 GROUP_WORDS = {
     "pre_med": ["pre-medical", "pre medical", "premedical", "pre-med", "pre med", "fsc medical", "f.sc medical", "pre_med"],
     "pre_eng": ["pre-engineering", "pre engineering", "pre-eng", "pre eng", "fsc engineering", "f.sc engineering", "pre_eng"],
-    "ics": ["ics", "computer science group", "i.c.s"],
+    "ics": ["ics", "i.c.s", "computer science group"],
     "icom": ["i.com", "icom", "commerce group"],
-    "fa": ["f.a", " fa ", "arts group", "humanities", "intermediate arts"],
+    "fa": ["f.a.", " fa ", "arts group", "humanities", "intermediate arts"],
     "dae": ["dae", "diploma of associate engineer"],
     "a_level": ["a-level", "a level", "a levels"],
     "general_science": ["general science"],
 }
-ADMISSION_WORDS = re.compile(r"admission|apply|eligib|which (university|program|subject|field)|after (fsc|f\.sc|12|inter|matric)|"
-                             r"12th|intermediate|merit|chance|entry test|mdcat|seet|lat\b|want to (study|become|do)|enrol", re.I)
-PERSONAL_WORDS = re.compile(r"\bmy\b|\bi am\b|\bam i\b|probation|promot|relegat|dropped|cgpa|gpa|attendance|dues|pending|"
-                            r"what if|what happens|semester result", re.I)
-DEADLINE_WORDS = re.compile(r"deadline|last date|due date|when (is|are|do)|schedule|merit list", re.I)
+NUM = r"(\d{2,4}(?:\.\d+)?)(?:\s*/\s*(\d{2,4}))?\s*(%|percent)?"
+ADVICE_WORDS = re.compile(r"eligib|which (university|program|subject|field|course)|where (can|should) i|after (fsc|f\.sc|12|inter|matric)|"
+                          r"12th|intermediate|merit|chance|can i (apply|get)|options|want to (study|become|do)|admission in|marks", re.I)
+HOWTO_WORDS = re.compile(r"how (to|do i|can i) (apply|enrol|enroll|get admission)|steps|procedure|process|documents?|papers|required|challan|apply", re.I)
+DEADLINE_WORDS = re.compile(r"deadline|last date|due date|when (is|are|do|will)|schedule|merit list|dates?", re.I)
+TEST_WORDS = re.compile(r"passing|pass(ing)? marks|total marks|out of|how many marks|syllabus|pattern|negative marking|test fee|mcqs?", re.I)
+
+
+def _score(label_pat: str, t: str):
+    m = re.search(label_pat + r"[^0-9]{0,25}" + NUM, t)
+    if not m:
+        return None
+    obt, tot, pct = m.group(1), m.group(2), m.group(3)
+    if tot:
+        return {"obtained": float(obt), "total": float(tot)}
+    return f"{obt}%" if pct else float(obt)
 
 
 def parse_profile(text: str) -> dict:
@@ -33,238 +44,215 @@ def parse_profile(text: str) -> dict:
         if any(w in t for w in words):
             prof["group"] = g
             break
-    pct = [float(x) for x in re.findall(r"(\d{2,3}(?:\.\d+)?)\s*(?:%|percent|marks)", t)]
-    m = re.search(r"mdcat[^0-9]{0,20}(\d{2,3}(?:\.\d+)?)", t)
-    if m:
-        prof["mdcat_percent"] = float(m.group(1))
-    m = re.search(r"(?:matric|ssc)[^0-9]{0,20}(\d{2,3}(?:\.\d+)?)", t)
-    if m:
-        prof["ssc_percent"] = float(m.group(1))
-    m = re.search(r"(?:fsc|f\.sc|hssc|inter(?:mediate)?|ics|fa|i\.com|12th)[^0-9]{0,20}(\d{2,3}(?:\.\d+)?)", t)
-    if m:
-        prof["hssc_percent"] = float(m.group(1))
-    elif pct:
-        prof["hssc_percent"] = next((p for p in pct if p not in (prof.get("mdcat_percent"), prof.get("ssc_percent"))), pct[0])
-    if "math" in t and ("pre_med" == prof.get("group") or "additional math" in t):
+    if (s := _score(r"(?:matric|ssc|10th)", t)) is not None:
+        prof["ssc"] = s
+    if (h := _score(r"(?:fsc|f\.sc|hssc|inter(?:mediate)?|ics|i\.com|dae|12th|a[- ]level|\bfa\b)", t)) is not None:
+        prof["hssc"] = h
+    tests = {}
+    for tid, pat in (("mdcat", r"mdcat"), ("ecat", r"ecat"), ("must_seet", r"seet"), ("hec_lat", r"\blat\b"), ("uajk_entry_test", r"entry test")):
+        if (v := _score(pat, t)) is not None:
+            tests[tid] = v
+    if tests:
+        prof["tests"] = tests
+    if "hssc" not in prof:  # a bare percentage like "I got 78%"
+        m = re.search(r"(\d{2,3}(?:\.\d+)?)\s*(?:%|percent)", t)
+        if m:
+            prof["hssc"] = float(m.group(1))
+    if re.search(r"(additional|studied|with) math", t):
         prof["studied_math"] = True
+    m = re.search(r"(\d{2})\s*(?:years? old|yrs|age)|age\s*(\d{2})", t)
+    if m:
+        prof["age"] = int(m.group(1) or m.group(2))
+    if re.search(r"state subject|ajk domicile|from ajk|azad kashmir domicile", t):
+        prof["state_subject"] = True
     interests = advisor.fields_from_text(text)
     if interests:
         prof["interests"] = interests
-    # Restrict to one institution only when the student names a university explicitly
-    # ("MBBS" also matches JAC as an alias, but "MBBS or DPT" must still show DPT at UAJK/MUST).
     named = [i for i, pat in (("uajk", r"(?i)\b(uajk|ajku|ajk university|university of ajk)\b"), ("must", r"\bMUST\b|(?i:\bmirpur university\b)")) if re.search(pat, text)]
     if named:
         prof["institutions"] = named
     return prof
 
 
-def answer(question: str, student_id: str | None = None, profile: dict | None = None) -> dict:
+def answer(question: str, profile: dict | None = None) -> dict:
     kb = get_knowledge()
     on = today()
-    student = store.get("students", student_id) if student_id else None
-    institution = kb.detect_institution(question) or (student or {}).get("institution")
+    institution = kb.detect_institution(question)
+    test_id = kb.detect_test(question)
+    parsed = {**parse_profile(question), **(profile or {})}
+    action, intent, structured = GUIDE, "information", {}
 
-    forced_action, forced_why = route_message(question)
-    intent, structured, cards = "information", {}, {}
-    action = GUIDE
+    if institution in ("uet", "pmdc") and test_id:  # "ECAT"/"MDCAT" name a test, not where to study
+        institution = None
+    has_profile = parsed.get("hssc") is not None or parsed.get("group")
+    medical = bool({"medicine", "dentistry"} & set(parsed.get("interests") or []))
 
-    if student and PERSONAL_WORDS.search(question) and student.get("type") != "applicant":
-        intent = "student_status"
-        findings = triage(monitor.scan(student), student_id)
-        structured = {"student": _student_summary(student), "findings": findings}
-        cards["findings"] = findings
-        action = findings[0]["action"] if findings else GUIDE
-    elif DEADLINE_WORDS.search(question) and not kb.match_services(question, institution) and "hssc_percent" not in parse_profile(question):
-        intent = "deadlines"
-        dl = [d for d in advisor.upcoming_deadlines(kb, on, include_past_days=30) if not institution or d["institution"] == institution]
-        structured = {"deadlines": dl, "rules": [r for r in kb.relative_rules.values() if not institution or r["institution"] == institution]}
-        cards["deadlines"] = dl
-        action = ALERT if any(0 <= d["days_left"] <= 14 for d in dl) else GUIDE
-    elif ADMISSION_WORDS.search(question) and not kb.match_services(question, institution) or profile:
+    forced, why = route_message(question)
+    if forced == OFF_TOPIC:
+        action, intent = OFF_TOPIC, "off_topic"
+        structured = {"message": why, "contacts": _contacts(kb, institution)}
+    elif test_id and not has_profile and (TEST_WORDS.search(question) or not (HOWTO_WORDS.search(question) or DEADLINE_WORDS.search(question))):
+        intent = "test_info"
+        structured = {"test": advisor.test_info(test_id, kb)}
+    elif has_profile or (ADVICE_WORDS.search(question) and not HOWTO_WORDS.search(question) and not DEADLINE_WORDS.search(question)):
         intent = "admission_advice"
-        prof = {**(_applicant_profile(student) if student else {}), **parse_profile(question), **(profile or {})}
-        res = advisor.advise(prof, kb, on)
-        structured = _trim_advice(res)
-        cards["advice"] = structured
+        res = advisor.advise(parsed, kb, on)
+        structured = _trim(res)
         action = ASK_INFO if res.get("needs_info") else GUIDE
-    else:
-        matches = kb.match_services(question, institution, limit=10)
-        top = [m for m in matches if m[0] == matches[0][0]] if matches else []
-        if institution is None and len({m[1]["institution"] for m in top}) > 1:
-            action = ASK_INFO
-            options = {m[1]["institution"]: kb.institutions[m[1]["institution"]]["name"] for m in top}
-            structured = {"needs_info": ["institution"], "options": options,
-                          "message": "Which institution is this for? " + "; ".join(f"**{k.upper()}** - {v}" for k, v in options.items())}
-        elif matches:
-            intent = "service"
-            svc = matches[0][1]
-            structured = {"service": _service_card(svc, kb, on)}
-            if len(matches) > 1:
-                structured["related_services"] = [m[1]["id"] for m in matches[1:]]
-            cards["service"] = structured["service"]
-            if svc.get("escalate_when"):
-                structured["escalate_when"] = svc["escalate_when"]
-        elif institution is None and re.search(r"degree|transcript|dmc|migration|clearance|verification|fee|challan", question, re.I):
-            action = ASK_INFO
-            structured = {"needs_info": ["institution"], "message": "Which institution - UAJK, MUST, or your medical college (UHS degree)?"}
+    elif DEADLINE_WORDS.search(question):
+        intent = "deadlines"
+        related = {institution} | ({"pmdc", "pmc"} if institution in ("jac", "szabmu") else set()) if institution else None
+        dl = [d for d in advisor.upcoming_deadlines(kb, on, include_past_days=45) if not related or d["institution"] in related]
+        structured = {"deadlines": dl}
+        action = ALERT if any(0 <= d["days_left"] <= 14 for d in dl) else GUIDE
+    elif HOWTO_WORDS.search(question) or institution:
+        inst = institution if institution in kb.processes else (
+            "jac" if institution in ("pmc", "mbbsmc", "ajkmc", "pmdc", "szabmu") or test_id == "mdcat" or medical else None)
+        if inst:
+            intent = "how_to_apply"
+            structured = {"how_to_apply": advisor.how_to_apply(inst, kb, on)}
+        else:
+            action, structured = ASK_INFO, {"needs_info": ["institution"],
+                                            "message": "Which one - **UAJK** (Muzaffarabad), **MUST** (Mirpur), or **MBBS/BDS** (AJK medical colleges / SZABMU)?"}
 
-    if forced_action:
-        action = forced_action
-        structured["escalation_reason"] = forced_why
-        esc = escalate(student_id, question[:120], {"reason": forced_why})
-        structured["escalation_id"] = esc["id"]
+    if forced == ESCALATE:
+        action = ESCALATE
+        structured["escalation_reason"] = why
+        structured["contacts"] = _contacts(kb, institution)
 
-    evidence = _evidence(question, institution, intent, structured, kb)
-    text = llm.compose(question, evidence, structured, action) if llm_enabled() else None
+    evidence = [{"source": c.source, "trust": c.trust, "text": c.text} for _, c in kb.search(question, institution, k=6)]
+    text = llm.compose(question, evidence, structured, action) if llm_enabled() and action != OFF_TOPIC else None
     if not text:
-        text = render(intent, action, structured, question)
-    return {"answer": text, "action": action, "intent": intent, "institution": institution, "cards": cards,
+        text = render(intent, action, structured)
+    return {"answer": text, "action": action, "intent": intent, "institution": institution, "structured": structured,
             "citations": [{"n": i + 1, "source": e["source"], "trust": e["trust"], "snippet": e["text"][:300]} for i, e in enumerate(evidence)],
-            "llm": bool(llm_enabled()), "as_of": on.isoformat()}
+            "llm": llm_enabled(), "as_of": on.isoformat()}
 
 
-# ---------------------------------------------------------------------------- helpers
-def _service_card(svc: dict, kb, on) -> dict:
-    return {"id": svc["id"], "name": svc["name"], "institution": kb.institutions[svc["institution"]]["name"], "office": svc.get("office"),
-            "portal": svc.get("portal"), "required_documents": svc.get("required_documents", []), "steps": svc.get("steps", []),
-            "fees": kb.service_fees(svc["id"], on), "forms": svc.get("forms", []), "deadlines": svc.get("deadlines", []),
-            "processing_time": svc.get("processing_time"), "notes": svc.get("notes", []), "sources": svc.get("sources", []),
-            "trust": svc.get("trust", "official")}
+def _contacts(kb, institution):
+    ids = [institution] if institution in kb.institutions else ["uajk", "must", "pmc"]
+    return {kb.institutions[i]["name"]: kb.institutions[i].get("contacts", []) for i in ids}
 
 
-def _student_summary(s: dict) -> dict:
-    return {k: s.get(k) for k in ("id", "name", "institution", "program", "program_type", "type")}
-
-
-def _applicant_profile(s: dict) -> dict:
-    return {k: s[k] for k in ("group", "hssc_percent", "ssc_percent", "mdcat_percent", "interests", "age", "state_subject", "studied_math")
-            if s.get(k) is not None} | ({"institutions": s["target_institutions"]} if s.get("target_institutions") else {})
-
-
-def _trim_advice(res: dict) -> dict:
+def _trim(res: dict) -> dict:
     if res.get("needs_info"):
         return res
-    eligible = [p for p in res["programs"] if p["eligibility"] != "not_eligible"]
-    return {**res, "programs": eligible[:25], "not_eligible_count": len(res["programs"]) - len(eligible)}
-
-
-def _evidence(question: str, institution, intent: str, structured: dict, kb) -> list[dict]:
-    ev, seen = [], set()
-
-    def add(chunk):
-        if chunk.id not in seen:
-            seen.add(chunk.id)
-            ev.append({"id": chunk.id, "source": chunk.source, "trust": chunk.trust, "text": chunk.text})
-
-    by_id = {c.id: c for c in kb.chunks}
-    if intent == "service":
-        add(by_id[f"service:{structured['service']['id']}"])
-    for _, c in kb.search(question, institution, k=5):
-        add(c)
-    return ev[:6]
+    ok = [p for p in res["programs"] if p["eligibility"] != "not_eligible"]
+    return {**res, "programs": ok[:25], "not_eligible": [{"program": p["program"], "institution": p["institution"],
+                                                         "why": [c["criterion"] + ": needs " + c["required"] + ", you have " + str(c["yours"]) for c in p["checks"] if c["status"] == "fail"]}
+                                                        for p in res["programs"] if p["eligibility"] == "not_eligible"][:15]}
 
 
 # ---------------------------------------------------------------------------- deterministic rendering
-def render(intent: str, action: str, s: dict, question: str) -> str:
-    lines: list[str] = []
-    if action == ESCALATE and s.get("escalation_reason"):
-        lines += [f"**This needs a human advisor.** {s['escalation_reason']} (ticket {s.get('escalation_id')}).", ""]
-    if s.get("needs_info") and intent != "admission_advice":
-        return "\n".join(lines + [s.get("message", "I need a little more information.")])
-    if intent == "service":
-        lines += render_service(s["service"])
-        if s.get("escalate_when"):
-            lines += ["", "**Needs an official decision:** " + "; ".join(s["escalate_when"])]
-    elif intent == "admission_advice":
-        lines += render_advice(s)
+ICON = {"pass": "✅", "fail": "❌", "pending": "⏳", "check": "⚠️"}
+VERDICT = {"eligible": "✅ Eligible", "eligible_after_test": "⏳ Eligible if you pass the entry test", "check_required": "⚠️ Check with the office", "not_eligible": "❌ Not eligible"}
+
+
+def render(intent: str, action: str, s: dict) -> str:
+    out: list[str] = []
+    if action == ESCALATE:
+        out += [f"**Please contact the admission office.** {s['escalation_reason']}", ""]
+        out += _render_contacts(s.get("contacts", {}))
+        if intent == "information":
+            return "\n".join(out)
+        out.append("")
+    if action == OFF_TOPIC:
+        return "\n".join([s["message"], "", "Try: *I did FSc pre-medical 946/1100, matric 1010/1100, MDCAT 140 - where can I apply?*", ""] + _render_contacts(s.get("contacts", {})))
+    if s.get("needs_info"):
+        return "\n".join(out + [s["message"], "", "Example: *FSc pre-engineering 880/1100, matric 950/1100, ECAT 220 - I want engineering or computer science.*"])
+    if intent == "admission_advice":
+        out += render_advice(s)
+    elif intent == "test_info":
+        out += render_test(s["test"])
     elif intent == "deadlines":
-        lines += render_deadlines(s["deadlines"])
-    elif intent == "student_status":
-        lines += render_findings(s["findings"])
+        out += render_deadlines(s["deadlines"])
+    elif intent == "how_to_apply":
+        out += render_howto(s["how_to_apply"])
     else:
-        lines += ["I could not match this to a specific procedure. The closest official sources are listed below; "
-                  "for anything not covered please contact the office named in them."]
-    return "\n".join(lines)
+        out += ["I couldn't match this to a specific admission topic. Tell me your intermediate group and marks, or ask e.g. "
+                "*How do I apply to UAJK?*, *MDCAT passing marks*, *UAJK last date*. The closest official sources are under Evidence."]
+    return "\n".join(out)
 
 
-def render_service(c: dict) -> list[str]:
-    out = [f"### {c['name']} - {c['institution']}"]
-    if c.get("office"):
-        out.append(f"**Office:** {c['office']}")
-    if c.get("portal"):
-        out.append(f"**Portal:** {c['portal']}")
-    if c["fees"]:
-        out.append("\n**Fees (version in force today):**")
-        for f in c["fees"]:
-            prev = f"; previously Rs. {f['previous_versions'][-1]['amount']:,} from {f['previous_versions'][-1]['effective_from']}" if f.get("previous_versions") else ""
-            basis = "as fetched on" if f.get("date_basis") == "fetched" else "effective"
-            urgent = f" (urgent Rs. {f['urgent_amount']:,})" if f.get("urgent_amount") else ""
-            out.append(f"- {f['item']}: **Rs. {f['amount']:,}**{urgent} - {basis} {f['effective_from']}{prev}")
-    if c["required_documents"]:
-        out.append("\n**Documents to attach:**")
-        out += [f"- [ ] {d}" for d in c["required_documents"]]
-    if c["steps"]:
-        out.append("\n**Steps:**")
-        out += [f"{i + 1}. {st}" for i, st in enumerate(c["steps"])]
-    if c.get("processing_time"):
-        out.append(f"\n**Processing time:** {c['processing_time']}")
-    for d in c.get("deadlines", []):
-        out.append(f"\n**Deadline:** {d['rule']}")
-    if c.get("forms"):
-        out.append("\n**Forms:** " + "; ".join(f"[{f['title']}]({f['url']})" for f in c["forms"] if f.get("url")))
-    if c.get("notes"):
-        out.append("\n**Notes:** " + " ".join(c["notes"]))
-    out.append("\n_Sources: " + ", ".join(c["sources"]) + "_")
-    return out
+def _render_contacts(contacts: dict) -> list[str]:
+    lines = []
+    for name, rows in contacts.items():
+        lines.append(f"- **{name}**: " + "; ".join(f"{r['office']} {r.get('phone', '')} {r.get('email', '')}".strip() for r in rows))
+    return lines
 
 
 def render_advice(s: dict) -> list[str]:
-    if s.get("needs_info"):
-        return [s["message"], "", "Example: *I did FSc pre-medical with 82%, matric 88%, MDCAT 71%, I want MBBS or DPT.*"]
     p = s["profile"]
-    out = [f"### Programs you can apply for (group: {p.get('group')}, HSSC {p.get('hssc_percent')}%)"]
-    for r in s["programs"][:15]:
-        fee = ""
-        if r.get("fees"):
-            fee = f" - 1st semester Rs. {r['fees']['first_semester']:,} ({r['fees'].get('session')})"
-            if r["fees"].get("open_merit_first_semester"):
-                fee += f", open-merit/self-finance Rs. {r['fees']['open_merit_first_semester']:,}"
-        tests = ", ".join(t["name"] for t in r["tests"]) or "no entry test listed"
-        mark = "✅" if r["eligibility"] == "eligible" else "⚠️"
-        out.append(f"- {mark} **{r['program']}** ({r['institution'].upper()}, {r['campus']}) - chance: {r['chance']}; test: {tests}{fee}")
+    tests = ", ".join(f"{k.upper()} {v['percent']:g}%" for k, v in (p.get("tests") or {}).items())
+    out = [f"### Your options (group: {p['group']}, HSSC {p['hssc_percent']:g}%" + (f", SSC {p['ssc_percent']:g}%" if p.get("ssc_percent") else "") + (f", {tests}" if tests else "") + ")"]
+    if not p.get("interests") and s.get("fields_open_to_you"):
+        out.append("**Fields open to you:** " + ", ".join(f"{f['label']} ({f['programs']})" for f in s["fields_open_to_you"]) + ". Tell me which interests you to narrow down.")
+    for r in s["programs"][:12]:
+        fee = f" · 1st semester Rs. {r['fees']['first_semester']:,} ({r['fees']['session']})" if r.get("fees") else ""
+        out.append(f"\n**{r['program']}** - {r['institution'].upper()}, {r['campus']} · {VERDICT[r['eligibility']]} · chance: {r['chance']}{fee}")
         for c in r["checks"]:
-            out.append(f"    - {c}")
-    if s.get("not_eligible_count"):
-        out.append(f"\n{s['not_eligible_count']} other program(s) in your areas of interest are not open to your group/marks.")
-    for inst, proc in s.get("application_process", {}).items():
-        out.append(f"\n**How to apply - {proc['institution']}** ({proc.get('portal', '')})")
-        out += [f"{i + 1}. {st}" for i, st in enumerate(proc.get("how_to_apply", []))]
-        if proc.get("required_documents"):
-            out.append("Documents: " + "; ".join(proc["required_documents"]))
-    if s.get("upcoming_deadlines"):
-        out.append("\n**Upcoming deadlines:**")
-        out += [f"- {d['date']} ({d['days_left']} days): {d['title']}" + (" - *third-party source, verify*" if d.get("trust") == "secondary" else "") for d in s["upcoming_deadlines"]]
-    out.append(f"\n_{s['chance_disclaimer']}_")
+            out.append(f"  - {ICON[c['status']]} {c['criterion']}: needs {c['required']} · you: {c['yours']}" + (" *(any one test)*" if c.get("any_of") else "") + (f" - {c['note']}" if c.get("note") else ""))
+    if s.get("not_eligible"):
+        out.append("\n**Not open to you:** " + "; ".join(f"{n['program'][:50]} ({n['institution'].upper()}: {', '.join(n['why'])[:90]})" for n in s["not_eligible"][:5]))
+    for h in s.get("how_to_apply", {}).values():
+        out += [""] + render_howto(h, compact=True)
+    out.append(f"\n_{s['chance_note']}_")
+    return out
+
+
+def render_test(t: dict) -> list[str]:
+    out = [f"### {t['name']}"]
+    if t.get("max_marks"):
+        out.append(f"**Total marks:** {t['max_marks']}")
+    for k, v in (t.get("passing") or {}).items():
+        if isinstance(v, dict):
+            out.append(f"**Minimum ({k.replace('_', ' ')}):** {v['percent']}%" + (f" = {v['marks']} / {t['max_marks']}" if v.get("marks") else "") + (f" - {v['note']}" if v.get("note") else ""))
+        else:
+            out.append(f"**Note:** {v}")
+    for k in ("format", "conducted_for_ajk_by", "fee", "dates_2026", "use_in_ajk", "note"):
+        if t.get(k):
+            out.append(f"**{k.replace('_', ' ').capitalize()}:** {t[k]}")
+    if t.get("merit_formula"):
+        f = t["merit_formula"]
+        out.append(f"**Merit formula:** MDCAT {f['mdcat']}% + HSSC {f['hssc']}% + SSC {f['ssc']}%")
+    if t.get("reference_averages_fall_2026_first"):
+        a = t["reference_averages_fall_2026_first"]
+        out.append(f"**Average scores (Fall 2026, first ECAT):** pre-engineering {a['pre_eng']}, ICS {a['ics']}, pre-medical {a['pre_med']} out of 400")
+    if t.get("registration") or t.get("portal"):
+        out.append(f"**Register:** {t.get('registration') or t.get('portal')}")
+    out.append("_Sources: " + ", ".join(t.get("sources", [])) + "_")
     return out
 
 
 def render_deadlines(dl: list[dict]) -> list[str]:
     if not dl:
-        return ["No dated deadlines on record for this institution in the coming period."]
-    out = ["### Deadlines"]
+        return ["No admission dates on record for this institution in the current period."]
+    out = ["### Admission dates"]
     for d in dl:
         when = "passed" if d["days_left"] < 0 else ("today" if d["days_left"] == 0 else f"in {d['days_left']} days")
-        sec = " *(third-party source - verify)*" if d.get("trust") == "secondary" else ""
-        out.append(f"- **{d['date']}** ({when}) - {d['title']}{sec}" + (f". {d['action']}" if d.get("action") else ""))
+        out.append(f"- **{d['date']}** ({when}) - {d['title']}" + (" *(third-party source - verify)*" if d.get("trust") == "secondary" else "") + (f". {d['action']}" if d.get("action") else ""))
     return out
 
 
-def render_findings(findings: list[dict]) -> list[str]:
-    if not findings:
-        return ["Everything looks on track - no alerts right now."]
-    icon = {ESCALATE: "🧑‍💼", ALERT: "⚠️", ASK_INFO: "❓", GUIDE: "ℹ️"}
-    out = ["### Your status"]
-    for f in findings:
-        due = f" (due {f['due_date']}, {f['days_left']} days)" if f.get("due_date") else ""
-        out.append(f"- {icon[f['action']]} **{f['action']}** - {f['title']}{due}: {f['detail']}")
+def render_howto(h: dict, compact: bool = False) -> list[str]:
+    out = [f"#### How to apply - {h['institution']}"]
+    if h.get("website_status"):
+        out.append(f"> ⚠️ {h['website_status']}")
+        out += [f"> - {c}" for c in h.get("working_channels") or []]
+    elif h.get("portal"):
+        out.append(f"Portal: {h['portal']}")
+    out += [f"{i + 1}. **{st['step']}** - {st['detail']}" for i, st in enumerate(h["steps"])]
+    if h.get("required_documents"):
+        out.append("**Documents:**" if not compact else "**Documents:** " + "; ".join(h["required_documents"]))
+        if not compact:
+            out += [f"- [ ] {d}" for d in h["required_documents"]]
+    upcoming = [d for d in h.get("dates", []) if d["days_left"] >= -7]
+    if upcoming:
+        out.append("**Dates:** " + "; ".join(f"{d['date']} ({'passed' if d['days_left'] < 0 else str(d['days_left']) + ' days'}) {d['title']}" for d in upcoming))
+    if not compact:
+        for k in ("age_limit", "reserved_seats", "scholarships", "fee_rules", "refund"):
+            if h.get(k):
+                out.append(f"**{k.replace('_', ' ').capitalize()}:** {h[k]}")
+        if h.get("contacts"):
+            out.append("**Contact:** " + "; ".join(f"{c['office']} {c.get('phone', '')}".strip() for c in h["contacts"]))
     return out

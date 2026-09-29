@@ -1,0 +1,2169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="shortcut icon" href="/ThemeContent/images/PMDC Logo-Green.png" type="image/x-icon">
+    <link rel="icon" href="/ThemeContent/images/PMDC Logo-Green.png" type="image/x-icon">
+    <title>Pakistan Medical and Dental Council - Home</title>
+
+    <!--  Google Font CSS  -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!--  Bootstrap CSS  -->
+    <link href="/ThemeContent/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Font awsome CSS -->
+    <link href="/ThemeContent/css/all.css" rel="stylesheet" type="text/css">
+
+    <!--  Owl Carousel CSS  -->
+    <link href="/ThemeContent/css/owl.carousel.css" rel="stylesheet" type="text/css">
+
+    <!--  Bxslider CSS  -->
+    <link href="/ThemeContent/css/jquery.bxslider.css" rel="stylesheet" type="text/css">
+
+    <!--  Custom CSS  -->
+    <link href="/ThemeContent/css/styles.css" rel="stylesheet" type="text/css">
+    <link href="/css/toastr.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/carousel-style.css" rel="stylesheet" type="text/css">
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/site.css" rel="stylesheet" type="text/css">
+    <link href="/css/c-style.css" rel="stylesheet" type="text/css">
+
+
+
+
+    <!--Google Fonts-->
+    <!--link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <!--Stylesheets-->
+    <style media="screen">
+
+
+        .popup {
+            background-color: #ffffff;
+            /*width: 420px;*/
+            padding: 5px 20px;
+            position: absolute;
+            transform: translate(-50%,-50%);
+            left: 50%;
+            top: 60%;
+            border-radius: 8px;
+            font-family: "Poppins",sans-serif;
+            display: none;
+            text-align: center;
+            border: solid 5px #1aabe9;
+        }
+
+            .popup button {
+                display: block;
+                margin: 0 0 10px auto;
+                background-color: transparent;
+                font-size: 20px;
+                color: #000000;
+                background: #ffffff;
+                border-radius: 100%;
+                width: 30px;
+                height: 30px;
+                border: none;
+                outline: none;
+                cursor: pointer;
+            }
+
+            .popup h4 {
+                margin-top: -20px;
+            }
+
+            .popup p {
+                font-size: 14px;
+                text-align: justify;
+                margin: 20px 0;
+                line-height: 25px;
+            }
+
+        .popup a {
+            display: block;
+            width: 150px;
+            position: relative;
+            margin: 10px auto;
+            text-align: center;
+                background-color: #1aabe9;
+            border-radius: 20px;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 8px 0;
+        }
+
+        .popup img
+        {
+
+        }
+
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+            /* hide submenu initially */
+            .dropdown-submenu > .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -1px;
+                opacity: 0;
+                transform: translateX(10px);
+                transition: all 0.3s ease;
+                display: block;
+                visibility: hidden;
+            }
+
+            /* show ONLY direct child submenu */
+            .dropdown-submenu:hover > .dropdown-menu {
+                opacity: 1;
+                transform: translateX(0);
+                visibility: visible;
+            }
+
+
+        .close_menu {
+            position: absolute; /* position relative to menu container */
+            top: -40px; /* adjust as needed */
+            right: 10px; /* adjust as needed */
+            z-index: 9999; /* higher than the menu */
+        }
+
+        #topMenuWrapper {
+            position: relative; /* make menu the reference for absolute positioning */
+            z-index: 1000; /* menu itself */
+        }
+
+
+
+
+
+
+        /* Show dropdown on hover (desktop only) */
+        @media (min-width: 992px) {
+
+            .main_menu_list .dropdown:hover > .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-menu {
+                display: none;
+            }
+
+            `
+            /* Submenu positioning */
+            .dropdown-submenu {
+                position: relative;
+            }
+
+            .dropdown-submenu .dropdown-menu {
+                left: 100%;
+                top: 0;
+            }
+
+            .dropdown-submenu:hover > .dropdown-menu {
+                display: block;
+            }
+        }
+
+    </style>
+
+
+</head>
+
+<script language="javascript">
+
+    document.addEventListener('click', function(e) {
+      const menuWrapper = document.querySelector('.main_menu');
+
+      // If click is outside the menu
+      if (!menuWrapper.contains(e.target)) {
+        // Close all dropdown menus
+        menuWrapper.querySelectorAll('.dropdown-menu.show').forEach(menu => {
+          menu.classList.remove('show');
+        });
+      }
+    });
+
+
+            document.querySelectorAll('.dropdown-submenu > a').forEach(item => {
+                item.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const submenu = document.querySelector(this.getAttribute('data-bs-target'));
+                    submenu.classList.toggle('show');
+
+                    // optional: close sibling submenus at the same level
+                    const siblings = Array.from(this.parentElement.parentElement.children)
+                        .filter(li => li !== this.parentElement)
+                        .map(li => li.querySelector('.dropdown-menu.collapse'));
+                    siblings.forEach(s => s?.classList.remove('show'));
+                });
+            });
+</script>
+
+
+<body class="Customscrollbar" id="style-7">
+    <header b-xd8vmh0iet>
+        <div b-xd8vmh0iet class="container_large">
+            <div b-xd8vmh0iet class="header_row">
+                <div b-xd8vmh0iet class="head_left_col">
+                    <div b-xd8vmh0iet class="logo">
+                        <a b-xd8vmh0iet href="/">
+                            <img src="/ThemeContent/images/PMDC Logo-Green.png" class="img-fluid desktop_logo" alt="">
+                            <img src="/ThemeContent/images/PMDC Logo-Green.png" class="img-fluid mobile_logo" alt="">
+                        </a>
+                        </a>
+                    </div>
+                </div>
+                <div b-xd8vmh0iet class="head_right_col">
+                    <div b-xd8vmh0iet class="head_top">
+                        <a b-xd8vmh0iet href="/"><h2 b-xd8vmh0iet style="font-weight:600;">Pakistan Medical and Dental Council</h2></a>
+                        <div b-xd8vmh0iet class="head_top_quick_links">
+
+
+
+                            <div b-xd8vmh0iet b-uqi2nkv6u9 class="search-box">
+                                <button b-xd8vmh0iet b-uqi2nkv6u9 class="btn-search"><i b-xd8vmh0iet b-uqi2nkv6u9 class="fas fa-search"></i></button>
+                                <input b-xd8vmh0iet b-uqi2nkv6u9 type="text" class="input-search" id="searchBox" placeholder="  Type to Search...">
+                            </div>
+
+                            <div b-xd8vmh0iet class="head_social_links" style="display:block;">
+                                <a b-xd8vmh0iet href="https://x.com/pmdcofficial" target="_blank"><i b-xd8vmh0iet class="fa-brands fa-twitter"></i></a>
+                                <a b-xd8vmh0iet href="https://www.facebook.com/PakMedicalCommission" target="_blank"><i b-xd8vmh0iet class="fa-brands fa-facebook-f"></i></a>
+                                <div b-xd8vmh0iet class="hamburger_icon"><button b-xd8vmh0iet type="button" id="menu_icon"><i b-xd8vmh0iet class="fa-solid fa-bars"></i></button></div>
+                            </div>
+
+                            <ul b-xd8vmh0iet>
+
+
+                                <!--<li><a href="#">033-1100-6191</a></li> b-xd8vmh0iet-->
+
+                                <li b-xd8vmh0iet><a b-xd8vmh0iet href="/ContactUs">Helpline</a></li>
+                                <!--<li><a href="/ContactUs/Complaint">Complaint</a></li> b-xd8vmh0iet-->
+                            </ul>
+                        </div>
+                    </div>
+                    <span b-xd8vmh0iet>(Successor of Pakistan Medical Commission)</span>
+
+                    <div b-xd8vmh0iet class="header_bottom_main" style="  align-items: center; justify-content: space-between; border-top: 1px solid #DCE0E5;">
+                        <div b-xd8vmh0iet class="head_bottom">
+                            <div b-xd8vmh0iet class="main_menu">
+                                <ul b-xd8vmh0iet b-uqi2nkv6u9="" class="main_menu_list">
+                                    <li b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown">
+                                        <a b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown-toggle" href="#" role="button" id="menuone" data-bs-toggle="dropdown" aria-expanded="false">
+                                            About Us
+                                        </a>
+                                        <ul b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown-menu" aria-labelledby="menuone">
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Commission/PresidentMessage">President Message</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Commission/MedicalAndDental">Medical & Dental Council</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Commission/NationalMedicalAndDentalAcademicBoard">National Medical & Dental Academic Board</a></li> 
+                                          
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Gallery">Gallery</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Home/FAQs">FAQ's</a></li>
+                                        </ul>
+                                    </li>
+                                    <li b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown">
+                                        <a b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown-toggle" href="#" role="button" id="menutwo" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Publications
+                                        </a>
+                                        <ul b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown-menu" aria-labelledby="menutwo">
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/DCDecisions">DC Decisions</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/PMCLawJournal">PMDC Law Journal</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/OfficialLetters">PMDC Recognized Journals</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/Orders">Orders</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/PressReleases">Press Releases</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/home/PublicAnnouncement">Public Announcements</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/Standards">Accreditation Standards</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/Tenders">Tender Ads</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/TenderDocuments">Tender Documents </a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/Syllabus">Syllabi</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/MinutesAndDecisions">Council Decisions</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/Publication/LawsAndRegulations">Laws & Regulations</a></li>
+                                            <li b-xd8vmh0iet><a b-xd8vmh0iet href="/home/AllTickers">View All Tickers</a></li>
+                                        </ul>
+                                    </li>
+                                    <li b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown">
+                                        <a b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown-toggle" href="#" role="button" id="menuthree" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Institutions &amp; Qualifications
+                                        </a>
+                                        
+                                        <ul b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown-menu" aria-labelledby="menuthree">
+                                            <li b-xd8vmh0iet b-uqi2nkv6u9=""><a b-xd8vmh0iet b-uqi2nkv6u9="" href="/colleges">Institutions &amp; Qualifications</a></li>
+                                            <li b-xd8vmh0iet b-uqi2nkv6u9=""><a b-xd8vmh0iet b-uqi2nkv6u9="" href="/Documents/Others/Recognized Pakistani PGQs 18.08.2026.pdf">Pakistani PG Qualifications</a></li>
+                                            <li b-xd8vmh0iet b-uqi2nkv6u9=""><a b-xd8vmh0iet b-uqi2nkv6u9="" href="/Documents/Others/Notified Foreign qualifications.pdf">Foreign PG Qualifications</a></li>
+                                </ul>
+                                    </li>
+                                    <li b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown">
+                                        <a b-xd8vmh0iet b-uqi2nkv6u9="" class="" href="/Publication/Standards" role="button" id="menufour" aria-expanded="false">
+                                            Accreditation Standards
+                                        </a>
+                                        
+                                    </li>
+                                    <!-- Latest News and Events -->
+
+                                    <li b-xd8vmh0iet class="dropdown">
+                                        <a b-xd8vmh0iet class="dropdown-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#LatestNewsandEventsMenu">
+                                            Latest News and Events
+                                        </a>
+                                        <ul b-xd8vmh0iet class="dropdown-menu collapse" id="LatestNewsandEventsMenu">
+
+                                                        <li b-xd8vmh0iet class="dropdown-submenu">
+                                                            <a b-xd8vmh0iet class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#Menu_1">
+                                                                General
+                                                            </a>
+
+                                                            <ul b-xd8vmh0iet class="dropdown-menu collapse" id="Menu_1">
+                                                                <li b-xd8vmh0iet><a b-xd8vmh0iet class="dropdown-item" href="/Home/LatestNews?Id=1">Public Announcements</a></li>
+                                                                <li b-xd8vmh0iet><a b-xd8vmh0iet class="dropdown-item" href="/Publication/PressReleases?Id=1">Press Releases</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li b-xd8vmh0iet class="dropdown-submenu">
+                                                            <a b-xd8vmh0iet class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#Menu_2">
+                                                                Examination
+                                                            </a>
+
+                                                            <ul b-xd8vmh0iet class="dropdown-menu collapse" id="Menu_2">
+                                                                <li b-xd8vmh0iet><a b-xd8vmh0iet class="dropdown-item" href="/Home/LatestNews?Id=2">Public Announcements</a></li>
+                                                                <li b-xd8vmh0iet><a b-xd8vmh0iet class="dropdown-item" href="/Publication/PressReleases?Id=2">Press Releases</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li b-xd8vmh0iet class="dropdown-submenu">
+                                                            <a b-xd8vmh0iet class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#Menu_3">
+                                                                Student Registration
+                                                            </a>
+
+                                                            <ul b-xd8vmh0iet class="dropdown-menu collapse" id="Menu_3">
+                                                                <li b-xd8vmh0iet><a b-xd8vmh0iet class="dropdown-item" href="/Home/LatestNews?Id=3">Public Announcements</a></li>
+                                                                <li b-xd8vmh0iet><a b-xd8vmh0iet class="dropdown-item" href="/Publication/PressReleases?Id=3">Press Releases</a></li>
+                                                            </ul>
+                                                        </li>
+                                                        <li b-xd8vmh0iet class="dropdown-submenu">
+                                                            <a b-xd8vmh0iet class="dropdown-item dropdown-toggle" href="#" data-bs-toggle="collapse" data-bs-target="#Menu_4">
+                                                                Licensing
+                                                            </a>
+
+                                                            <ul b-xd8vmh0iet class="dropdown-menu collapse" id="Menu_4">
+                                                                <li b-xd8vmh0iet><a b-xd8vmh0iet class="dropdown-item" href="/Home/LatestNews?Id=4">Public Announcements</a></li>
+                                                                <li b-xd8vmh0iet><a b-xd8vmh0iet class="dropdown-item" href="/Publication/PressReleases?Id=4">Press Releases</a></li>
+                                                            </ul>
+                                                        </li>
+
+                                        </ul>
+                                                                                
+
+                                    </li>
+
+                                    
+                                    <li b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown">
+                                        <a b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown-toggle" href="#" role="button" id="menufour" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Results
+                                        </a>
+                                        <ul b-xd8vmh0iet b-uqi2nkv6u9="" class="dropdown-menu" aria-labelledby="menufour">
+                                            <li b-xd8vmh0iet b-uqi2nkv6u9=""><a b-xd8vmh0iet b-uqi2nkv6u9="" href="/result/MDCATResult">MDCAT Results</a></li>
+                                            <li b-xd8vmh0iet b-uqi2nkv6u9=""><a b-xd8vmh0iet b-uqi2nkv6u9="" href="/result/NEBResult">NEB Results</a></li>
+                                            <li b-xd8vmh0iet b-uqi2nkv6u9=""><a b-xd8vmh0iet b-uqi2nkv6u9="" href="/result/NLEStepOne">NRE Step 1 Results</a></li>
+
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+
+
+
+                            <div b-xd8vmh0iet class="call_to_action">
+                                <div b-xd8vmh0iet class="call_to_action_icon"><a b-xd8vmh0iet b-uqi2nkv6u9="" title="Register Complaints" href="/ContactUs"><img src="/ThemeContent/images/cms-icon.svg" alt=""></a></div>
+                                </div>
+
+                           </div>
+
+                            <!-- Sidebar Close -->
+                            <div b-xd8vmh0iet class="close_menu"><button b-xd8vmh0iet type="button" id="close_icon"><i b-xd8vmh0iet class="fa-solid fa-xmark"></i></button></div>
+                        </div>
+                        <!-- Menu Icon -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+
+
+    <div b-xd8vmh0iet class="off_canvars_overlay" id="off_canvars_overlay"></div>
+    <input b-xd8vmh0iet type="hidden" , id="HighLightWord" , />
+    <input b-xd8vmh0iet type="hidden" , id="HighLightWordId" , />
+    <!-- Ticker Starts Here -->
+    <!-- Ticker Ends Here -->
+    <!--  Header Ends Here  -->
+    
+
+<style>
+
+    .nx-gallery-popup-wrap-2026 {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.75);
+        z-index: 9999999;
+    }
+
+    .nx-gallery-popup-box-2026 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 700px;
+        max-width: 92%;
+        background: #fff;
+        border-radius: 10px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+    }
+
+    .nx-gallery-image-2026 {
+        width: 100%;
+        max-height: 90vh;
+        object-fit: contain;
+        border-radius: 6px;
+    }
+
+    .nx-gallery-close-btn-2026 {
+        position: absolute;
+        top: 8px;
+        right: 14px;
+        font-size: 32px;
+        color: #333;
+        cursor: pointer;
+        z-index: 5;
+    }
+
+    .nx-gallery-nav-prev-2026,
+    .nx-gallery-nav-next-2026 {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 42px;
+        color: #222;
+        cursor: pointer;
+        user-select: none;
+        background: rgba(255,255,255,0.8);
+        width: 45px;
+        height: 45px;
+        line-height: 42px;
+        border-radius: 50%;
+    }
+
+    .nx-gallery-nav-prev-2026 {
+        left: 10px;
+    }
+
+    .nx-gallery-nav-next-2026 {
+        right: 10px;
+    }
+
+        .nx-gallery-nav-prev-2026:hover,
+        .nx-gallery-nav-next-2026:hover {
+            background: #ffffff;
+        }
+
+        .nx-gallery-title-2026 { margin-top: 5px; }
+</style>
+
+
+<!-- ================= POPUP ================= -->
+
+<div id="nxGalleryPopupWrap2026" class="nx-gallery-popup-wrap-2026">
+
+    <div class="nx-gallery-popup-box-2026">
+
+        <!-- Close Button -->
+        <span class="nx-gallery-close-btn-2026"
+              onclick="nxCloseGalleryPopup2026()">
+            &times;
+        </span>
+
+        <!-- Previous Button -->
+        <span class="nx-gallery-nav-prev-2026"
+              onclick="nxShowPrevImage2026()">
+            &#10094;
+        </span>
+
+        
+
+        <!-- Image -->
+        <img id="nxGalleryImage2026"
+             class="nx-gallery-image-2026"
+             src=""
+             alt="Gallery Image" />
+
+
+
+<h6 class="nx-gallery-title-2026" id="nxGalleryTitle2026"></h6>
+        
+
+
+
+<!-- Next Button -->
+        <span class="nx-gallery-nav-next-2026"
+              onclick="nxShowNextImage2026()">
+            &#10095;
+        </span>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+ <section class="ticker_wrapper">
+        <marquee width="100%" direction="left" id="news">
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                PUBLIC ALERT &#x2014; MDCAT 2026 RESCHEDULED
+                    <a href="/Documents/press/PRESS RELEASE-MDCAT Rescheduled.pdf">&nbsp;Click Here</a>
+            </div>
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                Public Notice Regarding Extension of MDCAT Online Registration date
+                    <a href="/Documents/Others/Public Notice Regarding Extension of MDCAT Online Registration date.pdf">&nbsp;Click Here</a>
+            </div>
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                Implementation of Mental Health Screening Counselling services
+                    <a href="/Documents/Others/Implementation of Mental Health Screening Counselling services.pdf">&nbsp;Click Here</a>
+            </div>
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                Doctors Alert: Unrecognized Postgraduate Programs in Medicine &amp; Dentistry
+                    <a href="/Documents/Others/Doctor-Alert-UnRecognized-PG-Programmes.jpeg">&nbsp;Click Here</a>
+            </div>
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                Doctors Alert: Unrecognized Postgraduate Programs
+                    <a href="/Documents/Others/Doctors-Alert-Unrecognized-Postgraduate-Programs.jpeg">&nbsp;Click Here</a>
+            </div>
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                TUITION FEE-NOTIFICATION
+                    <a href="/Documents/Others/tution%20fee%20notfication%2011-03-2026.pdf">&nbsp;Click Here</a>
+            </div>
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                Stand Alone Hospitals Approved for the House Job
+                    <a href="/Documents/Others/Stand Alone Hospitals Approved for the House Job (Final Updated list) 07-11-2025.pdf">&nbsp;Click Here</a>
+            </div>
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                Recognised Institutes with attached Hospitals
+                    <a href="/Documents/Others/Recognised Institutes with attached Hospitals (Final List )  07-11-2025 for web -.pdf">&nbsp;Click Here</a>
+            </div>
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                Recognized Foreign PG Qualifications
+                    <a href="/Documents/Others/Notified Foreign qualifications.pdf">&nbsp;Click Here</a>
+            </div>
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                PG Equivalence Form
+                    <a href="/Documents/Others/img00003.pdf&#x9;">&nbsp;Click Here</a>
+            </div>
+            <div class="ticker__item" onMouseOver="document.getElementById('news').stop();" onMouseOut="document.getElementById('news').start();">
+                Recognized Pakistani Qualifications
+                    <a href="/Documents/Others/Recognized Pakistani PGQs 18.08.2026.pdf">&nbsp;Click Here</a>
+            </div>
+    </marquee>
+</section>
+
+
+<section class="home_banner" style="background-image: url(../images/pmdc-Banner.jpg);">
+    <div class="container_large">
+        <div class="row align-items-center">
+
+
+
+        </div>
+    </div>
+
+</section>
+<!-- Banner Ends Here -->
+<!--  Main Content Start Here  -->
+<main>
+     <section class="four_boxes">
+            <div class="container">
+                <div class="four_boxes_content">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 white_box">
+                            <div class="box_column">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-12">
+                                        <div class="box_column_icon"><img src="images/doctors-online.svg" alt=""></div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-12">
+                                        <div class="box_column_content">
+                                            <div style="display:flex; ">
+                                            <h3 style="margin-right:15px;">Registration Online</h3> <p style="background-color: #1cabe9; padding-top:5px;  margin-top:1px; text-align:center; width:60px; height:30px; color:white;"><span>New!</span></p>
+                                        </div>
+                                            <p> An Online Portal for our Doctors to cater their regulatory requirements so they can primarily focus of healthcare of the mankind. All Registrations, Credentialing, Verification &amp; Licensing needs can be addressed in minutes through your Digital Platform.</p>
+                                        <a href="https://portal.pmdc.pk" class="button secondary_button" id="doctors_online_button">Click Here <i class="fa-solid fa-arrow-right"></i></a>
+                                        <!-- DOCTORS ONLINE POPUP --> 
+
+                                        <!-- <a href="javascript:void(0)" class="button secondary_button" id="doctors_online_button" onclick="doctors_online_popup_show()">Click Here <i class="fa-solid fa-arrow-right"></i></a> -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 gray_box">
+                            <div class="box_column">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-12">
+                                        <div class="box_column_icon"><img src="images/student-online.svg" alt=""></div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-12">
+                                        <div class="box_column_content">
+                                        <!--  <h3>Students Online</h3>
+                                            <p>An Online Portal for our students studying in Medical &amp; Dental Colleges across Pakistan to update their profile, view vacant seats for Transfers.</p>
+                                         <a href="#" class="button white_button">Coming Soon<i class="fa-solid fa-arrow-right"></i></a> -->
+                                         <h3>Other Services</h3>
+                                        <p>Restoration of Deleted Basic Postgraduate Qualifications, Attestation/Verification of License or Certificate of Good Standing, Verification of CT Form OR Verification of Practical Experience/CGS(ECFMG/EPIC)</p>
+                                         <a href="https://online-dev777.pmdc.pk/Account/Login" class="button secondary_button" id="doctors_online_button">Click Here <i class="fa-solid fa-arrow-right"></i></a>
+                                        <a href="https://complaints.pmdc.pk" class="button secondary_button" id="PMDC Complaints Portal" target="_blank">Complaints Portal <i class="fa-solid fa-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 reverse_order gray_box">
+                            <div class="box_column">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-12">
+                                        <div class="box_column_icon"><img src="images/license-online.svg" alt=""></div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-12">
+                                        <div class="box_column_content">
+<h3>EXAM REGISTRATION</h3>
+                                            <p>
+                                            An interactive portal for the Registration of  NEB & MDCAT
+                                        </p>
+                                         <a href="https://nre.pmdc.pk/" target="_blank" class="button secondary_button" style="margin-top: 5px"> Click Here for NRE <i class="fa-solid fa-arrow-right"></i></a>
+                                        <a href="https://neb.pmdc.pk/Account/Login" target="_blank" class="button secondary_button" style="margin-top: 5px"> Click Here for NEB <i class="fa-solid fa-arrow-right"></i></a>
+                                        <a href="https://www.ecfmg.org/certification-pathways/pathway-schools.html" target="_blank" class="button secondary_button" style="margin-top: 5px"> &nbsp;&nbsp;ECFMG Website&nbsp;&nbsp; <i class="fa-solid fa-arrow-right"></i></a>
+                                        <a href="https://mdcat.pmdc.pk" target="_blank" class="button secondary_button" style="margin-top: 5px">  MDCAT 2026 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa-solid fa-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12 white_box">
+                            <div class="box_column">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-12">
+                                        <div class="box_column_icon"><img src="images/institution-online.svg" alt=""></div>
+                                    </div>
+                                    <div class="col-lg-9 col-md-12">
+                                        <div class="box_column_content">
+                                            <h3>Institution Online</h3>
+                                            <p>A Single Portal for Colleges &amp; Universities to have an effective communication with the Council and to enable timely processing of our students and doctors registration and Licensing needs.</p>
+                                            <a href="https://institutions.pmdc.pk/" target="_blank" class="button secondary_button"> Click Here <i class="fa-solid fa-arrow-right"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+         
+    <section class="recognized_institutes" style="background-image:url(../images/recognized_institutes-banner.jpg);">
+            <div class="container_large">
+                <div class="recognized_institutes_content">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-12">
+                            <div class="recognized_institutes_column">
+                                <img src="/ThemeContent/images/institutes.svg" alt="">
+                                <h3>Institutions & Qualifications</h3>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="recognized_institutes_column">
+                                <img src="/ThemeContent/images/collage-grading.svg" alt="">
+                                
+                                <a style="color:white" href="/Documents/law/PMDC Act.pdf"><h3>Pakistan Medical &  Dental Council Act 2022</h3></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12">
+                            <div class="recognized_institutes_column">
+                                <img src="/ThemeContent/images/seats.svg" alt="">
+                                <h3>Complaints against Doctors</h3>
+                                <p>To Register a Complaint of professional negligence/misconduct against any licensed Doctor <!-- <a href="/Complaint/index">Click here.</a></p> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+
+    <section class="announcements">
+        <div class="container_large">
+            <h2>Public Announcements</h2>
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <div class="announcements_left_col">
+                        <div class="announcements_img">
+                            <img src="/ThemeContent/images/announcements-img.jpg" class="img-fluid" alt="">
+                            <div class="announcements_date">23<span>Feb</span></div>
+                        </div>
+                        <div class="announcements_img_content">
+                            <h5><img src="/ThemeContent/images/folder-icon.svg" alt=""> Landmark Achievement</h5>
+                            <h3>PM&amp;DC Achieves Accreditation from World Federation for Medical Education (WFME)</h3>
+                            <p>This recognition underscores PM&amp;DC&#x27;s commitment to ensuring the highest standards of medical education within Pakistan.</p>
+                                                 <a href="/Documents/press/pmdc-gets-accreditation.pdf" target="_blank">Read More <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-12">
+                                                    <div class="row mb-5">
+                                                        <div class="col-md-2">
+                                                            <div class="announcements_icon"><img src="/ThemeContent/images/megaphone.svg" alt=""></div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="announcements_content">
+                                                                <h5>Last Updated: 09/09/2026 05:24:43 PM</h5>
+                                                                <p><a href="/Documents/Others/Public Notice Regarding Extension of NRE Registration Portal .pdf">Public Notice Regarding Extension of Online Registration Portal for NRE</a></p>
+                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-5">
+                                                        <div class="col-md-2">
+                                                            <div class="announcements_icon"><img src="/ThemeContent/images/megaphone.svg" alt=""></div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="announcements_content">
+                                                                <h5>Last Updated: 21/08/2026 03:13:22 PM</h5>
+                                                                <p><a href="/Documents/Others/Public Notice Regarding Opening of Online Registration Portal for NRE.pdf">Public Notice Regarding Opening of Online Registration Portal for NRE</a></p>
+                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-5">
+                                                        <div class="col-md-2">
+                                                            <div class="announcements_icon"><img src="/ThemeContent/images/megaphone.svg" alt=""></div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="announcements_content">
+                                                                <h5>Last Updated: 20/08/2026 05:12:25 PM</h5>
+                                                                <p><a href="/Documents/Others/Public Notice Regarding Extension of NEB Online Registration Portal.pdf">Public Notice Regarding Extension of Online Registration Portal for NEB</a></p>
+                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row mb-5">
+                                                        <div class="col-md-2">
+                                                            <div class="announcements_icon"><img src="/ThemeContent/images/megaphone.svg" alt=""></div>
+                                                        </div>
+                                                        <div class="col-md-10">
+                                                            <div class="announcements_content">
+                                                                <h5>Last Updated: 17/08/2026 12:03:20 PM</h5>
+                                                                <p><a href="/Documents/Others/LCMD - Letter to Mo -  Inclusion in 2nd Schedule.pdf">INCLUSION OF LIAQUAT COLLEGE OF MEDICINE &amp; DENTISTRY, UNDER SECTION 25 OF PM&amp;DC ACT,2O22</a></p>
+                                            </div>
+                                                        </div>
+                                                    </div>
+                    <div class="row" style="display: flex;justify-content: center;">
+                        <a href="home/PublicAnnouncement" style="width: auto;" class="button secondary_button">View More <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="statistics">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-12">
+                    <div class="statistics_left_col">
+                        <h3>Statistical Data of the Total Medical & Dental Practitioners registered with Pakistan Medical & Dental Council</h3>
+                        <div class="total_doc">
+                            <div class="total_doc_icon"><img class="total_doc_icon_M" src="/ThemeContent/images/doctor-icon.svg" alt=""></div>
+                            <div class="total_doc_content">
+                                <strong id="totalDoc">366443</strong>
+                                <span>Total Registered Practitioners</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6" style="border:1px solid white;">
+                                <div class="stats_col">
+                                    <div class="total_doc">
+                                        <div class="total_doc_icon"><img style="width:74.7px" class="sub_doc" src="/ThemeContent/images/tooth.svg" alt=""></div>
+                                        <div class="total_doc_content">
+                                            <strong id="BDSDoc">40920</strong>
+                                            <span>Total Dental Practitioners</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6" style="border:1px solid white;">
+                                <div class="stats_col">
+                                    <div class="total_doc">
+                                        <div class="total_doc_icon"><img style="width:74.7px" class="sub_doc" src="/ThemeContent/images/stethoscope.svg" alt=""></div>
+                                        <div class="total_doc_content">
+                                            <strong id="MBBSDoc">325523</strong>
+                                            <span>Total Medical Practitioners</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6" style="border:1px solid white;">
+                                <div class="stats_col">
+                                    <div class="total_doc">
+                                        <div class="total_doc_icon"><img style="width:74.7px;" class="sub_doc" src="/ThemeContent/images/doctor (1).svg" alt=""></div>
+                                        <div class="total_doc_content">
+                                            <strong id="MaleBDSDoc">12782</strong>
+                                            <span>Male Dental Practitioners</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6" style="border:1px solid white;">
+                                <div class="stats_col">
+                                    <div class="total_doc">
+                                        <div class="total_doc_icon"><img style="width:74.7px;" class="sub_doc" src="/ThemeContent/images/doctor (1).svg" alt=""></div>
+                                        <div class="total_doc_content">
+                                            <strong id="MaleDoc">161800</strong>
+                                            <span>Male Medical Practitioners</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6" style="border:1px solid white;">
+                                <div class="stats_col">
+                                    <div class="total_doc">
+                                        <div class="total_doc_icon"><img style="width:74.7px;height: 83.95px;" class="sub_doc" src="/ThemeContent/images/f-doctor.svg" style="height:67.45px" alt=""></div>
+                                        <div class="total_doc_content">
+                                            <strong id="FemaleBDSDoc">28138</strong>
+                                            <span>Female Dental Practitioners</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-md-6" style="border:1px solid white;">
+                                <div class="stats_col">
+                                    <div class="total_doc">
+                                        <div class="total_doc_icon"><img style="width:74.7px;height: 83.95px;" class="sub_doc" src="/ThemeContent/images/f-doctor.svg" style="height:67.45px" alt=""></div>
+                                        <div class="total_doc_content">
+                                            <strong id="FemaleDoc">163723</strong>
+                                            <span>Female Medical Practitioners</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="search_doctors">
+        <div class="container">
+            <div class="search_doctors_wrapper">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12">
+                        <div class="nav flex-column nav-pills me-3" id="doctor_tab" role="tablist" aria-orientation="vertical">
+                            <button class="active fn-backtosearch" id="doctor_tab" data-bs-toggle="pill" data-bs-target="#search_doctor" type="button" role="tab" aria-controls="v-doctor" aria-selected="true">
+                                <div class="pill_icon">
+                                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81.22569 84.1997">
+                                        <defs>
+                                            <style>
+                                                .cls-1 {
+                                                    fill: #0a65a0;
+                                                }</style>
+                                        </defs>
+                                        <path class="cls-1" d="M80.35617,78.6488l-.48144-.51855L58.822,56.23376l.72168-.86035A33.72032,33.72032,0,1,0,33.70578,67.42712c.044-.002.085.001.127,0a33.16426,33.16426,0,0,0,19.21582-6.09277l.87793-.61914L75.4509,83.1a3.305,3.305,0,0,0,2.31738,1.09375,3.20477,3.20477,0,0,0,2.38184-.86622,3.311,3.311,0,0,0,.20605-4.67871ZM6.61887,33.68787A27.18418,27.18418,0,0,1,32.47531,6.61072V6.58044l1.25-.0039h.00391A27.09157,27.09157,0,0,1,54.5668,51.00159c-.57592-1.73853-1.15179-3.477-1.73761-5.19751a7.78237,7.78237,0,0,0-5.852-5.37195c-2.138-.50989-4.314-.979-6.438-1.43494l-.074-.019v-.04492c.027-.63806.027-1.31616,0-2.15808-.007-.041.016-.079.1-.12195a10.07112,10.07112,0,0,0,4.868-8.119c.1-1.547.076-3.12.052-4.64l-.016-1.147a5.88916,5.88916,0,0,0-1.488-3.76611c-.088-.09985-.177-.19995-.268-.29993a11.72287,11.72287,0,0,0-16.527-.84,7.10582,7.10582,0,0,0-2.613,5.824c.044.887.034,1.80908.024,2.7-.00995.39807-.00995.795-.00995,1.177a10.40792,10.40792,0,0,0,4.93695,9.134.20031.20031,0,0,1,.071.1001c.008.314.008.62792.008.94189-.002.4-.004.8.018,1.2v.05615c-.022.00586-.054.0149-.1.02491-1.951.41894-3.902.853-5.851,1.286l-.261.059a7.86117,7.86117,0,0,0-6.114,5.332c-.642,1.834-1.256,3.717-1.856,5.53393-.21008.64307-.41919,1.28028-.62061,1.89185-.085-.08289-.17327-.16113-.25732-.24512A26.93373,26.93373,0,0,1,6.61887,33.68787Zm26.31427,4.51635v-.155a11.3652,11.3652,0,0,0,4.15-.00305v1.82093l-2.063,3.446-.6-.979a9.75022,9.75022,0,0,0-.882-1.42994A3.61388,3.61388,0,0,1,32.93314,38.20422Zm6.235-15.60815a9.53472,9.53472,0,0,1-8.251.02612,1.74006,1.74006,0,0,0-2.3.428c-.222.23193-.446.46094-.678.69995-.002-.093-.007-.184-.014-.27295a3.41283,3.41283,0,0,1,1.081-2.73193,8.34856,8.34856,0,0,1,12.5.573,2.6994,2.6994,0,0,1,.588,1.7v.752c-.24-.249-.481-.49707-.719-.741l.002-.001A1.67815,1.67815,0,0,0,39.16818,22.59607Zm-3.926,12.29a7.226,7.226,0,0,1-7.335-6.97193l.091-.02807a5.48992,5.48992,0,0,0,2.248-1.72.24408.24408,0,0,1,.308-.071l.063.02808a12.77675,12.77675,0,0,0,8.94-.0481h.089l.031-.01587a6.64032,6.64032,0,0,0,2.4,1.863.19715.19715,0,0,1,0,.033,6.96633,6.96633,0,0,1-3.5,5.957,6.70794,6.70794,0,0,1-3.333.97388l.011.511Zm-9.006,15.894h.068a.831.831,0,0,1,.759.827.82125.82125,0,1,1-1.642-.03406A.817.817,0,0,1,26.23618,50.78015Zm7.495,10.01416h-.0039a26.90058,26.90058,0,0,1-16.33722-5.47656,1.64917,1.64917,0,0,0,.4931-.82263l.669-2q.459-1.383.928-2.766c.113-.337.222-.677.332-1.01709a25.82693,25.82693,0,0,1,.893-2.4939,4.77185,4.77185,0,0,1,3.876-2.7v1.29993c-.004.932-.007,1.869.009,2.869.007.051-.025.099-.125.137a4.178,4.178,0,0,0,1.732,7.95h.055a4.18094,4.18094,0,0,0,1.794-7.96192c-.075-.036-.12-.061-.112-.073.008-1.634,0-3.261,0-4.952.927-.189,1.739-.3739,2.5-.594l.042.089q1.293,2.187,2.612,4.358l.372.61706a1.692,1.692,0,0,0,3.1.01c1.008-1.66809,2.014-3.33618,3.047-5.04407.741.181,1.522.356,2.5.563-.016.642-.03,1.48206,0,2.324v.059a.57279.57279,0,0,1-.065.03308,5.209,5.209,0,0,0-3.661,4.636c-.084,1.21106-.063,2.43909-.041,3.625l.011.686a1.616,1.616,0,0,0,1.555,1.616c.247.01306.494.021.741.021.249,0,.49695-.007.741-.02307a1.63483,1.63483,0,0,0,1.537-1.471,1.658,1.658,0,0,0-1.2-1.809l-.035-.01v-.17c-.008-.36194-.012-.717,0-1.1a6.78051,6.78051,0,0,1,.113-1.44689,2.00008,2.00008,0,0,1,2.25006-1.46509,2.027,2.027,0,0,1,1.819,1.86206c.032.477.025.9519.025,1.4519,0,.29309-.005.58606,0,.86914a1.59991,1.59991,0,0,0-1.237,1.78394,1.65079,1.65079,0,0,0,1.636,1.51294h.737l.283-.00488a1.69445,1.69445,0,0,0,.446,0,1.7232,1.7232,0,0,0,1.15-.665,1.66508,1.66508,0,0,0,.347-1.21509c0-.354-.008-.70691-.008-1.06091-.007-.687-.015-1.39808.007-2.069a5.48306,5.48306,0,0,0-3.755-5.59107c-.008-.529-.008-1.071-.008-1.62891l.454.09192a4.719,4.719,0,0,1,3.749,3.375c.739,2.2511,1.49439,4.49781,2.24945,6.73816A27.0048,27.0048,0,0,1,33.73117,60.79431Z" />
+                                    </svg>
+                                </div>
+                                <div class="pill_content">
+                                    <h3>Search for Doctors Online</h3>
+                                    <p>Search for Any Doctor in Practitioners Register by Registration Number, Full Name or Father Name to see the License Validity and Registered Qualifications.</p>
+                                </div>
+                            </button>
+                            <button id="faculty_tab" data-bs-toggle="pill" data-bs-target="#search_faculty" type="button" role="tab" aria-controls="v-faculty" aria-selected="false" class="fn-backtosearch">
+                                <div class="pill_icon">
+                                    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 81.24364 84.20939">
+                                        <defs>
+                                            <style>
+                                                .cls-1 {
+                                                    fill: #0a65a0;
+                                                }</style>
+                                        </defs>
+                                        <g id="Path_1" data-name="Path 1"><g id="Group_1760" data-name="Group 1760"><path id="Path_2137" data-name="Path 2137" class="cls-1" d="M34.50882,41.20766c3.407,0,6.832-.218,10.218.052a9.434,9.434,0,0,1,8.749,9.28c.086,1.822.054,3.652.032,5.478a1.956,1.956,0,0,1-1.859,2.04845l-.041.00155a1.989,1.989,0,0,1-2.06835-1.90635q-.00165-.04029-.00165-.08065c-.055-1.551-.01-3.1-.033-4.656-.06-3.95-2.4-6.3-6.353-6.311q-8.72-.033-17.44,0c-3.877.016-6.234,2.4-6.28,6.3-.018,1.521,0,3.043-.014,4.565a2,2,0,0,1-1.189,1.9,1.7,1.7,0,0,1-1.967-.213,2.074,2.074,0,0,1-.775-1.263,43.5862,43.5862,0,0,1,.275-7.637c.844-4.632,4.782-7.58,9.7-7.651,3.013-.044,6.026-.008,9.04-.008Z" /><path id="Path_2138" data-name="Path 2138" class="cls-1" d="M34.31782,39.14266a10.013,10.013,0,0,1-7.52-3.648,11.27,11.27,0,0,1-1.025-14.073,10.429,10.429,0,0,1,18.7,7.972c-.835,4.822-4.31,8.676-8.652,9.571C35.28782,39.07467,34.73282,39.09566,34.31782,39.14266Zm6.3-11.384a6.45,6.45,0,0,0-5.15-6.473,6.371,6.371,0,0,0-7.138,3.661c-1.557,3.461.463,8.367,4.028,9.788a4.8,4.8,0,0,0,4.845-.64,8.03505,8.03505,0,0,0,3.419-6.335Z" /></g></g>
+                                        <path class="cls-1" d="M79.89364,78.14529,58.84189,56.24978l.7207-.85937a33.72109,33.72109,0,1,0-25.835,12.05273c.04785-.001.0791,0,.11816,0a33.18442,33.18442,0,0,0,19.22168-6.09277l.877-.61816L75.46884,83.116a3.32269,3.32269,0,0,0,4.70019.22753,3.31221,3.31221,0,0,0,.20508-4.67871ZM52.91708,52.868a26.93294,26.93294,0,0,1-19.168,7.94141h-.0039a27.10624,27.10624,0,0,1-1.252-54.1836V6.59549l1.25-.00391A27.109,27.109,0,0,1,52.91708,52.868Z" />
+                                    </svg>
+                                </div>
+                                <div class="pill_content">
+                                    <h3>Search for Faculty Online</h3>
+                                    <p>Search for Any Medical or Dental Faculty Member across Pakistan by Registration Number or Full Name.</p>
+                                </div>
+                            </button>
+                            <button id="admission_tab" data-bs-toggle="pill" data-bs-target="#search_admission" type="button" role="tab" aria-controls="v-addmission" aria-selected="false" class="fn-backtosearch">
+                                <div class="pill_icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="81.243" height="84.211" viewBox="0 0 81.243 84.211">
+                                        <g id="Group_2828" data-name="Group 2828" transform="translate(-704.086 -2735.823)">
+                                            <g id="Group_2695" data-name="Group 2695">
+                                                <g id="Group_68" data-name="Group 68">
+                                                    <g id="Group_2826" data-name="Group 2826">
+                                                        <path id="Path_2751" data-name="Path 2751" d="M783.979,2813.97l-21.051-21.9.72-.859a33.721,33.721,0,1,0-25.838,12.053,1.1,1.1,0,0,0,.127,0,33.181,33.181,0,0,0,19.216-6.092l.877-.618,21.525,22.383a3.312,3.312,0,1,0,4.905-4.452ZM757,2788.693a26.935,26.935,0,0,1-19.168,7.941h0a27.106,27.106,0,0,1-1.252-54.184v-.03l1.25,0h0A27.11,27.11,0,0,1,757,2788.693Z" fill="#0a65a0" />
+                                                    </g>
+                                                </g>
+                                            </g>
+                                            <g id="Group_2827" data-name="Group 2827">
+                                                <path id="Path_2752" data-name="Path 2752" d="M755.684,2757.283q-1.716-1.708-3.428-3.421l-3.268-3.262a3.511,3.511,0,0,0-.5-.394l-.364-.263H730.995l-.127.051c-.127.051-.258.1-.388.14a4.654,4.654,0,0,0-1.042.462,3.76,3.76,0,0,0-1.741,3.318v13.075a10.028,10.028,0,0,0-3.446,1.289,10.123,10.123,0,0,0,3.6,18.688,10.96,10.96,0,0,0,1.744.135q7,.009,14,.007h8.724a3.867,3.867,0,0,0,4.03-4.049v-6.44q0-8.856.005-17.71A2.189,2.189,0,0,0,755.684,2757.283Zm-6.3-.387v-.781l.781.781ZM736.073,2777a6.625,6.625,0,0,1-6.621,6.585h-.018a6.615,6.615,0,0,1,.026-13.23h.005a6.624,6.624,0,0,1,6.608,6.645Zm2.288,4.808a10.148,10.148,0,0,0,1.076-3.078l10.047,0a2.454,2.454,0,0,0,.667-.069,1.744,1.744,0,0,0,1.3-1.859,1.765,1.765,0,0,0-1.687-1.586c-.378-.011-.756-.008-1.134-.007l-9.192,0a10.283,10.283,0,0,0-.917-2.761h10.989a2.407,2.407,0,0,0,.568-.047,1.755,1.755,0,0,0-.349-3.469c-.618-.008-1.236-.008-1.855,0H744.88q-4.569,0-9.15-.009a.446.446,0,0,1-.206-.074,10.233,10.233,0,0,0-4.306-1.849v-13.017c0-.451.107-.515.5-.515h14.126v5.046a1.778,1.778,0,0,0,1.934,1.934h5.045v22.607c0,.472-.1.535-.516.535H737.124A9.939,9.939,0,0,0,738.361,2781.809Z" fill="#0a65a0" />
+                                                <path id="Path_2753" data-name="Path 2753" d="M749.593,2762.647H738.845l-3.856,0c-.232,0-.467,0-.7.007a1.723,1.723,0,0,0-1.57,1.1,1.692,1.692,0,0,0,.146,1.612,1.87,1.87,0,0,0,1.567.807q2.658,0,5.322,0h2.28l7.567,0a1.76,1.76,0,0,0,1.713-1.074,1.687,1.687,0,0,0-.124-1.624A1.887,1.887,0,0,0,749.593,2762.647Z" fill="#0a65a0" />
+                                                <path id="Path_2754" data-name="Path 2754" d="M731.58,2773.9c-.861.853-1.719,1.713-2.576,2.571l-1.015,1.015c-.061-.064-.124-.13-.192-.2-.218-.224-.438-.449-.668-.664a1.759,1.759,0,0,0-2.465,2.509q1.027,1.056,2.085,2.084a1.759,1.759,0,0,0,1.236.52,1.827,1.827,0,0,0,1.206-.474c.051-.045.1-.092.161-.154l4.661-4.658a1.789,1.789,0,0,0,.572-1.769,1.736,1.736,0,0,0-1.212-1.281A1.832,1.832,0,0,0,731.58,2773.9Z" fill="#0a65a0" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <div class="pill_content">
+                                    <h3>Search for Student Registration</h3>
+                                    <p>Search to Verify the Student Registration of any Pakistani Medical or Dental College student with Pakistan Medical & Dental Council by Registration Number/CNIC, Full Name or Father Name</p>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12 fn-searchDiv">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade show active" id="search_doctor" role="tabpanel" aria-labelledby="doctor_tab" tabindex="0">
+                                <h2>Search for <span>Doctors Online</span></h2>
+                                <p>Search for Any Doctor or in Practitioners Register by Registration Number, Full Name or Father Name to see the License Validity and Registered Qualifications.</p>
+                                <!-- Inner Tabs Start Here -->
+                                <div class="tabs_links">
+                                    <ul class="nav nav-tabs" id="docTab" role="tablist">
+                                        <li role="presentation">
+                                            <button class="active cls_btn" id="doc_reg_tab" data-bs-toggle="tab" data-bs-target="#doc_reg" type="button" role="tab" aria-controls="doc-reg--tab-pane" aria-selected="true">Registration Number</button>
+                                        </li>
+                                        <li role="presentation">
+                                            <button id="doc_name_tab cls_btn" data-bs-toggle="tab" data-bs-target="#doc_name" type="button" role="tab" aria-controls="doc-name-tab-pane" aria-selected="false">Full Name</button>
+                                        </li>
+                                        <li role="presentation">
+                                            <button id="doc_fname_tab cls_btn" data-bs-toggle="tab" data-bs-target="#doc_fname" type="button" role="tab" aria-controls="doc-fname-tab-pane" aria-selected="false">Father Name</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content inner_content" id="docTabContent">
+                                    <div class="tab-pane fade show active" id="doc_reg" role="tabpanel" aria-labelledby="doc_reg_tab" tabindex="0">
+                                        <h3>Search Doctor by Registration Number</h3>
+                                        <input type="text" name="" class="search_field" id="DocRegNo" placeholder="Search Doctor by Registration Number">
+                                        <button type="button" class="button primary_button fn-BtnDocRegNo">
+                                            Search
+                                        </button>
+                                    </div>
+                                    <div class="tab-pane fade" id="doc_name" role="tabpanel" aria-labelledby="doc_name_tab" tabindex="0">
+                                        <h3>Search Doctor by Name</h3>
+                                        <input type="text" name="" class="search_field" id="DocFullName" placeholder="Search Doctor by Name">
+                                        <button type="button" class="button primary_button fn-BtnDocFullName">
+                                            Search
+                                        </button>
+                                    </div>
+                                    <div class="tab-pane fade" id="doc_fname" role="tabpanel" aria-labelledby="doc_fname_tab" tabindex="0">
+                                        <h3>Search Doctor by Father Name</h3>
+                                        <input type="text" name="" class="search_field" id="DocFatherName" placeholder="Search Doctor by Father Name">
+                                        <button type="button" class="button primary_button fn-BtnDocFatherName">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Inner Tabs End Here -->
+                            </div>
+                            <div class="tab-pane fade" id="search_faculty" role="tabpanel" aria-labelledby="faculty_tab" tabindex="0">
+                                <h2>Search for <span>Faculty Online</span></h2>
+                                <p>Search for Any Medical or Dental Faculty Member across Pakistan by Registration Number or Full Name.</p>
+                                <!-- Inner Tabs Start Here -->
+                                <div class="tabs_links">
+                                    <ul class="nav nav-tabs" id="facTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active cls_btn" id="fac_reg_tab" data-bs-toggle="tab" data-bs-target="#fac_reg" type="button" role="tab" aria-controls="fac-reg--tab-pane" aria-selected="true">Registration Number</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link cls_btn" id="fac_name_tab" data-bs-toggle="tab" data-bs-target="#fac_name" type="button" role="tab" aria-controls="fac-name-tab-pane" aria-selected="false">Full Name</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content inner_content" id="facTabContent">
+                                    <div class="tab-pane fade show active" id="fac_reg" role="tabpanel" aria-labelledby="fac_reg_tab" tabindex="0">
+                                        <h3>Search Faculty by Registration Number</h3>
+                                        <input type="text" name="" class="search_field" id="FacRegNo" placeholder="Search Faculty by Registration Number">
+                                        <button type="button" class="button primary_button fn-BtnFacRegNo">
+                                            Search
+                                        </button>
+                                    </div>
+                                    <div class="tab-pane fade" id="fac_name" role="tabpanel" aria-labelledby="fac_name_tab" tabindex="0">
+                                        <h3>Search Faculty by Name</h3>
+                                        <input type="text" name="" class="search_field" id="FacFullName" placeholder="Search Faculty by Name">
+                                        <button type="button" class="button primary_button fn-BtnFacFullName">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Inner Tabs End Here -->
+                            </div>
+                            <div class="tab-pane fade" id="search_admission" role="tabpanel" aria-labelledby="admission_tab" tabindex="0">
+                                <h2>Search for <span>Student Registration</span></h2>
+                                <p>Search to Verify the Student Registration of any Pakistani Medical or Dental College student with Pakistan Medical & Dental Council by Registration Number/CNIC, Full Name or Father Name</p>
+                                <!-- Inner Tabs Start Here -->
+                                <div class="tabs_links">
+                                    <ul class="nav nav-tabs" id="adminTab" role="tablist">
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link active cls_btn" id="admin_reg_tab" data-bs-toggle="tab" data-bs-target="#admin_reg" type="button" role="tab" aria-controls="admin-reg--tab-pane" aria-selected="true">Registration Number</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link cls_btn" id="admin_name_tab" data-bs-toggle="tab" data-bs-target="#admin_name" type="button" role="tab" aria-controls="admin-name-tab-pane" aria-selected="false">Full Name</button>
+                                        </li>
+                                        <li class="nav-item" role="presentation">
+                                            <button class="nav-link cls_btn" id="admin_fname_tab" data-bs-toggle="tab" data-bs-target="#admin_fname" type="button" role="tab" aria-controls="admin-fname-tab-pane" aria-selected="false">Father Name</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="tab-content inner_content" id="adminTabContent">
+                                    <div class="tab-pane fade show active" id="admin_reg" role="tabpanel" aria-labelledby="admin_reg_tab" tabindex="0">
+                                        <h3>Search Student by Registration Number</h3>
+                                        <input type="text" name="" class="search_field" id="AdminRegNo" placeholder="Search Student by Registration Number">
+                                        <button type="button" class="button primary_button fn-BtnAdminRegNo">
+                                            Search
+                                        </button>
+                                    </div>
+                                    <div class="tab-pane fade" id="admin_name" role="tabpanel" aria-labelledby="admin_name_tab" tabindex="0">
+                                        <h3>Search Student by Name</h3>
+                                        <input type="text" name="" class="search_field" id="AdminFullName" placeholder="Search Student by Name">
+                                        <button type="button" class="button primary_button fn-BtnAdminFullName">
+                                            Search
+                                        </button>
+                                    </div>
+                                    <div class="tab-pane fade" id="admin_fname" role="tabpanel" aria-labelledby="admin_fname_tab" tabindex="0">
+                                        <h3>Search Student by Father Name</h3>
+                                        <input type="text" name="" class="search_field" id="AdminFatherName" placeholder="Search Student by Father Name">
+                                        <button type="button" class="button primary_button fn-BtnAdminFatherName">
+                                            Search
+                                        </button>
+                                    </div>
+                                </div>
+                                <!-- Inner Tabs End Here -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-md-12 fn-resultDiv d-none">
+                        <div style=" display: flex; justify-content: end; margin-bottom: 1rem; ">
+                            <button class="button secondary_button fn-backtosearch ">Back to search</button>
+                        </div>
+                        <div class="row shadow" style="padding:1rem;overflow: auto;">
+                            <table id="resultDataTable" class="table table-hover d-none" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Registration No.</th>
+                                        <th>Full Name</th>
+                                        <th>Father Name</th>
+                                        <th>Status</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultTBody">
+                                </tbody>
+                            </table>
+                            <table id="resultFacDataTable" class="table table-hover d-none" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Faculty No.</th>
+                                        <th>Registration No.</th>
+                                        <th>Full Name</th>
+                                        <th>College/Institute</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultFacTBody">
+                                </tbody>
+                            </table>
+                            <table id="resultAdminDataTable" class="table table-hover d-none" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Father Name</th>
+                                        <th>Registration No.</th>
+                                        <th>Session</th>
+                                        <th>Detail</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="resultAdminTBody">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="quick_links">
+        <div class="container">
+            <h2>Quick Links</h2>
+            <div class="quick_links_content">
+                <div class="row">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="quick_links_col">
+                            <a href="https://pmdc.pk/Documents/law/PMDC%20Act.pdf">Pakistan Medical & Dental<br> Council Act 2022 <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 col-md-12">
+                        <div class="quick_links_col">
+                            <a href="/Publication/OfficialLetters">Experience <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="quick_links_col">
+                            <a href="/Publication/Standards">Accreditation Standards<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="quick_links_col">
+                            <a href="/Colleges">Undergraduate Colleges <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="quick_links_col">
+                            <a href="/Publication/LawsAndRegulations">Laws & Regulations <i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-6 col-md-12">
+                        <div class="quick_links_col">
+                            <a href="/Publication/Syllabus">Syllabi<i class="fa-solid fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                  
+
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="ViewDetailModal" tabindex="-1" role="dialog" aria-labelledby="ViewDetailModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Doctor Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+                <div class="modal-body">
+                    <div class="tabs_links">
+                        <ul class="nav nav-tabs" id="docTab" role="tablist">
+                            <li role="presentation">
+                                <button class="active" id="doc_detail_tab" data-bs-toggle="tab" data-bs-target="#doc_detail" type="button" role="tab" aria-controls="doc_detail-pane" aria-selected="true">Detail</button>
+                            </li>
+                            <li role="presentation">
+                                <button id="doc_qua_tab" data-bs-toggle="tab" data-bs-target="#doc_qua" type="button" role="tab" aria-controls="doc-qua-tab-pane" aria-selected="false">Qualification</button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content inner_content" id="docTabContent">
+                        <div class="tab-pane fade show active" id="doc_detail" role="tabpanel" aria-labelledby="doc_detail_tab" tabindex="0">
+                            <div id="doctorDataDiv" class="box-shoadow-div" style="border-radius: 5px;">
+                                <div style="padding: 10px;">
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Registration No.</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="reg_no"></h4>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Full Name</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="full_name"></h4>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Father Name</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="father_name"></h4>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Registration Type</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="reg_type"></h4>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Status</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="status"></h4>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Issue Date</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="registration_date"></h4>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>License Valid Upto</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="license_valid"></h4>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="doc_qua" role="tabpanel" aria-labelledby="doc_qua_tab" tabindex="0">
+                            <div style="padding: 10px;">
+                                <div class="table-responsive">
+                                    <!-- <div id="quali_div"> -->
+
+                                    <table style="" class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <!--<th>Sr No</th>-->
+                                                <th>Qualification</th>
+                                                <!--<th>Speciality</th>-->
+                                                <th>University</th>
+                                                <th>Passing Year</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="fontLight" id="tBody">
+                                        </tbody>
+                                    </table>
+
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="ViewAdminDetailModal" tabindex="-1" role="dialog" aria-labelledby="ViewAdminDetailModalTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Student Registration Detail</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="tab-content inner_content" id="docTabContent">
+                        <div class="tab-pane fade show active" id="doc_detail" role="tabpanel" aria-labelledby="doc_detail_tab" tabindex="0">
+                            <div id="doctorDataDiv" class="box-shoadow-div" style="border-radius: 5px;">
+                                <div style="padding: 10px;">
+
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Full Name</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="full_name"></h4>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Father Name</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="father_name"></h4>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Registration No.</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="reg_no"></h4>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Session</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="session"></h4>
+                                        </div>
+                                    </div>
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>College Name</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="CollegeName"></h4>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Status</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="s_Status"></h4>
+                                        </div>
+                                    </div>
+
+                                    <div style="display: flex;">
+                                        <div style="flex: 1;">
+                                            <h4>Remarks</h4>
+                                        </div>
+                                        <div style="flex: 1;">
+                                            <h4 id="s_Remarks"></h4>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="PopUpModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Official Announcement</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-center">
+                        <img style="max-height: 150px" src="/images/announcement-01.svg">
+                    </div>
+
+                    <div class="text-center mt-3 mb-3">
+                        <input id="IsActivePopUp" name="IsActivePopUp" type="hidden" value="False" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!--  Main Content Ends Here  -->
+
+
+
+
+
+<div class="popup" id="doctors_popup" style="top: 800px;">
+    <button id="doctors_popup_close">&times;</button>
+    <div class="text-center">        <img style="max-height: 150px" src="/images/announcement-01.svg">
+    </div>
+    <h3 style="margin-bottom: 20px;">DOCTORS ONLINE</h3>
+</div>
+
+
+
+
+
+<!-- VIDEO POPUP CODE -->
+
+
+<!--
+<video width="350" height="650" controls>
+  <source src="httpsss://pmdc.pk//Documents/Others/President-Announcement.mp4" type="video/mp4">
+</video>
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+    <!--Script-->
+
+
+
+
+
+
+
+
+
+
+
+    <div b-xd8vmh0iet class="modal fade" id="FeedBackM" tabindex="-1" aria-labelledby="FeedBackModal" aria-hidden="true">
+        <div b-xd8vmh0iet class="modal-dialog modal-dialog-centered">
+            <div b-xd8vmh0iet class="modal-content">
+                <div b-xd8vmh0iet class="modal-header">
+                    <h5 b-xd8vmh0iet class="modal-title" id="exampleModalLabel">Feedback</h5>
+                    <button b-xd8vmh0iet type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div b-xd8vmh0iet class="modal-body">
+                    <form>
+                        <input b-xd8vmh0iet id="FeedBackRating" value="" type="hidden" />
+                        <div b-xd8vmh0iet class="mb-3">
+                            <input b-xd8vmh0iet type="text" class="form-control" id="recipient-name" placeholder="Name" maxlength="10">
+                            <span b-xd8vmh0iet class="text-danger" id="recipient-error"></span>
+                        </div>
+                        <div b-xd8vmh0iet class="mb-3">
+                            <textarea b-xd8vmh0iet class="form-control" id="message-text" placeholder="Please enter your comment here" maxlength="350" rows="4"></textarea>
+                            <span b-xd8vmh0iet class="text-danger" id="message-error"></span>
+
+                        </div>
+                        <div b-xd8vmh0iet class="mb-3">
+                            <div b-xd8vmh0iet class="rating gold">
+                                <div b-xd8vmh0iet s="5"></div>
+                                <div b-xd8vmh0iet s="4"></div>
+                                <div b-xd8vmh0iet s="3"></div>
+                                <div b-xd8vmh0iet s="2"></div>
+                                <div b-xd8vmh0iet s="1"></div>
+                            </div>
+                            <div b-xd8vmh0iet style="text-align: center;">
+                                <span b-xd8vmh0iet class="text-danger" id="rating-error"></span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div b-xd8vmh0iet class="modal-footer">
+                    <button b-xd8vmh0iet type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button b-xd8vmh0iet type="button" class="btn btn-primary" id="btn-feedback">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--   Footer Start Here  -->
+
+    <footer b-xd8vmh0iet b-uqi2nkv6u9="" class="footer-distributed">
+
+        <div b-xd8vmh0iet b-uqi2nkv6u9="" class="footer-left ">
+            <div b-xd8vmh0iet b-uqi2nkv6u9="" class="total_doc" style=" display: flex; align-items: center;">
+                <div b-xd8vmh0iet b-uqi2nkv6u9="" class="total_doc_icon" style="margin-right:15px; margin-bottom:5px;"><img src="/ThemeContent/images/PMDC Logo-white.png" alt="" style="width:80px; height:80px; "></div>
+                <div b-xd8vmh0iet b-uqi2nkv6u9="" class="total_doc_content">
+
+                    <p b-xd8vmh0iet b-uqi2nkv6u9="">Pakistan Medical &amp; Dental Council</p>
+                </div>
+            </div>
+
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" class="footer-links">
+
+                <a b-xd8vmh0iet b-uqi2nkv6u9="" href="/">Home</a>
+
+                <a b-xd8vmh0iet b-uqi2nkv6u9="" href="/Publication/LawsAndRegulations">Laws &amp; Regulations</a>
+
+                <a b-xd8vmh0iet b-uqi2nkv6u9="" href="/Publication/OfficialLetters">
+                    Experience
+                </a>
+                <a b-xd8vmh0iet b-uqi2nkv6u9="" href="/Publication/DCDecisions">DC Decisions</a>
+                <a b-xd8vmh0iet b-uqi2nkv6u9="" href="/Publication/Tenders">Tenders</a>
+                <a b-xd8vmh0iet b-uqi2nkv6u9="" href="/Publication/PressReleases">Press Releases</a>
+                <a b-xd8vmh0iet b-uqi2nkv6u9="" href="/Publication/Syllabus">Syllabi</a>
+                <a b-xd8vmh0iet b-uqi2nkv6u9="" href="/Career">Career Opportunities</a>
+                <a b-xd8vmh0iet b-uqi2nkv6u9="" href="/Gallery">Gallery</a>
+                <a b-xd8vmh0iet b-uqi2nkv6u9="" href="/ContactUs">Contact</a>
+            </p>
+           
+        </div>
+
+        <div b-xd8vmh0iet b-uqi2nkv6u9="" class="footer-center">
+            
+            <div b-xd8vmh0iet b-uqi2nkv6u9="">
+                <span b-xd8vmh0iet b-uqi2nkv6u9=""><i b-xd8vmh0iet b-uqi2nkv6u9="" class="fa-solid fa-location-dot"></i></span>
+                <p b-xd8vmh0iet b-uqi2nkv6u9="">Head Office: Mauve Area,<br b-xd8vmh0iet> G-10/4, Islamabad, Pakistan</p>
+            </div>
+
+            <div b-xd8vmh0iet b-uqi2nkv6u9="">
+                <i b-xd8vmh0iet b-uqi2nkv6u9="" class="fa fa-phone"></i>
+                <p b-xd8vmh0iet b-uqi2nkv6u9="">+92-51-9190000</p>
+            </div>
+
+            <div b-xd8vmh0iet b-uqi2nkv6u9="">
+                <i b-xd8vmh0iet b-uqi2nkv6u9="" class="fa-brands fa-twitter" style="font-size: 20px;"></i>
+                <p b-xd8vmh0iet b-uqi2nkv6u9=""><a b-xd8vmh0iet href="https://x.com/pmdcofficial" target="_blank" style="color: white;">Twitter Official Account</a></p>
+            </div>
+
+
+            <div b-xd8vmh0iet b-uqi2nkv6u9="">
+                <i b-xd8vmh0iet b-uqi2nkv6u9="" class="fa-brands fa-facebook-f" style="font-size: 20px;"></i>
+                <p b-xd8vmh0iet b-uqi2nkv6u9=""><a b-xd8vmh0iet href="https://www.facebook.com/PakMedicalCommission" style="color: white;">Facebook Official Page</a></p>
+            </div>
+            <!--    <div b-uqi2nkv6u9="" class="footer-icons">
+                <a b-uqi2nkv6u9="" href="#" target="_blank"><i b-uqi2nkv6u9="" class="fa-brands fa-twitter"></i></a>
+               <a b-uqi2nkv6u9="" href="#" target="_blank"><i b-uqi2nkv6u9="" class="fa-brands fa-facebook-f"></i></a>
+            </div>
+
+           <div b-uqi2nkv6u9="">
+                <i b-uqi2nkv6u9="" class="fa-solid fa-fax"></i>
+                <p b-uqi2nkv6u9="">+92 51 9106159</p>
+              </div> -->
+
+
+        </div>
+
+        <div b-xd8vmh0iet b-uqi2nkv6u9="" class="footer-right col-lg-4 col-md-12">
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" class="footer-company-about">
+                <span b-xd8vmh0iet b-uqi2nkv6u9="">Regional Offices</span>
+            </p>
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" style="color: white">Karachi Office</p>
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" style="color: white; font-weight: normal;">+92-21-99261620</p>
+
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" style="color: white">Lahore Office</p>
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" style="color: white; font-weight: normal;">+92-42-99230105</p>
+
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" style="color: white">Peshawar Office</p>
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" style="color: white; font-weight: normal;">+92-91-5881144</p>
+
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" style="color: white">Quetta Office</p>
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" style="color: white; font-weight: normal;">+92-81-9213050</p>
+
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" style="color: white">Hyderabad Office</p>
+            <p b-xd8vmh0iet b-uqi2nkv6u9="" style="color: white; font-weight: normal;">+92-22-9213123</p>
+
+            
+
+
+
+        </div>
+    </footer>
+    <footer b-xd8vmh0iet b-uqi2nkv6u9="" class="footer-bottom">
+        <p b-xd8vmh0iet b-uqi2nkv6u9="" class="footer-company-name"><span b-xd8vmh0iet b-uqi2nkv6u9="">Copyright ©2023, </span>Pakistan Medical and Dental Council. All rights reserved.</p>
+    </footer>
+
+
+
+
+
+
+
+
+
+
+    <!--   Footer Ends Here  -->
+    <!-- JS   -->
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/ThemeContent/js/bootstrap.bundle.min.js"></script>
+    <script src="/ThemeContent/js/owl.carousel.min.js"></script>
+    <script src="/ThemeContent/js/jquery.bxslider.min.js"></script>
+    <script src="/ThemeContent/js/theme-scripts.js"></script>
+    <script src="/js/jquery.dataTables.min.js"></script>
+    <script src="/js/dataTables.bootstrap5.min.js"></script>
+    <script src="/js/toastr.min.js"></script>
+    <script src="/js/site.js"></script>
+    <script src="/js/jquery.maskedinput.min.js"></script>
+    <script src="/js/jquery.mask.js"></script>
+    <script>
+
+
+        $(document).ready(function () {
+
+            if ($("#HighLightWord").val()) {
+                $(".ticker_wrapper,.home_banner,main,.search_class").find(".highlight").removeClass("highlight");
+
+                var searchword = $("#HighLightWord").val();
+
+                var custfilter = new RegExp(searchword, "ig");
+                var repstr = "<span class='highlight'>" + searchword + "</span>";
+
+                if (searchword != "") {
+                    $('.ticker_wrapper,.home_banner,main,.search_class').each(function () {
+                        $(this).html($(this).html().replace(custfilter, repstr));
+                    })
+                }
+            }
+            if ($("#HighLightWordId").val()) {
+                var tabId = "#" + $("#HighLightWordId").val();
+                console.log(tabId)
+                $('.card-body').animate({
+                    scrollTop: $(tabId).offset().top
+                }, 'slow');
+                if ($(tabId).hasClass('fn-PolicyDD')) {
+                    $(tabId).find('button').click();
+                }
+            }
+
+            $.ajax({
+                type: 'Get',
+                url: "/home/GetSeoTags",
+                cache: false,
+                beforeSend: function () { },
+                complete: function () { },
+                success: function (result) {
+                    if (result.status == true) {
+                        if (result.data != null) {
+                            $("head").append(`<meta name="Description" content="${result.data.description}"><meta name="keywords" content="${result.data.keywords}">`);
+                        }
+                    }
+                    else {
+                        console.log(result.Message);
+                    }
+                },
+                error: function () {
+                    console.log("Something went wrong please try again later.");
+                }
+            });
+        });
+
+        //function toggleSearch() {
+        //    var x = document.getElementById("searchBox");
+        //    var i = document.getElementById("searchIcon");
+        //    if (x.style.display === "none") {
+        //        x.style.display = "block";
+        //        i.style.display = "none";
+        //    } else {
+        //        x.style.display = "none";
+        //        i.style.display = "block";
+        //    }
+        //}
+
+        //var input = document.getElementById("searchBox");
+        //input.addEventListener("keypress", function (event) {
+        //    if (event.key === "Enter") {
+        //        event.preventDefault();
+        //        toggleSearch();
+        //        window.location.href = '/Search/index?keyword=' + $("#searchBox").val();
+        //    }
+        //});
+        //
+        $(".btn-search").on('click', function (e) {
+            if ($("#searchBox").val().trim().length > 0) {
+                event.preventDefault();
+                window.location.href = '/Search/index?keyword=' + $("#searchBox").val();
+            }
+
+        });
+        $("#searchBox").on("keypress", function (event) {
+            if (event.key === "Enter") {
+                if ($("#searchBox").val().trim().length > 0) {
+                    event.preventDefault();
+                    window.location.href = '/Search/index?keyword=' + $("#searchBox").val();
+                }
+            }
+        });
+
+
+        $("#btn-feedback").on('click', function (e) {
+            if ($("#recipient-name").val() == '' || $("#recipient-name").val().trim().length < 0) {
+                $("#recipient-error").text("Name is requird.");
+                return false;
+
+            }
+            if ($("#message-text").val() == '' || $("#message-text").val().trim().length < 0) {
+                $("#message-error").text("Message is requird.");
+                return false;
+            }
+            if ($("#FeedBackRating").val() == '' || $("#FeedBackRating").val().trim().length < 0) {
+                $("#rating-error").text("Ratting is requird.");
+                return false;
+            }
+            $.ajax({
+                type: 'POST',
+                url: "home/FeedbackPost?Name=" + $("#recipient-name").val() + "&Message=" + $("#message-text").val() + "&Rating=" + $("#FeedBackRating").val(),
+                cache: false,
+                beforeSend: function () { $('#btn-feedback').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>  submitting`); },
+                complete: function () { },
+                success: function (result) {
+                    console.log(result)
+                    if (result.status == true) {
+                        toastr.success(result.message);
+                        $('#FeedBackM').modal('hide');
+                        $('#btn-feedback').html('Send feedback');
+                        $(".star").each(function () {
+                            if ($(this).addClass("selected"))
+                                $(this).removeClass("selected");
+                        });
+                    }
+                },
+                error: function () {
+                    $('#btn-feedback').html('Send feedback');
+                    toastr.error("Something went wrong please try again later.");
+                }
+            });
+        });
+
+        $('#FeedBackM').on('hidden.bs.modal', function (event) {
+            $("#recipient-error").text("");
+            $("#message-error").text("");
+            $("#rating-error").text("");
+            $("#recipient-name").val('')
+            $("#message-text").val('')
+            $('.star').removeClass('selected');
+        });
+        $("#recipient-name").on('keyup', function () {
+            $("#recipient-error").text("");
+        })
+        $("#message-text").on('keyup', function () {
+            $("#message-error").text("");
+        })
+        $(".star").on('click', function () {
+            $("#rating-error").text("");
+        })
+
+        $("#btn-fbmdoal").on('click', function (e) {
+            $('#FeedBackM').modal('toggle');
+        });
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WZDZ7BFCM9"></script>
+    <script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-WZDZ7BFCM9');</script>
+    
+    <script>
+        $(document).ready(function () {
+            if ($("#IsActivePopUp").val() == 'True') {
+                $("#PopUpModal").modal('show');
+            }
+
+
+            //
+            $.ajax({
+                method: "GET",
+                url: "https://hospitals-inspections.pmdc.pk/api/Stats/GetData",
+                //contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                //beforeSend: function () { $('.fn-counterloader').removeClass('d-none'); },
+                //complete: function () { $('.fn-counterloader').addClass('d-none'); },
+                success: function (response) {
+
+
+                    if (response.status == true) {
+                        let { DoctorsTotal, DoctorsMale, DoctorsFemale, DentistsTotal, DentistsMale, DentistsFemale } = response.data;
+                        $("#totalDoc").html(parseInt(DoctorsTotal) + parseInt(DentistsTotal))
+                        $("#BDSDoc").html(DentistsTotal)
+                        $("#MBBSDoc").html(DoctorsTotal)
+                        $("#MaleDoc").html(DoctorsMale)
+                        $("#FemaleDoc").html(DoctorsFemale)
+                        $("#FemaleBDSDoc").html(DentistsFemale)
+                        $("#MaleBDSDoc").html(DentistsMale)
+                    }
+                    else {
+                        console.log(response.status)
+                    }
+
+                },
+                failure: function (response) {
+                    console.log(response.status)
+                },
+                error: function (response) {
+                    console.log(response.status)
+                }
+            });
+
+        })
+        //
+
+        // DoctorSearch
+        $(".fn-BtnDocRegNo").on('click', function () {
+            var RegNo = $("#DocRegNo").val();
+            var FullName = null;
+            var FatherName = null;
+            webSearchFun(RegNo, FullName, FatherName);
+        });
+        $(".fn-BtnDocFullName").on('click', function () {
+            var RegNo = null;
+            var FullName = $("#DocFullName").val();
+            var FatherName = null;
+            webSearchFun(RegNo, FullName, FatherName);
+        });
+        $(".fn-BtnDocFatherName").on('click', function () {
+            var RegNo = null;
+            var FullName = null;
+            var FatherName = $("#DocFatherName").val();
+            webSearchFun(RegNo, FullName, FatherName);
+        });
+        function webSearchFun(RegNo, FullName, FatherName) {
+            $('#resultDataTable').DataTable().destroy();
+            $("#resultTBody").html('');
+            $.ajax({
+                type: "POST",
+                url: "https://hospitals-inspections.pmdc.pk/api/DRC/GetData",
+                data: {
+                    RegistrationNo: RegNo,
+                    Name: FullName,
+                    FatherName: FatherName
+                },
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                dataType: "json",
+                beforeSend: function () { $('.fn-BtnDocFullName, .fn-BtnDocRegNo,.fn-BtnDocFatherName ').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading').attr("disabled", true) },
+                complete: function () { $('.fn-BtnDocFullName, .fn-BtnDocRegNo,.fn-BtnDocFatherName ').html('').text('Search').attr("disabled", false) },
+                success: function (response) {
+                    console.log(response)
+                    if (response.status == true) {
+                        if (response.data.length > 0) {
+                            var maintr = ``;
+                            $.each(response.data, function (i, v) {
+                                var tr = `<tr><td>${v.RegistrationNo}</td> <td>${v.Name}</td><td>${v.FatherName}</td><td>${v.Status}</td><td><a class="fn-viewdetail btn btn-outline-primary btn-sm" data-id="${v.RegistrationNo}" >View Details</a> </td></tr>`
+                                maintr = maintr + tr;
+                            })
+                            $("#resultTBody").append(maintr);
+                        }
+                        $(".fn-resultDiv , #resultDataTable").removeClass('d-none')
+                        $(".fn-searchDiv").addClass('d-none')
+                        $('#resultDataTable').DataTable({
+                            language: {
+                                search: "_INPUT_",
+                                searchPlaceholder: "Search..."
+                            }
+                        });
+                    }
+                    else {
+                        console.log(response.status)
+                    }
+                },
+                failure: function (response) {
+                    console.log(response.status)
+                },
+                error: function (response) {
+                    console.log(response.status)
+                }
+            });
+        }
+
+        //Faculty Search
+        $(".fn-BtnFacRegNo").on('click', function () {
+            var RegNo = $("#FacRegNo").val();
+            var FullName = null;
+            webFacSearchFun(RegNo, FullName);
+        });
+        $(".fn-BtnFacFullName").on('click', function () {
+            var RegNo = null;
+            var FullName = $("#FacFullName").val();
+            //webFacSearchFun(RegNo, FullName);
+        });
+        function webFacSearchFun(RegNo, FullName) {
+            $('#resultDataTable').DataTable().destroy();
+            $("#resultTBody").html('');
+            $.ajax({
+                type: "POST",
+                url: "https://hospitals-inspections.pmdc.pk/api/FS/GetData",
+                data: {
+                    RegistrationNo: RegNo,
+                    Name: FullName,
+                },
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                dataType: "json",
+                beforeSend: function () { $('.fn-BtnFacFullName, .fn-BtnFacRegNo ').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading').attr("disabled", true) },
+                complete: function () { $('.fn-BtnFacFullName, .fn-BtnFacRegNo').html('').text('Search').attr("disabled", false) },
+                success: function (response) {
+                    if (response.status == true) {
+                        if (response.data.length > 0) {
+                            var maintr = ``;
+                            $.each(response.data, function (i, v) {
+                                // var tr = `<tr style="border-bottom: solid 1px #CCC;"><td>${v.FacultyNo}<br><br><br><strong>Designation.</strong><br>${v.Designation}</td> <td>${v.RegistrationNo}<br><br><br><strong>Department.</strong><br>${v.Department}</td><td>${v.Name}<br><br><strong>Validity.</strong><br>${v.ValidUptoDate}</td><td>${v.College}<br><br><strong>Status.</strong><br>${v.status}</td></tr>`
+                                        var tr = `<tr><td>${v.FacultyNo}</td> <td>${v.RegistrationNo}</td><td>${v.Name}</td><td>${v.College}</td></tr>
+                                                   <tr><td><strong>Designation.</strong><br>${v.Designation}</td> <td><strong>Department.</strong><br>${v.Department}</td><td><strong>Validity.</strong><br>${v.ValidUptoDate}</td><td><strong>Status.</strong><br>${v.status}</td></tr>`
+                                maintr = maintr + tr;
+                            })
+                            $("#resultFacTBody").append(maintr);
+                        }
+                        $(".fn-resultDiv , #resultFacDataTable").removeClass('d-none')
+                        $(".fn-searchDiv").addClass('d-none')
+                        $('#resultFacDataTable').DataTable(
+                            {
+                                language: {
+                                    search: "_INPUT_",
+                                    searchPlaceholder: "Search..."
+                                }
+                            })
+                    }
+                    else {
+                        console.log(response.status)
+                    }
+                },
+                failure: function (response) {
+                    console.log(response.status)
+                },
+                error: function (response) {
+                    console.log(response.status)
+                }
+            });
+        }
+
+        //admin
+
+        $(".fn-BtnAdminRegNo").on('click', function () {
+            var RegNo = $("#AdminRegNo").val();
+            var FullName = null;
+            var FatherName = null;
+            webAdminSearchFun(RegNo, FullName, FatherName);
+        });
+        $(".fn-BtnAdminFullName").on('click', function () {
+            var RegNo = null;
+            var FullName = $("#AdminFullName").val();
+            var FatherName = null;
+            webAdminSearchFun(RegNo, FullName, FatherName);
+        });
+        $(".fn-BtnAdminFatherName").on('click', function () {
+            var RegNo = null;
+            var FullName = null;
+            var FatherName = $("#AdminFatherName").val();
+            webAdminSearchFun(RegNo, FullName, FatherName);
+        });
+        function webAdminSearchFun(RegNo, FullName, FatherName) {
+            $('#resultAdminDataTable').DataTable().destroy();
+            $("#resultAdminTBody").html('');
+            $.ajax({
+                type: "Get",
+                url: "https://institutions.pmdc.pk/CollegesDashboard/GetData",
+                ///url: "https://hospitals-inspections.pmdc.pk/api/ADM/GetData",
+                data: {
+                    RegistrationNo: RegNo,
+                    Name: FullName,
+                    FatherName: FatherName
+                },
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                dataType: "json",
+                beforeSend: function () { $('.fn-BtnAdminFullName, .fn-BtnAdminRegNo,.fn-BtnAdminFatherName ').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading').attr("disabled", true) },
+                complete: function () { $('.fn-BtnAdminFullName, .fn-BtnAdminRegNo,.fn-BtnAdminFatherName ').html('').text('Search').attr("disabled", false) },
+                success: function (response) {
+                    console.log(response)
+                    if (response.status == true) {
+                        if (response.data.length > 0) {
+                            var maintr = ``;
+                            $.each(response.data, function (i, v) {
+                                var tr = `<tr><td style=" width: 20%;">${v.Name}</td> <td style=" width: 20%;">${v.FatherName}</td><td style=" width: 20%;">${v.RegistrationNo}</td><td style=" width: 20%;">${v.Session}</td><td style=" width: 20%;"><a class="fn-viewAdmindetail btn btn-outline-primary btn-sm" data-id="${v.Name},${v.FatherName},${v.RegistrationNo},${v.Session},${v.CollegeName},${v.Status},${v.Remarks}"">View Details</a> </td></tr>`
+                                maintr = maintr + tr;
+                            })
+                            $("#resultAdminTBody").append(maintr);
+                        }
+                        $(".fn-resultDiv , #resultAdminDataTable").removeClass('d-none')
+                        $(".fn-searchDiv").addClass('d-none')
+                        $('#resultAdminDataTable').DataTable({
+                            language: {
+                                search: "_INPUT_",
+                                searchPlaceholder: "Search..."
+                            }
+                        })
+                    }
+                    else {
+                        console.log(response.status)
+                    }
+                },
+                failure: function (response) {
+                    console.log(response.status)
+                },
+                error: function (response) {
+                    console.log(response.status)
+                }
+            });
+        }
+
+        //common Part
+        $(".fn-backtosearch").on('click', function () {
+            $(".fn-resultDiv , #resultDataTable, #resultFacDataTable,#resultAdminDataTable").addClass('d-none')
+            $(".fn-searchDiv").removeClass('d-none')
+            $('#resultDataTable').DataTable().destroy();
+            $('#resultFacDataTable').DataTable().destroy();
+            $('#resultAdminDataTable').DataTable().destroy();
+            $("#resultTBody").html('');
+            $("#resultFacTBody").html('');
+            $("#resultAdminTBody").html('');
+            ClearValue();
+        });
+        $(".cls_btn").on('click', function () {
+            ClearValue();
+        });
+        function ClearValue() {
+            $("#FacFullName").val("");
+            $("#FacRegNo").val("");
+            $("#DocRegNo").val("");
+            $("#DocFullName").val("");
+            $("#DocFatherName").val("");
+            $("#AdminFatherName").val("");
+            $("#AdminFullName").val("");
+            $("#AdminRegNo").val("");
+        }
+        // view detail modal
+        $("#resultDataTable").on('click', ".fn-viewdetail", function () {
+            var Id = $(this).attr("data-id");
+
+            $.ajax({
+                type: "POST",
+                url: "https://hospitals-inspections.pmdc.pk/api/DRC/GetQualifications",
+                data: {
+                    RegistrationNo: Id,
+                },
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                dataType: "json",
+                //beforeSend: function() { $('.fn-BtnDocFullName, .fn-BtnDocRegNo,.fn-BtnDocFatherName ').html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>Loading').attr("disabled", true) },
+                //complete: function() { $('.fn-BtnDocFullName, .fn-BtnDocRegNo,.fn-BtnDocFatherName ').html('').text('Search').attr("disabled", false) },
+                success: function (response) {
+                    console.log(response)
+                    if (response.status == true) {
+                        if (response.data != null) {
+
+                            $("#reg_no").text(response.data.RegistrationNo);
+                            $("#full_name").text(response.data.Name);
+                            $("#father_name").text(response.data.FatherName);
+                            $("#reg_type").text(response.data.RegistrationType);
+                            $("#status").text(response.data.Status);
+                            $("#registration_date").text(response.data.RegistrationDate);
+                            $("#license_valid").text(response.data.ValidUpto);
+                            var maintr = ``;
+                            if (response.data.Qualifications.length > 0) {
+                                
+                                $.each(response.data.Qualifications, function (i, v) {
+                                    maintr='';
+                                    var tr = `<tr><td>${v.Degree} ${v.Speciality}</td> <td>${v.University}</td><td>${v.PassingYear}</td></tr>`
+                                    maintr = maintr + tr;
+                                    $("#tBody").append(maintr);
+                                    console.log("response.data.Qualifications", maintr)
+
+                                })
+
+                            }
+                            else { maintr = `<tr><td>No Data Found</td> <td>No Data Found</td><td>No Data Found</td></tr>`; $("#tBody").append(maintr); }
+                        }
+                    }
+                    else {
+                        console.log(response.status)
+                    }
+                },
+                failure: function (response) {
+                    console.log(response.status)
+                },
+                error: function (response) {
+                    console.log(response.status)
+                }
+            });
+            $("#ViewDetailModal").modal('show');
+        })
+        $('#ViewDetailModal').on('hidden.bs.modal', function (e) {
+            $("#reg_no").text('');
+            $("#full_name").text('');
+            $("#father_name").text('');
+            $("#reg_type").text('');
+            $("#status").text('');
+            $("#registration_date").text('');
+            $("#license_valid").text('');
+            $("#tBody").empty()
+        })
+
+
+        $("#resultAdminDataTable").on('click', '.fn-viewAdmindetail', function () {
+            var data = $(this).attr('data-id');
+            if (data) {
+                var dataList = data.split(',');
+                var ss_status = dataList[5];
+                if(dataList[5]=="null")
+                {
+                    ss_status = "---";
+                }
+                var ss_remarks = dataList[6];
+                if(dataList[6]=="null")
+                {
+                    ss_remarks = "---";
+                }
+                $("#ViewAdminDetailModal #full_name").text(dataList[0]);
+                $("#ViewAdminDetailModal #father_name").text(dataList[1]);
+                $("#ViewAdminDetailModal #reg_no").text(dataList[2]);
+                $("#ViewAdminDetailModal #session").text(dataList[3]);
+                $("#ViewAdminDetailModal #CollegeName").text(dataList[4]);
+                $("#ViewAdminDetailModal #s_Status").text(ss_status);
+                $("#ViewAdminDetailModal #s_Remarks").text(ss_remarks);
+                $("#ViewAdminDetailModal").modal('show');
+            }
+
+        });
+
+        $('#ViewAdminDetailModal').on('hidden.bs.modal', function (e) {
+            $("#ViewAdminDetailModal #full_name").text('');
+            $("#ViewAdminDetailModal #father_name").text('');
+            $("#ViewAdminDetailModal #reg_no").text('');
+            $("#ViewAdminDetailModal #session").text('');
+            $("#ViewAdminDetailModal #CollegeName").text('');
+            $("#ViewAdminDetailModal #s_Status").text('');
+            $("#ViewAdminDetailModal #s_Remarks").text('');
+        })
+    </script>
+
+
+
+
+
+
+
+
+
+    <script>
+        var nxGalleryImages2026 =
+        ["/gallerypopup/01_public_notice_for_alert.png"];
+
+        var nxPopupTitle2026 =
+        "";
+
+        var nxCurrentImageIndex2026 = 0;
+
+        function nxOpenGalleryPopup2026() {
+            if (nxGalleryImages2026.length === 0) return;
+
+            document.getElementById('nxGalleryPopupWrap2026').style.display = 'block';
+            document.getElementById('nxGalleryTitle2026').innerText = nxPopupTitle2026;
+            nxLoadGalleryImage2026();
+        }
+
+        function nxCloseGalleryPopup2026() {
+            document.getElementById('nxGalleryPopupWrap2026').style.display = 'none';
+        }
+
+        function nxLoadGalleryImage2026() {
+            document.getElementById('nxGalleryImage2026').src =
+                nxGalleryImages2026[nxCurrentImageIndex2026];
+        }
+
+        function nxShowNextImage2026() {
+            nxCurrentImageIndex2026 =
+                (nxCurrentImageIndex2026 + 1) % nxGalleryImages2026.length;
+
+            nxLoadGalleryImage2026();
+        }
+
+        function nxShowPrevImage2026() {
+            nxCurrentImageIndex2026 =
+                (nxCurrentImageIndex2026 - 1 + nxGalleryImages2026.length)
+                % nxGalleryImages2026.length;
+
+            nxLoadGalleryImage2026();
+        }
+
+        window.addEventListener("load", function () {
+            nxOpenGalleryPopup2026();
+        });
+
+
+
+            document.addEventListener("click", function (e) {
+
+        var overlay = document.getElementById("nxGalleryPopupWrap2026");
+        var box = document.querySelector(".nx-gallery-popup-box-2026");
+
+        // If popup is open AND click is outside the box
+        if (overlay.style.display === "block") {
+
+            if (!box.contains(e.target)) {
+                nxCloseGalleryPopup2026();
+            }
+        }
+    });
+
+    </script>
+
+</body>
+</html>
