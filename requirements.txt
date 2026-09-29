@@ -13,3 +13,8 @@ python-docx>=1.1
 # tests
 pytest>=8.0
 httpx>=0.27
+# sample notebook (notebooks/, scripts/build_notebook.py)
+pandas>=2.0
+nbformat>=5.9
+nbclient>=0.10
+ipykernel>=6.29

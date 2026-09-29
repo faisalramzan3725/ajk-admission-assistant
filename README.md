@@ -51,6 +51,14 @@ python -m pytest -q
 
 The 46 tests cover the MUST grading table and worked examples, every promotion path (probation, summer waiver, drop, relegation, second-half reset), versioned fee selection, advisor eligibility, the decision routing, YAML integrity and the full API flow. They run on an isolated copy of the demo data.
 
+## Sample notebook
+
+[notebooks/JK_Assistance_Samples.ipynb](notebooks/JK_Assistance_Samples.ipynb) has 38 executed cells of sample tests with saved outputs. It covers procedures and versioned fees, four admission-advisor profiles, seven promotion cases, what-if scenarios, dashboards, events, application tracking, 13 chat questions, evidence search, the escalation queue and the MCP server. Open it in VS Code or Jupyter, or rebuild and re-run it:
+
+```bash
+python scripts/build_notebook.py
+```
+
 ## Documentation
 
 | Document | What it covers |

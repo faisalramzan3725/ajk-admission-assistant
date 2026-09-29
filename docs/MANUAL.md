@@ -210,6 +210,14 @@ python -m pytest -q
 
 **Manual test checklist (localhost):** run each example question in section 3 and check the action pill and the sources. On the dashboard, click "Mark paid" for S-001's hostel dues: the overdue alert disappears. Open the S-001 what-if and set CS-301=55, CS-303=40: the outcome is relegated to semester 3.
 
+**Sample notebook**: `notebooks/JK_Assistance_Samples.ipynb` runs sample inputs through every component on an isolated copy of the demo data, with today fixed at 2026-09-29. Open it in VS Code or Jupyter and choose "Run All". To regenerate it with fresh outputs:
+
+```bash
+python scripts/build_notebook.py
+```
+
+If `ANTHROPIC_API_KEY` is set when Jupyter starts, its last cell also shows a Claude-written answer.
+
 **MCP smoke test**: this spawns the server and calls tools through the official client:
 
 ```bash
