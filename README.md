@@ -75,6 +75,7 @@ An **update agent** (`scripts/update_agent.py`) runs daily through GitHub Action
 
 | Document | Contents |
 |---|---|
+| [docs/JK_Assistance_Guide.pdf](docs/JK_Assistance_Guide.pdf) | **Beginner PDF guide**: how it works, user manual, building an agent from scratch (step-by-step with code), and 25 interview questions with model answers. Rebuild with `python scripts/build_guide_pdf.py` |
 | [docs/PHASES.md](docs/PHASES.md) | **Complete documentation, phase by phase**: data collection, extraction, knowledge, retrieval, eligibility engine, chat, interfaces, testing, update agent, yearly operations |
 | [docs/MANUAL.md](docs/MANUAL.md) | Install, localhost, portal walkthrough, REST API, MCP, testing, how the assistant works, implementation, updating data |
 | [knowledge/README.md](knowledge/README.md) | Sources, trust levels, known gaps, how to update |
