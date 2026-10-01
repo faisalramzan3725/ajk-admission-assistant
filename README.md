@@ -5,7 +5,7 @@
 A student enters their intermediate group, their marks (obtained / out of) and any entry-test scores. JK Assistance then:
 
 - lists every program they can apply to at **UAJK** (Muzaffarabad), **MUST** (Mirpur), the **AJK public medical colleges** (AJKMC, MBBSMC, Poonch Medical College) and the **SZABMU federal medical colleges** (which have AJK-quota seats);
-- shows an **eligibility checklist** for each program, e.g. *MDCAT needs ≥ 55% = 99 / 180, you have 140 / 180 = 77.78% ✓*;
+- shows an **eligibility checklist** for each program, e.g. *MDCAT needs ≥ 55% = 99 / 180, you have 140 / 180 = 77.78% *;
 - computes the **MBBS/BDS merit aggregate** (PM&DC formula: MDCAT 50% + HSSC 40% + SSC 10%);
 - gives a clearly labelled **heuristic chance**, first-semester **fees**, and **seats**;
 - explains **how to apply step by step**, with the document checklist, contacts and **admission dates** (with days left).
