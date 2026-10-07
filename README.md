@@ -1,4 +1,4 @@
-# JK Assistance - Admissions
+# JK Assistance
 
 **An admission assistant for students in Azad Jammu & Kashmir who have just finished 12 years of education and don't know where to go, whether they are eligible, or how to apply.**
 
