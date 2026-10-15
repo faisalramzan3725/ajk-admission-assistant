@@ -2,21 +2,18 @@
  "uajk.admission_procedure": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:08:23+00:00",
-  "hash": "6ad11a7886ce6d0b7916b291b60285d3260acaace7f4eb81b8c67d7542ed0c1a",
+  "checked": "2026-10-15T08:09:00+00:00",
+  "hash": "97dc4758e1fdb12ca4d4993552ed845f7da4d10678b21de332f0c92ac54b8806",
   "docs": [
    "https://drive.google.com/file/d/11p1lmnvh8MQiTETVNrAfmgaX25Wrg-kF/view",
    "https://drive.google.com/file/d/11p1lmnvh8MQiTETVNrAfmgaX25Wrg-kF/view?usp=drive_link",
-   "https://uajk.edu.pk/?sdm_process_download=1&download_id=17661",
-   "https://uajk.edu.pk/wp-content/uploads/2018/04/entry-test-1.jpg",
-   "https://uajk.edu.pk/wp-content/uploads/2026/08/University-Admission-Ad-Final.jpg",
-   "https://uajk.edu.pk/wp-content/uploads/2026/08/University-Admission-Ad-Final.jpg"
+   "https://uajk.edu.pk/?sdm_process_download=1&download_id=17661"
   ]
  },
  "uajk.eligibility": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "9706866f5c96d3e84e4ab5924301162d8c3f9a0d68459f41dee9b30bed1877d7",
   "docs": [
    "https://drive.google.com/file/d/11p1lmnvh8MQiTETVNrAfmgaX25Wrg-kF/view",
@@ -27,7 +24,7 @@
  "uajk.required_documents": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "1f1df563c14f1304437b78a08deeb60d043e8f9c128630bd3d1b1a8e0fee3471",
   "docs": [
    "https://drive.google.com/file/d/11p1lmnvh8MQiTETVNrAfmgaX25Wrg-kF/view",
@@ -38,7 +35,7 @@
  "uajk.reserved_seats": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "55c0bde6722fbdff38431ed2c38d6db1ddbbb5451feb321d933c76cbcbb29069",
   "docs": [
    "https://drive.google.com/file/d/11p1lmnvh8MQiTETVNrAfmgaX25Wrg-kF/view?usp=drive_link",
@@ -48,7 +45,7 @@
  "uajk.ug_programs": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "2440f809890ab60d01f253383c2f74b46668079a692cd5fd083ec90f7c57e29d",
   "docs": [
    "https://drive.google.com/file/d/11p1lmnvh8MQiTETVNrAfmgaX25Wrg-kF/view",
@@ -59,7 +56,7 @@
  "uajk.fee_structure": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "4301b13e705af0beff0520067a7ab51163155de0bdce4ea00e9cc21b10e04ac3",
   "docs": [
    "https://drive.google.com/file/d/11p1lmnvh8MQiTETVNrAfmgaX25Wrg-kF/view",
@@ -86,7 +83,7 @@
  "uajk.merit_rebate": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "8809b600c3ec9c41ab91b11e1b606e8491eff70102e8263f8a0122926f09b8d5",
   "docs": [
    "https://drive.google.com/file/d/11p1lmnvh8MQiTETVNrAfmgaX25Wrg-kF/view?usp=drive_link",
@@ -96,7 +93,7 @@
  "uajk.scholarships": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "2076a110aaca18c1103798ff64105f06105a7af79cef1e9a48a625c617ff34f2",
   "docs": [
    "https://drive.google.com/file/d/11p1lmnvh8MQiTETVNrAfmgaX25Wrg-kF/view?usp=drive_link",
@@ -113,7 +110,7 @@
  "uajk.contacts": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "a6bfa78c5f6c35fb1f2f8d6debe6bb6ceaa42b8bc21b920e23390388aed4e164",
   "docs": [
    "https://drive.google.com/file/d/11p1lmnvh8MQiTETVNrAfmgaX25Wrg-kF/view?usp=drive_link",
@@ -123,15 +120,15 @@
  "uajk.portal": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": null,
   "docs": []
  },
  "must.admissions": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
-  "hash": "015be8fb4fb52737fff8571e1f1fcda0a02ef7570d09fc63d7a7346797ead8fd",
+  "checked": "2026-10-15T08:09:00+00:00",
+  "hash": "202415a90a346587fbd46b357d0db5c64e5a9513fbd3a622deea5760396526ce",
   "docs": [
    "https://must.edu.pk/wp-content/uploads/2022/10/Eligibility-Criteria-Spring-2022.pdf",
    "https://must.edu.pk/wp-content/uploads/2022/10/Eligibility-Criteria-for-Admission-Fall-2022.pdf",
@@ -154,8 +151,8 @@
  "must.merit_schedule": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
-  "hash": "0199880885fa105fd4563b7faa3ce8636f95ed7ce2008ccbc4f874712284634e",
+  "checked": "2026-10-15T08:09:00+00:00",
+  "hash": "434ef48ffbca272a8fb78d6c90470fe0125e802cb93f1f4c1493e27f6e5e54da",
   "docs": [
    "https://must.edu.pk/wp-content/uploads/2022/10/SEXUALHARASSMENT-POLICY.pdf",
    "https://must.edu.pk/wp-content/uploads/2023/05/MUST-ACT.pdf",
@@ -169,7 +166,7 @@
  "must.scholarships": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "5b7ace34f3b7ac839ce85c527bd5b0023418492f09fbd732e53c2e2271698bb0",
   "docs": [
    "https://must.edu.pk/wp-content/uploads/2022/10/SEXUALHARASSMENT-POLICY.pdf",
@@ -184,36 +181,36 @@
  "must.portal": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": null,
   "docs": []
  },
  "must.merit_lists": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "141733787ca727bcc1f7f8254eaa8c1107f6901d0ba7361f01db38bc8af0013c",
   "docs": []
  },
  "pmdc.home": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
-  "hash": "382708ab099c60bce260526a2f6374cd430c80420f20bd520b6a88d716e10124",
+  "checked": "2026-10-15T08:09:00+00:00",
+  "hash": "c6a416c185dcee22695cf24c0680893365f1b1d7ce0619f49757223c77a2227e",
   "docs": [
    "https://pmdc.pk/Documents/Others/Doctor-Alert-UnRecognized-PG-Programmes.jpeg",
    "https://pmdc.pk/Documents/Others/Doctors-Alert-Unrecognized-Postgraduate-Programs.jpeg",
    "https://pmdc.pk/Documents/Others/Implementation of Mental Health Screening Counselling services.pdf",
-   "https://pmdc.pk/Documents/Others/LCMD - Letter to Mo -  Inclusion in 2nd Schedule.pdf",
+   "https://pmdc.pk/Documents/Others/Notification REgarding Standards of Accredetation of CPD, letter no 0001.pdf",
    "https://pmdc.pk/Documents/Others/Notified Foreign qualifications.pdf",
    "https://pmdc.pk/Documents/Others/Notified Foreign qualifications.pdf",
+   "https://pmdc.pk/Documents/Others/Public Notice Regarding Exemption of MDCAT for seeking Admission in Foreign Institutions.pdf",
    "https://pmdc.pk/Documents/Others/Public Notice Regarding Extension of MDCAT Online Registration date.pdf",
-   "https://pmdc.pk/Documents/Others/Public Notice Regarding Extension of NEB Online Registration Portal.pdf",
    "https://pmdc.pk/Documents/Others/Public Notice Regarding Extension of NRE Registration Portal .pdf",
-   "https://pmdc.pk/Documents/Others/Public Notice Regarding Opening of Online Registration Portal for NRE.pdf",
+   "https://pmdc.pk/Documents/Others/Public Notice Regarding Re-Scheduled of NRE Step-I Exam.pdf",
    "https://pmdc.pk/Documents/Others/Recognised Institutes with attached Hospitals (Final List )  07-11-2025 for web -.pdf",
-   "https://pmdc.pk/Documents/Others/Recognized Pakistani PGQs 18.08.2026.pdf",
-   "https://pmdc.pk/Documents/Others/Recognized Pakistani PGQs 18.08.2026.pdf",
+   "https://pmdc.pk/Documents/Others/Recognized Pakistani PGQs 01.10.2026.pdf",
+   "https://pmdc.pk/Documents/Others/Recognized Pakistani PGQs 01.10.2026.pdf",
    "https://pmdc.pk/Documents/Others/Stand Alone Hospitals Approved for the House Job (Final Updated list) 07-11-2025.pdf",
    "https://pmdc.pk/Documents/Others/tution%20fee%20notfication%2011-03-2026.pdf",
    "https://pmdc.pk/Documents/law/PMDC Act.pdf",
@@ -225,7 +222,7 @@
  "pmdc.mdcat_results": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "5477601d4583632af39afacbbe30ba5fbf9bea9a134e9528b5fb6353b5bf4fa6",
   "docs": [
    "https://pmdc.pk/Documents/Others/Doctor-Alert-UnRecognized-PG-Programmes.jpeg",
@@ -235,8 +232,8 @@
    "https://pmdc.pk/Documents/Others/Notified Foreign qualifications.pdf",
    "https://pmdc.pk/Documents/Others/Public Notice Regarding Extension of MDCAT Online Registration date.pdf",
    "https://pmdc.pk/Documents/Others/Recognised Institutes with attached Hospitals (Final List )  07-11-2025 for web -.pdf",
-   "https://pmdc.pk/Documents/Others/Recognized Pakistani PGQs 18.08.2026.pdf",
-   "https://pmdc.pk/Documents/Others/Recognized Pakistani PGQs 18.08.2026.pdf",
+   "https://pmdc.pk/Documents/Others/Recognized Pakistani PGQs 01.10.2026.pdf",
+   "https://pmdc.pk/Documents/Others/Recognized Pakistani PGQs 01.10.2026.pdf",
    "https://pmdc.pk/Documents/Others/Stand Alone Hospitals Approved for the House Job (Final Updated list) 07-11-2025.pdf",
    "https://pmdc.pk/Documents/Others/tution%20fee%20notfication%2011-03-2026.pdf",
    "https://pmdc.pk/Documents/press/PRESS RELEASE-MDCAT Rescheduled.pdf"
@@ -245,7 +242,7 @@
  "szabmu.mbbs": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "be8e05d225d9e64700d6cec2568997b8eb04408a24240f9ea0d2284526ea1ae6",
   "docs": [
    "https://pmdc.pk/Documents/law/Admissions%20Regulations-2025.pdf"
@@ -254,35 +251,35 @@
  "pmc.admission": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": "607d29df1300cf534d8bb0a8966bfc7c15654611ecf9be442606eecc79e79eae",
   "docs": []
  },
  "pmc.news": {
   "ok": true,
   "status": 200,
-  "checked": "2026-09-29T13:07:01+00:00",
-  "hash": "ddbcfbd5e9b4ddd442eca3e731292e0c94dfd1ccefc64c3800f43fd6b870b17f",
+  "checked": "2026-10-15T08:09:00+00:00",
+  "hash": "5eeba8f7c501edb77ba9a39cb84d21a8367e54d582d4709c6c76ead3a4b6a437",
   "docs": []
  },
  "jac.portal": {
   "ok": false,
   "status": 403,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": null,
   "docs": []
  },
  "ajkmc.site": {
-  "ok": false,
-  "status": null,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "ok": true,
+  "status": 200,
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": null,
   "docs": []
  },
  "pmdc.mdcat_portal": {
   "ok": false,
   "status": null,
-  "checked": "2026-09-29T13:07:01+00:00",
+  "checked": "2026-10-15T08:09:00+00:00",
   "hash": null,
   "docs": []
  }
