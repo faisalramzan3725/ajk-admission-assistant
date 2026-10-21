@@ -1,4 +1,4 @@
-# JK Assistance
+# AJK Assistance
 
 **An admission assistant for students in Azad Jammu & Kashmir who have just finished 12 years of education and don't know where to go, whether they are eligible, or how to apply.**
 
@@ -81,7 +81,7 @@ An **update agent** (`scripts/update_agent.py`) runs daily through GitHub Action
 | [knowledge/README.md](knowledge/README.md) | Sources, trust levels, known gaps, how to update |
 | [mcp_server/README.md](mcp_server/README.md) | MCP tools and client configuration |
 
-## Layout
+## Layout Structure
 
 ```
 jk_assistance/   knowledge.py (index) · advisor.py (eligibility engine) · assistant.py (chat router) · decision.py · llm.py · api.py
